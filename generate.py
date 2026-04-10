@@ -31,7 +31,7 @@ def stars_html(rating):
 # ============================================================
 NAV_HTML = '''<nav class="nav">
     <div class="container">
-        <a href="/" class="nav-logo"><img src="/assets/images/logo.svg" alt="Casino Arena" class="nav-logo-img">CASINO<span>ARENA</span></a>
+        <a href="/" class="nav-logo"><img src="/assets/images/logo.svg" alt="Casinos Czech" class="nav-logo-img"></a>
         <button class="nav-toggle" aria-label="Menu">☰</button>
         <ul class="nav-menu">
             <li>
