@@ -73,10 +73,11 @@ a:hover { color: var(--red-hover); }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 15px;
 }
-.topbar-logo { display: flex; align-items: center; }
-.topbar-logo img { height: 32px; width: auto; }
-.topbar-right { display: flex; align-items: center; gap: 15px; }
+.topbar-logo { display: flex; align-items: center; flex-shrink: 0; min-width: 0; }
+.topbar-logo img { height: 30px; width: auto; max-width: 160px; }
+.topbar-right { display: flex; align-items: center; gap: 10px; flex-shrink: 1; min-width: 0; }
 .topbar-search {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.1);
@@ -84,7 +85,9 @@ a:hover { color: var(--red-hover); }
   padding: 8px 14px;
   color: var(--text-muted);
   font-size: 0.8rem;
-  width: 180px;
+  width: 140px;
+  min-width: 0;
+  flex-shrink: 1;
   outline: none;
   transition: border-color 0.2s;
 }
