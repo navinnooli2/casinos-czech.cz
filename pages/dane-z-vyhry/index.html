@@ -5,97 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Daň z výher z online hazardu v ČR. Kolik procent daně musíte zaplatit z výher v kasinech?">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Daně z Výhry | Casino Arena">
+    <meta property="og:title" content="Daně z Výhry | Casinos Czech">
     <meta property="og:description" content="Daň z výher z online hazardu v ČR. Kolik procent daně musíte zaplatit z výher v kasinech?">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://casino-czech.cz/dane-z-vyhry/">
-    <meta property="og:image" content="https://casino-czech.cz/assets/images/logo.svg">
-    <title>Daně z Výhry | Casino Arena</title>
-    <link rel="canonical" href="https://casino-czech.cz/dane-z-vyhry/">
+    <meta property="og:url" content="https://casinos-czech.cz/dane-z-vyhry/">
+    <meta property="og:image" content="https://casinos-czech.cz/assets/images/logo.svg">
+    <title>Daně z Výhry | Casinos Czech .CZ</title>
+    <link rel="canonical" href="https://casinos-czech.cz/dane-z-vyhry/">
+    <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/css/style.css?v=4">
-    <style>.nav-menu{display:flex;gap:0;list-style:none;height:100%;align-items:center;margin:0;padding:0}.nav-menu>li{position:relative;height:100%;display:flex;align-items:center;list-style:none}.mega-dropdown{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);z-index:9999}.nav-menu>li:hover>.mega-dropdown{display:block}.mega-dropdown ul{list-style:none;margin:0;padding:0}.mega-dropdown li{list-style:none}@media(max-width:900px){.nav-menu{display:none;flex-direction:column;width:100%;height:auto}.nav-menu.active{display:flex}.nav-menu>li{height:auto;flex-direction:column;align-items:stretch}.nav-menu>li:hover>.mega-dropdown{display:none}.mega-dropdown{position:static;transform:none}.nav-menu>li.open>.mega-dropdown{display:block!important}}</style>
+    <link rel="stylesheet" href="/assets/css/style.css?v=5">
 </head>
 <body>
 
-<nav class="nav">
-    <div class="container">
-        <a href="/" class="nav-logo"><img src="/assets/images/logo.svg" alt="Casinos Czech" class="nav-logo-img"></a>
-        <button class="nav-toggle" aria-label="Menu">☰</button>
-        <ul class="nav-menu">
-            <li>
-                <a href="/kasina/">Kasina <span class="arrow-down">▼</span></a>
-                <div class="mega-dropdown">
-                    <div class="mega-dropdown-title">Kasina</div>
-                    <ul>
-                        <li><a href="/nejlepsi-kasina-cz/">Nejlepší kasina</a></li>
-                        <li><a href="/nove-kasina-2026/">Nová kasina 2026</a></li>
-                        <li><a href="/kasina-ceska-licence/">Česká kasina</a></li>
-                        <li><a href="/bezpecna-kasina/">Bezpečná kasina</a></li>
-                        <li><a href="/kasino-bez-limitu/">Kasina bez limitu</a></li>
-                        <li><a href="/top-10-kasin/">Top 10 kasin</a></li>
+<!-- TOPBAR -->
+<div class="topbar">
+    <button class="hamburger" id="menuOpen">☰</button>
+    <a href="/" class="topbar-logo"><img src="/assets/images/logo.svg" alt="Casinos Czech"></a>
+    <div class="topbar-right">
+        <input type="text" class="topbar-search" placeholder="Hledat...">
+    </div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <img src="/assets/images/logo.svg" alt="Casinos Czech" height="28">
+        <button class="sidebar-close" id="menuClose">✕</button>
+    </div>
+    <ul class="sidebar-nav">
+        <!-- KASINA -->
+        <li>
+            <div class="menu-heading">Kasina <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg></div>
+            <ul class="submenu">
+                <li><a href="/nejlepsi-kasina-cz/">Nejlepší kasina</a></li>
+                <li><a href="/nove-kasina-2026/">Nová kasina 2026</a></li>
+                <li><a href="/kasina-ceska-licence/">Česká kasina</a></li>
+                <li><a href="/bezpecna-kasina/">Bezpečná kasina</a></li>
+                <li><a href="/kasino-bez-limitu/">Kasina bez limitu</a></li>
+                <li><a href="/top-10-kasin/">Top 10 kasin</a></li>
+                <!-- Sub: Platební metody -->
+                <li>
+                    <div class="sub-heading">Platební metody <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg></div>
+                    <ul class="sub-submenu">
+                        <li><a href="/pruvodce/paysafecard-kasino/">PaySafeCard</a></li>
+                        <li><a href="/pruvodce/bitcoin-kasino/">Bitcoin / Krypto</a></li>
+                        <li><a href="/pruvodce/apple-pay-kasino/">Apple Pay</a></li>
+                        <li><a href="/pruvodce/skrill-neteller-kasino/">Skrill & Neteller</a></li>
+                        <li><a href="/pruvodce/bankovni-prevod-kasino/">Bankovní převod</a></li>
                     </ul>
-                </div>
-            </li>
-            <li>
-                <a href="/nejlepsi-kasinovy-bonus/">Bonusy <span class="arrow-down">▼</span></a>
-                <div class="mega-dropdown">
-                    <div class="mega-dropdown-title">Bonusy & Akce</div>
-                    <ul>
-                        <li><a href="/nejlepsi-kasinovy-bonus/">Nejlepší bonusy</a></li>
-                        <li><a href="/casino-bonusy-bez-vkladu/">Bonusy bez vkladu</a></li>
-                        <li><a href="/free-spiny-dnes/">Free spiny dnes</a></li>
+                </li>
+                <!-- Sub: Bonusy -->
+                <li>
+                    <div class="sub-heading">Bonusy <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg></div>
+                    <ul class="sub-submenu">
+                        <li><a href="/nejlepsi-kasinovy-bonus/">Všechny bonusy</a></li>
+                        <li><a href="/casino-bonusy-bez-vkladu/">Bez vkladu</a></li>
+                        <li><a href="/free-spiny-dnes/">Free spiny</a></li>
                         <li><a href="/kasino-free-spiny/">Kasino free spiny</a></li>
                         <li><a href="/kasino-nizka-sazka/">Nízké sázky</a></li>
                     </ul>
-                </div>
-            </li>
-            <li>
-                <a href="/casino-vyherni-automaty/">Hry <span class="arrow-down">▼</span></a>
-                <div class="mega-dropdown mega-dropdown-wide">
-                    <div class="mega-col">
-                        <div class="mega-dropdown-title">Populární hry</div>
-                        <ul>
-                            <li><a href="/automaty-zdarma/">Automaty zdarma</a></li>
-                            <li><a href="/casino-vyherni-automaty/">Výherní automaty</a></li>
-                            <li><a href="/live-kasino/">Live kasino</a></li>
-                            <li><a href="/poker-online/">Poker online</a></li>
-                            <li><a href="/sazeni-na-sport/">Sportovní sázky</a></li>
-                            <li><a href="/loterie-online/">Loterie online</a></li>
-                        </ul>
-                    </div>
-                    <div class="mega-col">
-                        <div class="mega-dropdown-title">Stolní & Mini hry</div>
-                        <ul>
-                            <li><a href="/rtp-automaty/">Vysoké RTP automaty</a></li>
-                            <li><a href="/volatilita-automaty/">Volatilita automatů</a></li>
-                            <li><a href="/jackpot-kasino/">Jackpot kasino</a></li>
-                            <li><a href="/kasino-pro-zacatecniky/">Pro začátečníky</a></li>
-                            <li><a href="/kasino-na-penize/">Kasino na peníze</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <a href="/online-hazard-cz/">Info <span class="arrow-down">▼</span></a>
-                <div class="mega-dropdown">
-                    <div class="mega-dropdown-title">Průvodce</div>
-                    <ul>
-                        <li><a href="/legalni-kasina-cz/">Legální kasina v ČR</a></li>
-                        <li><a href="/dane-z-vyhry/">Daně z výher</a></li>
-                        <li><a href="/sebeomezeni-hazard/">Odpovědné hraní</a></li>
-                        <li><a href="/online-hazard-cz/">Online hazard v ČR</a></li>
+                </li>
+                <!-- Sub: Výhody -->
+                <li>
+                    <div class="sub-heading">Výhody <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg></div>
+                    <ul class="sub-submenu">
+                        <li><a href="/mobilni-kasino/">Mobilní kasino</a></li>
+                        <li><a href="/kasino-pro-zacatecniky/">Pro začátečníky</a></li>
+                        <li><a href="/kasino-bez-limitu/">Bez limitu</a></li>
+                        <li><a href="/kasino-na-penize/">Za skutečné peníze</a></li>
                     </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
+                </li>
+                <!-- Sub: Typ her -->
+                <li>
+                    <div class="sub-heading">Typ her <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg></div>
+                    <ul class="sub-submenu">
+                        <li><a href="/sazeni-na-sport/">Sportovní sázky</a></li>
+                        <li><a href="/live-kasino/">Live kasino</a></li>
+                        <li><a href="/casino-vyherni-automaty/">Automaty</a></li>
+                        <li><a href="/poker-online/">Poker</a></li>
+                        <li><a href="/loterie-online/">Loterie</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <!-- HRY -->
+        <li>
+            <div class="menu-heading">Kasinové hry <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg></div>
+            <ul class="submenu">
+                <li><a href="/casino-vyherni-automaty/">Výherní automaty</a></li>
+                <li><a href="/automaty-zdarma/">Automaty zdarma</a></li>
+                <li><a href="/live-kasino/">Live kasino</a></li>
+                <li><a href="/poker-online/">Poker online</a></li>
+                <li><a href="/jackpot-kasino/">Jackpot automaty</a></li>
+                <li><a href="/rtp-automaty/">Vysoké RTP automaty</a></li>
+                <li><a href="/volatilita-automaty/">Volatilita automatů</a></li>
+            </ul>
+        </li>
+        <!-- PRŮVODCE -->
+        <li>
+            <div class="menu-heading">Průvodce <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg></div>
+            <ul class="submenu">
+                <li><a href="/kasino-pro-zacatecniky/">Pro začátečníky</a></li>
+                <li><a href="/legalni-kasina-cz/">Legální kasina v ČR</a></li>
+                <li><a href="/online-hazard-cz/">Online hazard v ČR</a></li>
+                <li><a href="/dane-z-vyhry/">Daně z výher</a></li>
+                <li><a href="/sebeomezeni-hazard/">Odpovědné hraní</a></li>
+            </ul>
+        </li>
+        <!-- FOURNISSEURS -->
+        <li>
+            <a href="/kasina/" class="menu-link">Recenze kasin</a>
+        </li>
+    </ul>
 </nav>
 
 <div class="container">
-    <div class="breadcrumb">
-        <a href="/">Domů</a><span class="sep">›</span><a href="/nejlepsi-kasina-cz/">Kasina</a><span class="sep">›</span><span>Daně z Výhry</span>
-    </div>
+    <div class="breadcrumb"><span class="home-icon">🏠</span><a href="/">Domů</a><span class="sep">›</span><span class="current">Daně z Výhry</span></div>
 </div>
 
 <section class="hero" style="padding:50px 20px;">
@@ -104,6 +131,26 @@
         <p>Výhry z online hazardu v ČR podléhají dani. Zjistěte, jaké máte daňové povinnosti a jak se výhry zdaňují.</p>
     </div>
 </section>
+
+<div class="container">
+    <div class="author-box">
+    <div class="author-avatar">MN</div>
+    <div class="author-info">
+        <div class="author-name">Martin Novák <span>— Expert iGaming</span></div>
+        <div class="author-meta">Aktualizováno 10. 04. 2026 · 10 min čtení</div>
+    </div>
+</div>
+    <div class="toc" id="toc">
+    <div class="toc-header" onclick="this.parentElement.classList.toggle('closed')">
+        <span class="toc-title"><span class="icon">📑</span> Obsah článku</span>
+        <span class="toc-toggle">▼</span>
+    </div>
+    <ol class="toc-list"><li><a href="#sec-1">O Daně z Výhry</a></li>
+<li><a href="#sec-2">Co Byste Měli Vědět</a></li>
+<li><a href="#sec-3">Bezpečnost a Regulace</a></li>
+</ol>
+</div>
+</div>
 
 <section class="section">
     <div class="container">
@@ -533,11 +580,11 @@
 
 <section class="seo-content">
     <div class="container">
-        <h2>O Daně z Výhry</h2>
+        <h2 id="sec-1">O Daně z Výhry</h2>
 <p>Daně z Výhry je jedním z mnoha aspektů online hazardu v České republice. Tato stránka vám přinese kompletní informace o tomto tématu.</p>
-<h2>Co Byste Měli Vědět</h2>
+<h2 id="sec-2">Co Byste Měli Vědět</h2>
 <p>Při hraní online je důležité znát pravidla, podmínky bonusů a dodržovat odpovědné hraní. Vždy si přečtěte podmínky kasina a řiďte se svojí rozpočtem.</p>
-<h2>Bezpečnost a Regulace</h2>
+<h2 id="sec-3">Bezpečnost a Regulace</h2>
 <p>Všechna kasina v naším přehledu jsou regulována Ministerstvem financí ČR a splňují přísné podmínky pro ochranu hráčů.</p>
     </div>
 </section>
@@ -622,23 +669,5 @@
 </footer>
 
 <script src="/assets/js/app.js"></script>
-<script>
-// Mobile menu
-const navToggle = document.querySelector('.nav-toggle');
-const navMenu = document.querySelector('.nav-menu');
-if (navToggle) {
-    navToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
-}
-document.querySelectorAll('.nav-menu > li > a').forEach(link => {
-    if (link.querySelector('.arrow-down')) {
-        link.addEventListener('click', function(e) {
-            if (window.innerWidth <= 900) {
-                e.preventDefault();
-                this.parentElement.classList.toggle('open');
-            }
-        });
-    }
-});
-</script>
 </body>
 </html>

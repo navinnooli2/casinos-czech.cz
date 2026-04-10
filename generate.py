@@ -29,79 +29,119 @@ def stars_html(rating):
 # ============================================================
 # NAVIGATION HTML (Mega Menu)
 # ============================================================
-NAV_HTML = '''<nav class="nav">
-    <div class="container">
-        <a href="/" class="nav-logo"><img src="/assets/images/logo.svg" alt="Casinos Czech" class="nav-logo-img"></a>
-        <button class="nav-toggle" aria-label="Menu">☰</button>
-        <ul class="nav-menu">
-            <li>
-                <a href="/kasina/">Kasina <span class="arrow-down">▼</span></a>
-                <div class="mega-dropdown">
-                    <div class="mega-dropdown-title">Kasina</div>
-                    <ul>
-                        <li><a href="/nejlepsi-kasina-cz/">Nejlepší kasina</a></li>
-                        <li><a href="/nove-kasina-2026/">Nová kasina 2026</a></li>
-                        <li><a href="/kasina-ceska-licence/">Česká kasina</a></li>
-                        <li><a href="/bezpecna-kasina/">Bezpečná kasina</a></li>
-                        <li><a href="/kasino-bez-limitu/">Kasina bez limitu</a></li>
-                        <li><a href="/top-10-kasin/">Top 10 kasin</a></li>
+CHEVRON_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg>'
+
+NAV_HTML = f'''<!-- TOPBAR -->
+<div class="topbar">
+    <button class="hamburger" id="menuOpen">☰</button>
+    <a href="/" class="topbar-logo"><img src="/assets/images/logo.svg" alt="Casinos Czech"></a>
+    <div class="topbar-right">
+        <input type="text" class="topbar-search" placeholder="Hledat...">
+    </div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <img src="/assets/images/logo.svg" alt="Casinos Czech" height="28">
+        <button class="sidebar-close" id="menuClose">✕</button>
+    </div>
+    <ul class="sidebar-nav">
+        <!-- KASINA -->
+        <li>
+            <div class="menu-heading">Kasina {CHEVRON_SVG}</div>
+            <ul class="submenu">
+                <li><a href="/nejlepsi-kasina-cz/">Nejlepší kasina</a></li>
+                <li><a href="/nove-kasina-2026/">Nová kasina 2026</a></li>
+                <li><a href="/kasina-ceska-licence/">Česká kasina</a></li>
+                <li><a href="/bezpecna-kasina/">Bezpečná kasina</a></li>
+                <li><a href="/kasino-bez-limitu/">Kasina bez limitu</a></li>
+                <li><a href="/top-10-kasin/">Top 10 kasin</a></li>
+                <!-- Sub: Platební metody -->
+                <li>
+                    <div class="sub-heading">Platební metody {CHEVRON_SVG}</div>
+                    <ul class="sub-submenu">
+                        <li><a href="/pruvodce/paysafecard-kasino/">PaySafeCard</a></li>
+                        <li><a href="/pruvodce/bitcoin-kasino/">Bitcoin / Krypto</a></li>
+                        <li><a href="/pruvodce/apple-pay-kasino/">Apple Pay</a></li>
+                        <li><a href="/pruvodce/skrill-neteller-kasino/">Skrill & Neteller</a></li>
+                        <li><a href="/pruvodce/bankovni-prevod-kasino/">Bankovní převod</a></li>
                     </ul>
-                </div>
-            </li>
-            <li>
-                <a href="/nejlepsi-kasinovy-bonus/">Bonusy <span class="arrow-down">▼</span></a>
-                <div class="mega-dropdown">
-                    <div class="mega-dropdown-title">Bonusy & Akce</div>
-                    <ul>
-                        <li><a href="/nejlepsi-kasinovy-bonus/">Nejlepší bonusy</a></li>
-                        <li><a href="/casino-bonusy-bez-vkladu/">Bonusy bez vkladu</a></li>
-                        <li><a href="/free-spiny-dnes/">Free spiny dnes</a></li>
+                </li>
+                <!-- Sub: Bonusy -->
+                <li>
+                    <div class="sub-heading">Bonusy {CHEVRON_SVG}</div>
+                    <ul class="sub-submenu">
+                        <li><a href="/nejlepsi-kasinovy-bonus/">Všechny bonusy</a></li>
+                        <li><a href="/casino-bonusy-bez-vkladu/">Bez vkladu</a></li>
+                        <li><a href="/free-spiny-dnes/">Free spiny</a></li>
                         <li><a href="/kasino-free-spiny/">Kasino free spiny</a></li>
                         <li><a href="/kasino-nizka-sazka/">Nízké sázky</a></li>
                     </ul>
-                </div>
-            </li>
-            <li>
-                <a href="/casino-vyherni-automaty/">Hry <span class="arrow-down">▼</span></a>
-                <div class="mega-dropdown mega-dropdown-wide">
-                    <div class="mega-col">
-                        <div class="mega-dropdown-title">Populární hry</div>
-                        <ul>
-                            <li><a href="/automaty-zdarma/">Automaty zdarma</a></li>
-                            <li><a href="/casino-vyherni-automaty/">Výherní automaty</a></li>
-                            <li><a href="/live-kasino/">Live kasino</a></li>
-                            <li><a href="/poker-online/">Poker online</a></li>
-                            <li><a href="/sazeni-na-sport/">Sportovní sázky</a></li>
-                            <li><a href="/loterie-online/">Loterie online</a></li>
-                        </ul>
-                    </div>
-                    <div class="mega-col">
-                        <div class="mega-dropdown-title">Stolní & Mini hry</div>
-                        <ul>
-                            <li><a href="/rtp-automaty/">Vysoké RTP automaty</a></li>
-                            <li><a href="/volatilita-automaty/">Volatilita automatů</a></li>
-                            <li><a href="/jackpot-kasino/">Jackpot kasino</a></li>
-                            <li><a href="/kasino-pro-zacatecniky/">Pro začátečníky</a></li>
-                            <li><a href="/kasino-na-penize/">Kasino na peníze</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <a href="/online-hazard-cz/">Info <span class="arrow-down">▼</span></a>
-                <div class="mega-dropdown">
-                    <div class="mega-dropdown-title">Průvodce</div>
-                    <ul>
-                        <li><a href="/legalni-kasina-cz/">Legální kasina v ČR</a></li>
-                        <li><a href="/dane-z-vyhry/">Daně z výher</a></li>
-                        <li><a href="/sebeomezeni-hazard/">Odpovědné hraní</a></li>
-                        <li><a href="/online-hazard-cz/">Online hazard v ČR</a></li>
+                </li>
+                <!-- Sub: Výhody -->
+                <li>
+                    <div class="sub-heading">Výhody {CHEVRON_SVG}</div>
+                    <ul class="sub-submenu">
+                        <li><a href="/mobilni-kasino/">Mobilní kasino</a></li>
+                        <li><a href="/kasino-pro-zacatecniky/">Pro začátečníky</a></li>
+                        <li><a href="/kasino-bez-limitu/">Bez limitu</a></li>
+                        <li><a href="/kasino-na-penize/">Za skutečné peníze</a></li>
                     </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
+                </li>
+                <!-- Sub: Typ her -->
+                <li>
+                    <div class="sub-heading">Typ her {CHEVRON_SVG}</div>
+                    <ul class="sub-submenu">
+                        <li><a href="/sazeni-na-sport/">Sportovní sázky</a></li>
+                        <li><a href="/live-kasino/">Live kasino</a></li>
+                        <li><a href="/casino-vyherni-automaty/">Automaty</a></li>
+                        <li><a href="/poker-online/">Poker</a></li>
+                        <li><a href="/loterie-online/">Loterie</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <!-- HRY -->
+        <li>
+            <div class="menu-heading">Kasinové hry {CHEVRON_SVG}</div>
+            <ul class="submenu">
+                <li><a href="/casino-vyherni-automaty/">Výherní automaty</a></li>
+                <li><a href="/automaty-zdarma/">Automaty zdarma</a></li>
+                <li><a href="/live-kasino/">Live kasino</a></li>
+                <li><a href="/poker-online/">Poker online</a></li>
+                <li><a href="/jackpot-kasino/">Jackpot automaty</a></li>
+                <li><a href="/rtp-automaty/">Vysoké RTP automaty</a></li>
+                <li><a href="/volatilita-automaty/">Volatilita automatů</a></li>
+            </ul>
+        </li>
+        <!-- PRŮVODCE -->
+        <li>
+            <div class="menu-heading">Průvodce {CHEVRON_SVG}</div>
+            <ul class="submenu">
+                <li><a href="/kasino-pro-zacatecniky/">Pro začátečníky</a></li>
+                <li><a href="/legalni-kasina-cz/">Legální kasina v ČR</a></li>
+                <li><a href="/online-hazard-cz/">Online hazard v ČR</a></li>
+                <li><a href="/dane-z-vyhry/">Daně z výher</a></li>
+                <li><a href="/sebeomezeni-hazard/">Odpovědné hraní</a></li>
+            </ul>
+        </li>
+        <!-- FOURNISSEURS -->
+        <li>
+            <a href="/kasina/" class="menu-link">Recenze kasin</a>
+        </li>
+    </ul>
 </nav>'''
+
+
+AUTHOR_HTML = '''<div class="author-box">
+    <div class="author-avatar">MN</div>
+    <div class="author-info">
+        <div class="author-name">Martin Novák <span>— Expert iGaming</span></div>
+        <div class="author-meta">Aktualizováno {{date}} · {{read_time}} min čtení</div>
+    </div>
+</div>'''
 
 
 # ============================================================
@@ -225,10 +265,58 @@ def build_related_html(related_slugs, all_keywords):
     return '\n'.join(pills)
 
 
+import re
+from datetime import datetime
+
+def build_breadcrumb(title, slug, parent=None, parent_title=None):
+    bc = '<div class="breadcrumb"><span class="home-icon">🏠</span><a href="/">Domů</a>'
+    if parent:
+        bc += f'<span class="sep">›</span><a href="/{parent}/">{parent_title}</a>'
+    bc += f'<span class="sep">›</span><span class="current">{title}</span></div>'
+    return bc
+
+
+def build_author_box(read_time=8):
+    today = datetime.now().strftime('%d. %m. %Y')
+    return AUTHOR_HTML.replace('{{date}}', today).replace('{{read_time}}', str(read_time))
+
+
+def build_toc(seo_content):
+    headings = re.findall(r'<h2>(.*?)</h2>', seo_content)
+    if not headings:
+        return ''
+    items = ''
+    for i, h in enumerate(headings):
+        anchor = f'sec-{i+1}'
+        items += f'<li><a href="#{anchor}">{h}</a></li>\n'
+    toc = f'''<div class="toc" id="toc">
+    <div class="toc-header" onclick="this.parentElement.classList.toggle('closed')">
+        <span class="toc-title"><span class="icon">📑</span> Obsah článku</span>
+        <span class="toc-toggle">▼</span>
+    </div>
+    <ol class="toc-list">{items}</ol>
+</div>'''
+    # Add IDs to h2 tags in content
+    counter = [0]
+    def add_id(m):
+        counter[0] += 1
+        return f'<h2 id="sec-{counter[0]}">{m.group(1)}</h2>'
+    return toc, re.sub(r'<h2>(.*?)</h2>', add_id, seo_content)
+
+
 def generate_keyword_page(keyword, casinos, template, all_keywords):
     casino_table = build_casino_tops(casinos)
     faq_html = build_faq_html(keyword.get('faq', []))
     related_html = build_related_html(keyword.get('related', []), all_keywords)
+    breadcrumb = build_breadcrumb(keyword['title'], keyword['slug'])
+    author_box = build_author_box(10)
+
+    seo_content = keyword['seo_content']
+    toc_result = build_toc(seo_content)
+    if toc_result:
+        toc_html, seo_content = toc_result
+    else:
+        toc_html = ''
 
     html = template
     html = html.replace('{{slug}}', keyword['slug'])
@@ -237,11 +325,14 @@ def generate_keyword_page(keyword, casinos, template, all_keywords):
     html = html.replace('{{description}}', keyword['description'])
     html = html.replace('{{intro}}', keyword['intro'])
     html = html.replace('{{casino_cards}}', casino_table)
-    html = html.replace('{{seo_content}}', keyword['seo_content'])
+    html = html.replace('{{seo_content}}', seo_content)
     html = html.replace('{{faq_html}}', faq_html)
     html = html.replace('{{related_html}}', related_html)
     html = html.replace('{{nav_html}}', NAV_HTML)
     html = html.replace('{{footer_html}}', FOOTER_HTML)
+    html = html.replace('{{breadcrumb}}', breadcrumb)
+    html = html.replace('{{author_box}}', author_box)
+    html = html.replace('{{toc}}', toc_html)
 
     return html
 
@@ -420,6 +511,7 @@ def generate_review_page(casino, template, all_casinos):
         '{{final_verdict}}': r['finalVerdict'],
         '{{nav_html}}': NAV_HTML,
         '{{footer_html}}': FOOTER_HTML,
+        '{{author_box}}': build_author_box(12),
     }
 
     for placeholder, value in replacements.items():

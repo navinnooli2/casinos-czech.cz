@@ -7,25 +7,46 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Mobile nav toggle
-  var toggle = document.querySelector('.nav-toggle');
-  var menu = document.querySelector('.nav-menu');
-  if (toggle && menu) {
-    toggle.addEventListener('click', function() {
-      menu.classList.toggle('active');
-    });
+  // Sidebar menu
+  var sidebar = document.getElementById('sidebar');
+  var overlay = document.getElementById('sidebarOverlay');
+  var openBtn = document.getElementById('menuOpen');
+  var closeBtn = document.getElementById('menuClose');
+
+  function openMenu() {
+    if (sidebar) sidebar.classList.add('open');
+    if (overlay) overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    if (sidebar) sidebar.classList.remove('open');
+    if (overlay) overlay.classList.remove('open');
+    document.body.style.overflow = '';
   }
 
-  // Mobile dropdown toggle
-  document.querySelectorAll('.nav-menu > li > a').forEach(function(link) {
-    if (link.querySelector('.arrow-down')) {
-      link.addEventListener('click', function(e) {
-        if (window.innerWidth <= 900) {
-          e.preventDefault();
-          this.parentElement.classList.toggle('open');
-        }
-      });
-    }
+  if (openBtn) openBtn.addEventListener('click', openMenu);
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+  if (overlay) overlay.addEventListener('click', closeMenu);
+
+  // Sidebar accordion — main headings
+  document.querySelectorAll('.sidebar-nav .menu-heading').forEach(function(h) {
+    h.addEventListener('click', function() {
+      this.parentElement.classList.toggle('open');
+    });
+  });
+
+  // Sidebar accordion — sub headings
+  document.querySelectorAll('.sidebar-nav .sub-heading').forEach(function(h) {
+    h.addEventListener('click', function() {
+      this.parentElement.classList.toggle('sub-open');
+    });
+  });
+
+  // Review FAQ toggle
+  document.querySelectorAll('.review-faq .faq-q').forEach(function(q) {
+    q.addEventListener('click', function() {
+      this.closest('.faq-item').classList.toggle('active');
+    });
   });
 
   // Smooth scroll for anchor links
