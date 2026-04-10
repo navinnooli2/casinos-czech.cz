@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 140" width="560" height="140">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5C842"/>
+      <stop offset="35%" stop-color="#E8A817"/>
+      <stop offset="65%" stop-color="#D4950F"/>
+      <stop offset="100%" stop-color="#F5C842"/>
+    </linearGradient>
+    <linearGradient id="goldShine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFE17D"/>
+      <stop offset="50%" stop-color="#D4950F"/>
+      <stop offset="100%" stop-color="#FFE17D"/>
+    </linearGradient>
+    <linearGradient id="darkBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#0f0f1a"/>
+    </linearGradient>
+    <linearGradient id="redAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C0392B"/>
+      <stop offset="100%" stop-color="#E74C3C"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="560" height="140" rx="16" fill="url(#darkBg)"/>
+  <rect x="1" y="1" width="558" height="138" rx="15" fill="none" stroke="url(#gold)" stroke-width="1.5" opacity="0.35"/>
+
+  <!-- Corner accents -->
+  <path d="M18 12 L48 12" stroke="url(#gold)" stroke-width="1.5" opacity="0.5"/>
+  <path d="M12 18 L12 48" stroke="url(#gold)" stroke-width="1.5" opacity="0.5"/>
+  <path d="M512 12 L542 12" stroke="url(#gold)" stroke-width="1.5" opacity="0.5"/>
+  <path d="M548 18 L548 48" stroke="url(#gold)" stroke-width="1.5" opacity="0.5"/>
+  <path d="M18 128 L48 128" stroke="url(#gold)" stroke-width="1.5" opacity="0.5"/>
+  <path d="M12 92 L12 122" stroke="url(#gold)" stroke-width="1.5" opacity="0.5"/>
+  <path d="M512 128 L542 128" stroke="url(#gold)" stroke-width="1.5" opacity="0.5"/>
+  <path d="M548 92 L548 122" stroke="url(#gold)" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Icon: Czech lion silhouette + roulette wheel hint -->
+  <g transform="translate(68, 62)">
+    <!-- Roulette wheel outline -->
+    <circle cx="0" cy="0" r="34" fill="none" stroke="url(#gold)" stroke-width="2" opacity="0.3"/>
+    <circle cx="0" cy="0" r="28" fill="none" stroke="url(#gold)" stroke-width="1" opacity="0.2"/>
+    
+    <!-- Inner segments suggestion -->
+    <line x1="0" y1="-28" x2="0" y2="-22" stroke="url(#gold)" stroke-width="1" opacity="0.4"/>
+    <line x1="14" y1="-24" x2="11" y2="-19" stroke="url(#gold)" stroke-width="1" opacity="0.4"/>
+    <line x1="24" y1="-14" x2="19" y2="-11" stroke="url(#gold)" stroke-width="1" opacity="0.4"/>
+    <line x1="28" y1="0" x2="22" y2="0" stroke="url(#gold)" stroke-width="1" opacity="0.4"/>
+    <line x1="24" y1="14" x2="19" y2="11" stroke="url(#gold)" stroke-width="1" opacity="0.4"/>
+    <line x1="14" y1="24" x2="11" y2="19" stroke="url(#gold)" stroke-width="1" opacity="0.4"/>
+    <line x1="0" y1="28" x2="0" y2="22" stroke="url(#gold)" stroke-width="1" opacity="0.4"/>
+    <line x1="-14" y1="24" x2="-11" y2="19" stroke="url(#gold)" stroke-width="1" opacity="0.4"/>
+    <line x1="-24" y1="14" x2="-19" y2="11" stroke="url(#gold)" stroke-width="1" opacity="0.4"/>
+    <line x1="-28" y1="0" x2="-22" y2="0" stroke="url(#gold)" stroke-width="1" opacity="0.4"/>
+    <line x1="-24" y1="-14" x2="-19" y2="-11" stroke="url(#gold)" stroke-width="1" opacity="0.4"/>
+    <line x1="-14" y1="-24" x2="-11" y2="-19" stroke="url(#gold)" stroke-width="1" opacity="0.4"/>
+
+    <!-- Central diamond -->
+    <polygon points="0,-14 10,0 0,14 -10,0" fill="url(#gold)" filter="url(#glow)"/>
+    <polygon points="0,-8 6,0 0,8 -6,0" fill="none" stroke="#1a1a2e" stroke-width="1" opacity="0.4"/>
+    
+    <!-- Sparkle on top -->
+    <circle cx="0" cy="-37" r="2" fill="#FFE17D" filter="url(#glow)"/>
+  </g>
+
+  <!-- Main text: CASINOS -->
+  <text x="122" y="62" font-family="'Georgia', 'Garamond', 'Times New Roman', serif" font-size="44" font-weight="bold" letter-spacing="6" fill="url(#gold)" filter="url(#glow)">CASINOS</text>
+
+  <!-- Decorative line -->
+  <line x1="124" y1="72" x2="460" y2="72" stroke="url(#gold)" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- Subtitle: CZECH -->
+  <text x="126" y="102" font-family="'Georgia', 'Garamond', 'Times New Roman', serif" font-size="30" font-weight="normal" letter-spacing="22" fill="#FFFFFF" opacity="0.92">CZECH</text>
+
+  <!-- CZ badge -->
+  <g transform="translate(360, 92)">
+    <rect x="0" y="-14" width="36" height="20" rx="3" fill="none" stroke="url(#gold)" stroke-width="1" opacity="0.5"/>
+    <text x="18" y="2" text-anchor="middle" font-family="'Helvetica Neue', 'Arial', sans-serif" font-size="11" font-weight="bold" letter-spacing="1" fill="url(#gold)" opacity="0.7">.CZ</text>
+  </g>
+
+  <!-- Tagline -->
+  <text x="126" y="125" font-family="'Helvetica Neue', 'Arial', sans-serif" font-size="8.5" letter-spacing="3.5" fill="#F5C842" opacity="0.5">NEJLEPŠÍ ONLINE KASINA V ČR</text>
+
+  <!-- Right decorative dots -->
+  <g transform="translate(508, 70)" opacity="0.2">
+    <circle cx="0" cy="-18" r="2.5" fill="#F5C842"/>
+    <circle cx="0" cy="0" r="2.5" fill="#F5C842"/>
+    <circle cx="0" cy="18" r="2.5" fill="#F5C842"/>
+  </g>
+</svg>

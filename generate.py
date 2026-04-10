@@ -160,71 +160,50 @@ FOOTER_HTML = '''<footer class="footer">
 # KEYWORD PAGE GENERATION
 # ============================================================
 
-def build_casino_row(casino, rank):
-    fs_line = ''
+def build_top_card(casino, rank):
+    fs_feature = ''
     if casino['freeSpins'] > 0:
-        fs_line = f'<div class="bonus-line bonus-line-fs"><span class="emoji">🎰</span> {casino["freeSpins"]} free spinů</div>'
+        fs_feature = f'<div class="top-card-feature"><span class="check">✔</span> {casino["freeSpins"]} free spinů zdarma</div>'
 
     bonus_amount = casino.get('bonusAmount', '')
     wagering = casino.get('wagering', '—')
-    min_dep = f'{casino["minDeposit"]} Kč'
+    features_list = casino.get('features', [])
+    review = casino.get('review', {})
+    speed = review.get('withdrawalSpeed', 'Rychlý') if review else 'Rychlý'
 
-    return f'''<tr class="casino-row">
-    <td>
-        <div class="casino-cell">
-            <div class="casino-logo-wrap">
-                <span class="casino-rank">{rank}</span>
-                <img src="/assets/images/casinos/{casino["slug"]}.svg" alt="{casino["name"]}" width="90" height="70">
-            </div>
-            <div class="casino-cell-info">
-                <div class="casino-name">{casino["name"]}</div>
-                <a href="/kasina/{casino["slug"]}/" class="casino-review-link">Číst recenzi</a>
-            </div>
-        </div>
-    </td>
-    <td data-label="Bonus">
-        <div class="bonus-cell">
-            <div class="bonus-line"><span class="emoji">💰</span> {bonus_amount}</div>
-            {fs_line}
-        </div>
-    </td>
-    <td data-label="Podmínky" class="wagering-cell">{wagering}</td>
-    <td data-label="Min. vklad" class="deposit-cell">{min_dep}</td>
-    <td data-label="">
-        <a href="{casino["bonusUrl"]}" class="btn-cta" target="_blank" rel="nofollow noopener">Hrát nyní</a>
-    </td>
-</tr>'''
+    features_html = f'<div class="top-card-feature"><span class="check">✔</span> <a href="/kasina/{casino["slug"]}/">{rank}. {casino["name"]}</a></div>\n'
+    for feat in features_list[:3]:
+        features_html += f'<div class="top-card-feature"><span class="check">✔</span> {feat}</div>\n'
+    if fs_feature:
+        features_html += fs_feature
 
+    bonus_sub = ''
+    if casino['freeSpins'] > 0:
+        bonus_sub = f'<div class="top-card-bonus-sub">+ {casino["freeSpins"]} free spinů</div>'
 
-FILTER_BAR_HTML = '''<div class="filter-bar">
-    <div class="filter-sort">
-        <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-        Relevance
+    return f'''<div class="top-card">
+    <div class="top-card-left">
+        <span class="top-card-rank">{rank}</span>
+        <div class="top-card-logo"><img src="/assets/images/casinos/{casino["slug"]}.svg" alt="{casino["name"]}"></div>
+        <div class="top-card-rating"><span class="stars">{stars_html(casino["rating"])}</span> {casino["rating"]}/5</div>
+        <div class="top-card-payment"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Výběr: {speed}</div>
     </div>
-    <div class="filter-btn">
-        <svg viewBox="0 0 24 24"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/></svg>
-        Filtry
+    <div class="top-card-center">
+        {features_html}
+    </div>
+    <div class="top-card-right">
+        <div>
+            <div class="top-card-bonus">{casino["bonus"]}</div>
+            {bonus_sub}
+        </div>
+        <a href="{casino["bonusUrl"]}" class="btn-cta" target="_blank" rel="nofollow noopener">Hrát nyní</a>
     </div>
 </div>'''
 
 
-def build_casino_table(casinos):
-    rows = '\n'.join(build_casino_row(c, i) for i, c in enumerate(casinos, 1))
-    return f'''{FILTER_BAR_HTML}
-<table class="casino-table">
-    <thead>
-        <tr class="casino-table-head">
-            <th>Kasino</th>
-            <th>Uvítací bonus</th>
-            <th>Podmínky sázení</th>
-            <th>Min. vklad</th>
-            <th>Akce</th>
-        </tr>
-    </thead>
-    <tbody>
-        {rows}
-    </tbody>
-</table>'''
+def build_casino_tops(casinos):
+    cards = '\n'.join(build_top_card(c, i) for i, c in enumerate(casinos, 1))
+    return f'<div class="casino-tops">\n{cards}\n</div>'
 
 
 def build_faq_html(faq_items):
@@ -247,7 +226,7 @@ def build_related_html(related_slugs, all_keywords):
 
 
 def generate_keyword_page(keyword, casinos, template, all_keywords):
-    casino_table = build_casino_table(casinos)
+    casino_table = build_casino_tops(casinos)
     faq_html = build_faq_html(keyword.get('faq', []))
     related_html = build_related_html(keyword.get('related', []), all_keywords)
 
