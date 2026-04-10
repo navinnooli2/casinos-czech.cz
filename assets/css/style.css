@@ -40,6 +40,25 @@ a:hover { color: var(--red-hover); }
 .container { max-width:1100px; margin:0 auto; padding:0 20px; }
 
 /* ============================================
+   TOP BANNER (CTA)
+   ============================================ */
+.top-banner {
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  position: relative;
+  z-index: 1001;
+}
+.top-banner a {
+  color: #fff;
+  text-decoration: underline;
+}
+.top-banner a:hover { color: #ffd700; }
+
+/* ============================================
    TOP BAR + HAMBURGER
    ============================================ */
 .topbar {
