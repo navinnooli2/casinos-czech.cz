@@ -26,6 +26,15 @@ def stars_html(rating):
     return '★' * full + ('½' if half else '') + '☆' * (5 - full - half)
 
 
+def get_logo_ext(slug):
+    """Find the actual logo file extension for a casino slug."""
+    logos_dir = os.path.join(BASE_DIR, 'assets', 'images', 'casinos')
+    for ext in ['png', 'jpg', 'webp', 'svg', 'ico', 'jpeg']:
+        if os.path.exists(os.path.join(logos_dir, f'{slug}.{ext}')):
+            return ext
+    return 'svg'  # fallback
+
+
 # ============================================================
 # NAVIGATION HTML (Mega Menu)
 # ============================================================
@@ -228,7 +237,7 @@ def build_top_card(casino, rank):
     return f'''<div class="top-card">
     <div class="top-card-left">
         <span class="top-card-rank">{rank}</span>
-        <div class="top-card-logo"><img src="/assets/images/casinos/{casino["slug"]}.svg" alt="{casino["name"]}"></div>
+        <div class="top-card-logo"><img src="/assets/images/casinos/{casino["slug"]}.{get_logo_ext(casino["slug"])}" alt="{casino["name"]}"></div>
         <div class="top-card-rating"><span class="stars">{stars_html(casino["rating"])}</span> {casino["rating"]}/5</div>
         <div class="top-card-payment"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Výběr: {speed}</div>
     </div>
@@ -444,7 +453,7 @@ def build_similar_casinos_html(current_slug, all_casinos):
         items.append(f'''<a href="/kasina/{c["slug"]}/" class="related-card">
             <div class="related-card-header">
                 <div class="related-card-logo">
-                    <img src="/assets/images/casinos/{c["slug"]}.svg" alt="{c["name"]}" width="60" height="40">
+                    <img src="/assets/images/casinos/{c["slug"]}.{get_logo_ext(c["slug"])}" alt="{c["name"]}" width="60" height="40">
                 </div>
                 <div class="related-card-name">{c["name"]}</div>
                 <div class="related-card-rating">{stars_html(c["rating"])} {c["rating"]}/5</div>
@@ -472,6 +481,7 @@ def generate_review_page(casino, template, all_casinos):
     replacements = {
         '{{casino_name}}': casino['name'],
         '{{casino_slug}}': casino['slug'],
+        '{{casino_logo_url}}': f'/assets/images/casinos/{casino["slug"]}.{get_logo_ext(casino["slug"])}',
         '{{meta_description}}': r['metaDescription'],
         '{{rating}}': str(casino['rating']),
         '{{rating_stars}}': stars_html(casino['rating']),
