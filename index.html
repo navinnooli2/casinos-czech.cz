@@ -11,7 +11,16 @@
     <meta property="og:url" content="https://casinoarena.cz/">
     <title>Casino Arena – Nejlepší Online Kasina v ČR 2026</title>
     <link rel="canonical" href="https://casinoarena.cz/">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+    .nav-menu{display:flex;gap:0;list-style:none;height:100%;align-items:center;margin:0;padding:0}
+    .nav-menu>li{position:relative;height:100%;display:flex;align-items:center;list-style:none}
+    .mega-dropdown{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);z-index:9999}
+    .nav-menu>li:hover>.mega-dropdown{display:block}
+    .mega-dropdown ul{list-style:none;margin:0;padding:0}
+    .mega-dropdown li{list-style:none}
+    @media(max-width:900px){.nav-menu{display:none;flex-direction:column;width:100%;height:auto}.nav-menu.active{display:flex}.nav-menu>li{height:auto;flex-direction:column;align-items:stretch}.nav-menu>li:hover>.mega-dropdown{display:none}.mega-dropdown{position:static;transform:none}.nav-menu>li.open>.mega-dropdown{display:block!important}}
+    </style>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"WebSite","name":"Casino Arena","url":"https://casinoarena.cz","description":"Nezávislý průvodce online kasiny v České republice"}
     </script>
@@ -305,7 +314,7 @@
     </div>
 </footer>
 
-<script src="/assets/js/app.js"></script>
+<script src="assets/js/app.js"></script>
 <script>
 // Mobile mega menu
 const navToggle = document.querySelector('.nav-toggle');
