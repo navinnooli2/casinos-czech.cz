@@ -1,0 +1,76 @@
+{
+  "casinos": [
+    {
+      "id": "synot-tip",
+      "name": "Synot Tip",
+      "slug": "synot-tip",
+      "rating": 4.8,
+      "bonus": "100 Kč bonus bez vkladu + 50 free spinů",
+      "bonusUrl": "https://www.synottip.cz/?aff=PLACEHOLDER",
+      "freeSpins": 50,
+      "minDeposit": 100,
+      "description": "Nejstarší a nejdůvěryhodnější česká online herna s licencí od Ministerstva financí ČR.",
+      "features": ["Česká licence", "Live chat 24/7", "Rychlé výběry", "Nízké sázky od 1 Kč"]
+    },
+    {
+      "id": "fortuna",
+      "name": "Fortuna",
+      "slug": "fortuna",
+      "rating": 4.7,
+      "bonus": "150 Kč + 100 free spinů za registraci",
+      "bonusUrl": "https://www.ifortuna.cz/?aff=PLACEHOLDER",
+      "freeSpins": 100,
+      "minDeposit": 100,
+      "description": "Největší česká sázková kancelář s kompletní nabídkou kasinových her a sportovních sázek.",
+      "features": ["Sportovní sázky", "Mobilní aplikace", "Velký výběr her", "Česká licence"]
+    },
+    {
+      "id": "bet365",
+      "name": "Bet365",
+      "slug": "bet365",
+      "rating": 4.6,
+      "bonus": "Vstupní bonus až 16 500 Kč",
+      "bonusUrl": "https://www.bet365.com/?aff=PLACEHOLDER",
+      "freeSpins": 0,
+      "minDeposit": 100,
+      "description": "Světově uznávaná sázková společnost s obrovským výběrem kasinových her a live dealerů.",
+      "features": ["Mezinárodní platforma", "Live streaming", "Obrovský výběr her", "Rychlé výplaty"]
+    },
+    {
+      "id": "tipsport",
+      "name": "Tipsport",
+      "slug": "tipsport",
+      "rating": 4.5,
+      "bonus": "200 Kč bez vkladu + 100 free spinů",
+      "bonusUrl": "https://www.tipsport.cz/?aff=PLACEHOLDER",
+      "freeSpins": 100,
+      "minDeposit": 50,
+      "description": "Česká sázková síť s fyzickými pobočkami po celé republice a kvalitním online kasinem.",
+      "features": ["Fyzické pobočky", "Nízký min. vklad 50 Kč", "Česká podpora", "Sázky + kasino"]
+    },
+    {
+      "id": "pinnacle",
+      "name": "Pinnacle",
+      "slug": "pinnacle",
+      "rating": 4.4,
+      "bonus": "Kasino bez limitu výher",
+      "bonusUrl": "https://www.pinnacle.com/?aff=PLACEHOLDER",
+      "freeSpins": 0,
+      "minDeposit": 100,
+      "description": "Prémiová sázková společnost bez omezení limitů, oblíbená mezi profesionálními hráči.",
+      "features": ["Bez limitů výher", "Nejlepší kurzy", "Profesionální platforma", "API pro hráče"]
+    },
+    {
+      "id": "888-casino",
+      "name": "888 Casino",
+      "slug": "888-casino",
+      "rating": 4.3,
+      "bonus": "20 free spinů bez vkladu",
+      "bonusUrl": "https://www.888casino.com/?aff=PLACEHOLDER",
+      "freeSpins": 20,
+      "minDeposit": 100,
+      "description": "Populární mezinárodní online kasino s certifikací eCOGRA a kvalitními hrami od předních výrobců.",
+      "features": ["Certifikace eCOGRA", "Live kasino", "Mobilní optimalizace", "SSL zabezpečení"]
+    }
+  ]
+}
