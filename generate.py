@@ -31,7 +31,7 @@ def stars_html(rating):
 # ============================================================
 NAV_HTML = '''<nav class="nav">
     <div class="container">
-        <a href="/" class="nav-logo">CASINO<span>ARENA</span></a>
+        <a href="/" class="nav-logo"><img src="/assets/images/logo.svg" alt="Casino Arena" class="nav-logo-img">CASINO<span>ARENA</span></a>
         <button class="nav-toggle" aria-label="Menu">☰</button>
         <ul class="nav-menu">
             <li>
@@ -160,33 +160,71 @@ FOOTER_HTML = '''<footer class="footer">
 # KEYWORD PAGE GENERATION
 # ============================================================
 
-def build_casino_card(casino, rank):
-    fs_badge = ''
+def build_casino_row(casino, rank):
+    fs_line = ''
     if casino['freeSpins'] > 0:
-        fs_badge = f'<span class="badge badge-green">{casino["freeSpins"]} FS</span>'
+        fs_line = f'<div class="bonus-line bonus-line-fs"><span class="emoji">🎰</span> {casino["freeSpins"]} free spinů</div>'
 
-    return f'''<div class="casino-card">
-    <div class="casino-rank">#{rank}</div>
-    <div class="casino-logo"><img src="/assets/images/casinos/{casino["slug"]}.svg" alt="{casino["name"]}" width="70" height="50"></div>
-    <div class="casino-info">
-        <div class="casino-name"><a href="/kasina/{casino["slug"]}/" style="color:inherit;text-decoration:none;">{casino["name"]}</a></div>
-        <div class="casino-bonus">{casino["bonus"]}</div>
-    </div>
-    <div class="casino-meta">
-        <div class="casino-rating">
-            <span class="stars">{stars_html(casino["rating"])}</span>
-            <span class="rating-num">{casino["rating"]}/5</span>
+    bonus_amount = casino.get('bonusAmount', '')
+    wagering = casino.get('wagering', '—')
+    min_dep = f'{casino["minDeposit"]} Kč'
+
+    return f'''<tr class="casino-row">
+    <td>
+        <div class="casino-cell">
+            <div class="casino-logo-wrap">
+                <span class="casino-rank">{rank}</span>
+                <img src="/assets/images/casinos/{casino["slug"]}.svg" alt="{casino["name"]}" width="90" height="70">
+            </div>
+            <div class="casino-cell-info">
+                <div class="casino-name">{casino["name"]}</div>
+                <a href="/kasina/{casino["slug"]}/" class="casino-review-link">Číst recenzi</a>
+            </div>
         </div>
-        {fs_badge}
+    </td>
+    <td data-label="Bonus">
+        <div class="bonus-cell">
+            <div class="bonus-line"><span class="emoji">💰</span> {bonus_amount}</div>
+            {fs_line}
+        </div>
+    </td>
+    <td data-label="Podmínky" class="wagering-cell">{wagering}</td>
+    <td data-label="Min. vklad" class="deposit-cell">{min_dep}</td>
+    <td data-label="">
+        <a href="{casino["bonusUrl"]}" class="btn-cta" target="_blank" rel="nofollow noopener">Hrát nyní</a>
+    </td>
+</tr>'''
+
+
+FILTER_BAR_HTML = '''<div class="filter-bar">
+    <div class="filter-sort">
+        <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        Relevance
     </div>
-    <div class="casino-cta">
-        <a href="{casino["bonusUrl"]}" class="btn" target="_blank" rel="nofollow noopener">Hrát nyní →</a>
+    <div class="filter-btn">
+        <svg viewBox="0 0 24 24"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/></svg>
+        Filtry
     </div>
 </div>'''
 
 
-def build_casino_cards(casinos):
-    return '\n'.join(build_casino_card(c, i) for i, c in enumerate(casinos, 1))
+def build_casino_table(casinos):
+    rows = '\n'.join(build_casino_row(c, i) for i, c in enumerate(casinos, 1))
+    return f'''{FILTER_BAR_HTML}
+<table class="casino-table">
+    <thead>
+        <tr class="casino-table-head">
+            <th>Kasino</th>
+            <th>Uvítací bonus</th>
+            <th>Podmínky sázení</th>
+            <th>Min. vklad</th>
+            <th>Akce</th>
+        </tr>
+    </thead>
+    <tbody>
+        {rows}
+    </tbody>
+</table>'''
 
 
 def build_faq_html(faq_items):
@@ -209,7 +247,7 @@ def build_related_html(related_slugs, all_keywords):
 
 
 def generate_keyword_page(keyword, casinos, template, all_keywords):
-    casino_cards = build_casino_cards(casinos)
+    casino_table = build_casino_table(casinos)
     faq_html = build_faq_html(keyword.get('faq', []))
     related_html = build_related_html(keyword.get('related', []), all_keywords)
 
@@ -219,7 +257,7 @@ def generate_keyword_page(keyword, casinos, template, all_keywords):
     html = html.replace('{{h1}}', keyword['h1'])
     html = html.replace('{{description}}', keyword['description'])
     html = html.replace('{{intro}}', keyword['intro'])
-    html = html.replace('{{casino_cards}}', casino_cards)
+    html = html.replace('{{casino_cards}}', casino_table)
     html = html.replace('{{seo_content}}', keyword['seo_content'])
     html = html.replace('{{faq_html}}', faq_html)
     html = html.replace('{{related_html}}', related_html)
