@@ -17,19 +17,7 @@
 </head>
 <body>
 
-<nav class="nav">
-    <div class="container">
-        <a href="/" class="nav-logo"><img src="/assets/images/logo.svg" alt="Casino Arena logo" class="nav-logo-img">CASINO<span>ARENA</span></a>
-        <button class="nav-toggle" aria-label="Menu">☰</button>
-        <ul class="nav-links">
-            <li><a href="/">Domů</a></li>
-            <li><a href="/nejlepsi-kasina-cz/">Nejlepší Kasina</a></li>
-            <li><a href="/free-spiny-dnes/">Free Spiny</a></li>
-            <li><a href="/nejlepsi-kasinovy-bonus/">Bonusy</a></li>
-            <li><a href="/top-10-kasin/">Top 10</a></li>
-        </ul>
-    </div>
-</nav>
+{{nav_html}}
 
 <div class="container">
     <div class="breadcrumb">
@@ -77,50 +65,26 @@
     </div>
 </section>
 
-<footer class="footer">
-    <div class="container">
-        <div class="footer-disclaimer">⚠️ Hazardní hry jsou určeny pouze pro osoby starší 18 let. Hrajte odpovědně. Pokud máte problém s hazardem, kontaktujte <a href="https://www.clvh.cz">www.clvh.cz</a></div>
-        <div class="footer-grid">
-            <div>
-                <h4>Casino Arena</h4>
-                <ul>
-                    <li><a href="/">Domů</a></li>
-                    <li><a href="/nejlepsi-kasina-cz/">Nejlepší Kasina</a></li>
-                    <li><a href="/top-10-kasin/">Top 10 Kasin</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Bonusy</h4>
-                <ul>
-                    <li><a href="/free-spiny-dnes/">Free Spiny Dnes</a></li>
-                    <li><a href="/kasina-bez-vkladu/">Kasina Bez Vkladu</a></li>
-                    <li><a href="/nejlepsi-kasinovy-bonus/">Nejlepší Bonusy</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Průvodce</h4>
-                <ul>
-                    <li><a href="/kasino-pro-zacatecniky/">Pro Začátečníky</a></li>
-                    <li><a href="/bezpecna-kasina/">Bezpečná Kasina</a></li>
-                    <li><a href="/legalni-kasina-cz/">Legální Kasina</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Informace</h4>
-                <ul>
-                    <li><a href="/online-hazard-cz/">Online Hazard v ČR</a></li>
-                    <li><a href="/kasina-ceska-licence/">Česká Licence</a></li>
-                    <li><a href="https://www.clvh.cz">Pomoc s Hazardem</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 CasinoArena.cz – Nezávislý průvodce online kasiny v České republice</p>
-            <p>Všechna kasina v našem přehledu jsou licencovaná. Hrajte odpovědně. 18+</p>
-        </div>
-    </div>
-</footer>
+{{footer_html}}
 
 <script src="/assets/js/app.js"></script>
+<script>
+// Mobile menu
+const navToggle = document.querySelector('.nav-toggle');
+const navMenu = document.querySelector('.nav-menu');
+if (navToggle) {
+    navToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
+}
+document.querySelectorAll('.nav-menu > li > a').forEach(link => {
+    if (link.querySelector('.arrow-down')) {
+        link.addEventListener('click', function(e) {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                this.parentElement.classList.toggle('open');
+            }
+        });
+    }
+});
+</script>
 </body>
 </html>
