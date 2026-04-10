@@ -1,0 +1,25 @@
+# Robots.txt for CasinoArena.cz
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /assets/
+Allow: /pages/
+Disallow: /*.json
+Disallow: /node_modules/
+Disallow: /.git/
+
+# Crawl delay
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://casinoarena.cz/sitemap.xml
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
