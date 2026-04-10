@@ -56,6 +56,9 @@ a:hover { color: var(--red-hover); }
   align-items: center;
 }
 .nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 1.5rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -63,6 +66,11 @@ a:hover { color: var(--red-hover); }
   color: var(--white);
 }
 .nav-logo span { color: var(--red); }
+.nav-logo-img {
+  width: 34px;
+  height: 34px;
+  display: block;
+}
 .nav-links {
   display: flex;
   gap: 25px;

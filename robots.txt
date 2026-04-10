@@ -1,4 +1,4 @@
-# Robots.txt for CasinoArena.cz
+# Robots.txt for Casino Czech
 User-agent: *
 Allow: /
 Allow: /index.html
@@ -12,7 +12,7 @@ Disallow: /.git/
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://casinoarena.cz/sitemap.xml
+Sitemap: /sitemap.xml
 
 # Google specific
 User-agent: Googlebot
