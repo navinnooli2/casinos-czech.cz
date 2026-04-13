@@ -396,20 +396,35 @@ def build_bonus_cards_html(bonuses):
 
 
 def build_payment_html(methods):
-    icons = {
-        "Visa": "💳", "Mastercard": "💳", "Bankovní převod": "🏦",
-        "Skrill": "💰", "Neteller": "💰", "PaySafeCard": "🎫",
-        "Apple Pay": "🍎", "Google Pay": "📱", "Hotovost (pobočky)": "💵",
+    # Map payment name -> image file in /assets/images/payments/
+    img_map = {
+        "Visa": "visa.svg",
+        "Mastercard": "mastercard.png",
+        "Bankovní převod": "bankovni-prevod.svg",
+        "Skrill": "skrill.svg",
+        "Neteller": "neteller.svg",
+        "PaySafeCard": "paysafecard.ico",
+        "Apple Pay": "apple-pay.svg",
+        "PayPal": "paypal.png",
+        "MuchBetter": "muchbetter.ico",
+    }
+    # Fallback emojis for methods without images
+    emoji_map = {
+        "Google Pay": "📱", "Hotovost (pobočky)": "💵",
         "Sportka Pay": "🎫", "Maestro": "💳", "Bitcoin": "₿",
-        "Ethereum": "⟠", "USDT": "💲", "PayPal": "💳",
-        "MuchBetter": "📱", "ecoPayz": "💰", "Jeton": "💰",
-        "Trustly": "🏦", "Přímý bankovní převod": "🏦",
+        "Ethereum": "⟠", "USDT": "💲", "ecoPayz": "💰",
+        "Jeton": "💰", "Trustly": "🏦",
+        "Přímý bankovní převod": "🏦",
     }
     items = []
     for m in methods:
-        icon = icons.get(m, "💳")
+        if m in img_map:
+            icon_html = f'<img src="/assets/images/payments/{img_map[m]}" alt="{m}" class="grid-item-img">'
+        else:
+            emoji = emoji_map.get(m, "💳")
+            icon_html = f'<span class="grid-item-icon">{emoji}</span>'
         items.append(f'''<div class="grid-item">
-            <span class="grid-item-icon">{icon}</span>
+            {icon_html}
             <span class="grid-item-name">{m}</span>
         </div>''')
     return '\n'.join(items)

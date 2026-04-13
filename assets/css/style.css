@@ -1091,6 +1091,12 @@ a:hover { color: var(--red-hover); }
 .grid-item-icon {
   font-size: 1.4rem;
 }
+.grid-item-img {
+  height: 28px;
+  width: auto;
+  max-width: 60px;
+  object-fit: contain;
+}
 .grid-item-name {
   font-size: 0.7rem;
   color: var(--text-muted);
