@@ -56,13 +56,23 @@ def main():
 
     sitemaps = []
 
-    # 1. PAGE SITEMAP (homepage + main info pages)
+    # 1. PAGE SITEMAP (homepage + main info & ranking pages)
     page_urls = [
         {"loc": f"{DOMAIN}/", "changefreq": "weekly", "priority": "1.0"},
     ]
+    # Add ranking/category pages here too
+    category_slugs = ['nejlepsi-kasina-cz', 'top-10-kasin', 'online-kasino', 'nove-kasina-2026',
+                      'bezpecna-kasina', 'kasino-bez-limitu', 'kasina-ceska-licence']
+    for kw in keywords:
+        if kw['slug'] in category_slugs:
+            page_urls.append({
+                "loc": f"{DOMAIN}/{kw['slug']}/",
+                "changefreq": "weekly",
+                "priority": "0.9",
+            })
     sitemaps.append(write_sitemap('page-sitemap.xml', page_urls))
 
-    # 2. CASINO SITEMAP (all casino reviews)
+    # 2. CASINO SITEMAP (all casino reviews + casino-specific keyword pages)
     casino_urls = []
     # Sort by rating descending for priority
     sorted_casinos = sorted(casinos, key=lambda c: c.get('rating', 0), reverse=True)
@@ -73,25 +83,20 @@ def main():
             "changefreq": "weekly",
             "priority": priority,
         })
-    sitemaps.append(write_sitemap('casino-sitemap.xml', casino_urls))
-
-    # 3. CATEGORY SITEMAP (top lists, rankings)
-    category_slugs = ['nejlepsi-kasina-cz', 'top-10-kasin', 'online-kasino', 'nove-kasina-2026',
-                      'bezpecna-kasina', 'kasino-bez-limitu', 'kasina-ceska-licence']
-    category_urls = []
+    # Add casino-specific keyword pages (fortuna-kasino, bet365-kasino, etc.)
+    casino_specific_slugs = ['fortuna-kasino', 'bet365-kasino', 'synot-tip-free-spins', 'tipsport-free-spiny']
     for kw in keywords:
-        if kw['slug'] in category_slugs:
-            category_urls.append({
+        if kw['slug'] in casino_specific_slugs:
+            casino_urls.append({
                 "loc": f"{DOMAIN}/{kw['slug']}/",
                 "changefreq": "weekly",
-                "priority": "0.9",
+                "priority": "0.8",
             })
-    sitemaps.append(write_sitemap('category-sitemap.xml', category_urls))
+    sitemaps.append(write_sitemap('casino-sitemap.xml', casino_urls))
 
-    # 4. BONUS SITEMAP (all bonus & free spin pages)
+    # 4. BONUS SITEMAP (all bonus & free spin pages — exclude casino-specific ones)
     bonus_slugs = ['nejlepsi-kasinovy-bonus', 'free-spiny-dnes', 'kasina-bez-vkladu',
-                   'casino-bonusy-bez-vkladu', 'kasino-free-spiny', 'kasino-nizka-sazka',
-                   'synot-tip-free-spins', 'tipsport-free-spiny']
+                   'casino-bonusy-bez-vkladu', 'kasino-free-spiny', 'kasino-nizka-sazka']
     bonus_urls = []
     for kw in keywords:
         if kw['slug'] in bonus_slugs:
@@ -129,19 +134,6 @@ def main():
                 "priority": "0.75",
             })
     sitemaps.append(write_sitemap('license-sitemap.xml', license_urls))
-
-    # 7. CASINO-SPECIFIC PAGES SITEMAP (fortuna-kasino, bet365-kasino etc.)
-    specific_slugs = ['fortuna-kasino', 'bet365-kasino']
-    specific_urls = []
-    for kw in keywords:
-        if kw['slug'] in specific_slugs:
-            specific_urls.append({
-                "loc": f"{DOMAIN}/{kw['slug']}/",
-                "changefreq": "monthly",
-                "priority": "0.7",
-            })
-    if specific_urls:
-        sitemaps.append(write_sitemap('casino-specific-sitemap.xml', specific_urls))
 
     # WRITE INDEX
     write_sitemap_index(sitemaps)
