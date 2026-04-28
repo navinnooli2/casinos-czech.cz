@@ -1307,13 +1307,18 @@ a:hover { color: var(--red-hover); }
 .review-layout {
   display: grid;
   grid-template-columns: 340px 1fr;
+  grid-template-areas: "aside main";
   gap: 30px;
   margin: 30px auto;
   max-width: 1200px;
   padding: 0 20px;
 }
-.review-main { min-width: 0; }
+.review-main {
+  min-width: 0;
+  grid-area: main;
+}
 .review-aside {
+  grid-area: aside;
   position: sticky;
   top: 70px;
   align-self: start;
@@ -1322,10 +1327,10 @@ a:hover { color: var(--red-hover); }
 @media (max-width: 1024px) {
   .review-layout {
     grid-template-columns: 1fr;
+    grid-template-areas: "aside" "main";
   }
   .review-aside {
     position: static;
-    order: -1; /* show widget first on mobile */
   }
 }
 
