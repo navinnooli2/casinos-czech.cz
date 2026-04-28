@@ -1027,7 +1027,8 @@ def main():
     keywords = keywords_data['keywords']
 
     # Generate keyword pages
-    pages_dir = os.path.join(BASE_DIR, 'pages')
+    # Write keyword pages to ROOT (not /pages/) so /X/ resolves correctly on server
+    pages_dir = BASE_DIR
     os.makedirs(pages_dir, exist_ok=True)
 
     kw_count = 0
