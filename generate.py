@@ -42,7 +42,7 @@ CHEVRON_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=
 
 NAV_HTML = f'''<!-- TOP BANNER -->
 <div class="top-banner">
-    🎰 Dnes bonus až 10 000 Kč + 200 free spinů — <a href="/nejlepsi-kasinovy-bonus/">Získat bonus →</a>
+    🎰 Bonus 10 000 Kč + 200 FS — <a href="/nejlepsi-kasinovy-bonus/">Získat →</a>
 </div>
 <!-- TOPBAR -->
 <div class="topbar">
@@ -454,8 +454,20 @@ FILTER_BAR_HTML = '''<div class="filter-bar">
 </div>'''
 
 
+AFFILIATE_PRIORITY = ['smash', '29black', 'goldzino', 'playjonny', 'roulettino']
+
+
+def sort_casinos_with_priority(casinos):
+    """Put affiliate casinos (m-traff) first, then sort rest by rating descending."""
+    priority = [c for slug in AFFILIATE_PRIORITY for c in casinos if c['slug'] == slug]
+    others = sorted([c for c in casinos if c['slug'] not in AFFILIATE_PRIORITY],
+                    key=lambda x: x.get('rating', 0), reverse=True)
+    return priority + others
+
+
 def build_casino_tops(casinos):
-    cards = '\n'.join(build_top_card(c, i) for i, c in enumerate(casinos, 1))
+    sorted_casinos = sort_casinos_with_priority(casinos)
+    cards = '\n'.join(build_top_card(c, i) for i, c in enumerate(sorted_casinos, 1))
     return f'{FILTER_BAR_HTML}\n<div class="casino-tops">\n{cards}\n</div>\n{FILTER_MODAL_HTML}'
 
 

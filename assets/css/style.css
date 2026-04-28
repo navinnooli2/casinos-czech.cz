@@ -62,18 +62,32 @@ a:hover { color: var(--green-hover); }
 .top-banner {
   background: linear-gradient(90deg, #16a34a, #22c55e);
   text-align: center;
-  padding: 10px 20px;
+  padding: 10px 14px;
   font-size: 0.85rem;
   font-weight: 700;
   color: #fff;
   position: relative;
   z-index: 1001;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .top-banner a {
   color: #fff;
   text-decoration: underline;
+  white-space: nowrap;
 }
 .top-banner a:hover { color: #ffd700; }
+@media (max-width: 600px) {
+  .top-banner {
+    font-size: 0.72rem;
+    padding: 8px 10px;
+    letter-spacing: -0.2px;
+  }
+}
+@media (max-width: 380px) {
+  .top-banner { font-size: 0.65rem; }
+}
 
 /* ============================================
    TOP BAR + HAMBURGER
@@ -932,30 +946,187 @@ a.btn-cta:hover, .btn-cta:hover {
   padding: 40px 0;
 }
 .seo-content h2 {
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   color: var(--white);
-  margin: 36px 0 14px;
-  letter-spacing: -0.2px;
+  margin: 44px 0 16px;
+  letter-spacing: -0.3px;
   font-weight: 700;
+  padding-left: 14px;
+  border-left: 4px solid var(--green);
 }
 .seo-content h2:first-child { margin-top:0; }
 .seo-content h3 {
   font-size: 1.1rem;
-  color: var(--green);
-  margin: 26px 0 10px;
+  color: var(--gold);
+  margin: 28px 0 12px;
   font-weight: 600;
 }
 .seo-content p {
   margin-bottom: 14px;
   color: var(--text);
-  line-height: 1.75;
-  font-size: 0.97rem;
+  line-height: 1.7;
+  font-size: 0.95rem;
 }
+.seo-content p:last-child { margin-bottom: 0; }
+.seo-content strong { color: var(--white); }
+
+/* Lists — modern bullet style */
 .seo-content ul, .seo-content ol {
-  margin: 10px 0 20px 25px;
+  margin: 12px 0 22px 0;
+  padding: 0;
+  list-style: none;
   color: var(--text);
 }
-.seo-content li { margin-bottom:8px; }
+.seo-content ul li {
+  position: relative;
+  padding: 10px 14px 10px 38px;
+  margin-bottom: 8px;
+  background: rgba(34,197,94,0.04);
+  border-left: 3px solid var(--green);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.seo-content ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: var(--green);
+  color: #0a0a0f;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+.seo-content ol {
+  counter-reset: section-counter;
+}
+.seo-content ol li {
+  position: relative;
+  padding: 10px 14px 10px 44px;
+  margin-bottom: 8px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  counter-increment: section-counter;
+}
+.seo-content ol li::before {
+  content: counter(section-counter);
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, var(--green), #16a34a);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+/* Tables — clean comparison style */
+.seo-content table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 22px 0;
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+  overflow: hidden;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-sm);
+}
+.seo-content table thead {
+  background: linear-gradient(135deg, #1a8a5c, #15744d);
+}
+.seo-content table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-size: 0.78rem;
+}
+.seo-content table td {
+  padding: 14px 16px;
+  border-top: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: middle;
+}
+.seo-content table tr:nth-child(even) td {
+  background: rgba(255,255,255,0.015);
+}
+.seo-content table tr:hover td {
+  background: rgba(34,197,94,0.04);
+}
+.seo-content table td:first-child {
+  font-weight: 600;
+  color: var(--white);
+}
+.seo-content table strong { color: var(--gold); }
+
+/* Highlight boxes for key info */
+.seo-content blockquote,
+.seo-content .highlight-box,
+.seo-content .info-box {
+  background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(251,191,36,0.04));
+  border-left: 4px solid var(--gold);
+  padding: 18px 22px;
+  margin: 22px 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+.seo-content blockquote strong,
+.seo-content .highlight-box strong,
+.seo-content .info-box strong { color: var(--gold); }
+
+/* Warning box */
+.seo-content .warning-box {
+  background: rgba(239,68,68,0.06);
+  border-left: 4px solid var(--red);
+  padding: 18px 22px;
+  margin: 22px 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.95rem;
+}
+
+/* Two-column comparison for pros/cons in content */
+.seo-content .pros-cons-inline {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 22px 0;
+}
+@media (max-width: 700px) {
+  .seo-content .pros-cons-inline { grid-template-columns: 1fr; }
+}
+
+/* Mobile table scroll */
+@media (max-width: 600px) {
+  .seo-content table { display: block; overflow-x: auto; white-space: nowrap; }
+}
+
+/* Visual section break */
+.seo-content hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 36px 0;
+}
 
 /* ============================================
    BREADCRUMB
@@ -1726,6 +1897,76 @@ a.btn-cta:hover, .btn-cta:hover {
   object-fit: contain;
   margin: 0 auto;
 }
+/* Webscore inside the main aside card (light bg) */
+.aside-card-webscore {
+  background: rgba(15,23,42,0.04);
+  border-top: 1px solid rgba(15,23,42,0.08);
+  border-bottom: 1px solid rgba(15,23,42,0.08);
+  padding: 16px;
+  color: #1a1a2e;
+}
+.aside-card-webscore .aside-webscore-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.aside-card-webscore .aside-webscore-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+.aside-card-webscore .aside-webscore-info {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid #6b7280;
+  color: #6b7280;
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: help;
+}
+.aside-card-webscore .aside-webscore-main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 0;
+}
+.aside-card-webscore .aside-gauge-wrap {
+  width: 90px;
+  height: 50px;
+  flex-shrink: 0;
+}
+.aside-card-webscore .aside-gauge-svg { width: 100%; height: 100%; }
+.aside-card-webscore .aside-gauge-bg {
+  fill: none;
+  stroke: rgba(15,23,42,0.1);
+  stroke-width: 12;
+}
+.aside-card-webscore .aside-gauge-fill {
+  fill: none;
+  stroke-width: 12;
+  stroke-linecap: round;
+}
+.aside-card-webscore .aside-webscore-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  line-height: 1;
+}
+.aside-card-webscore .aside-webscore-value sup {
+  font-size: 0.85rem;
+  color: #6b7280;
+  font-weight: 600;
+}
+.aside-card-webscore .aside-webscore-base {
+  font-size: 0.72rem;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
 .aside-rating-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
