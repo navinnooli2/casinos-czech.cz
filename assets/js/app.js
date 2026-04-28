@@ -1,4 +1,33 @@
+// Filter modal global functions
+function openFilterModal() {
+  var ov = document.getElementById('filterOverlay');
+  var md = document.getElementById('filterModal');
+  if (ov) ov.classList.add('open');
+  if (md) md.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeFilterModal() {
+  var ov = document.getElementById('filterOverlay');
+  var md = document.getElementById('filterModal');
+  if (ov) ov.classList.remove('open');
+  if (md) md.classList.remove('open');
+  document.body.style.overflow = '';
+}
+window.openFilterModal = openFilterModal;
+window.closeFilterModal = closeFilterModal;
+
 document.addEventListener('DOMContentLoaded', function() {
+  // Filter game items toggle
+  document.querySelectorAll('.filter-game-item').forEach(function(item) {
+    item.addEventListener('click', function() {
+      this.classList.toggle('active');
+    });
+  });
+  // ESC closes filter modal
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeFilterModal();
+  });
+
   // FAQ toggle
   document.querySelectorAll('.faq-q').forEach(function(q) {
     q.addEventListener('click', function() {
@@ -46,6 +75,13 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.review-faq .faq-q').forEach(function(q) {
     q.addEventListener('click', function() {
       this.closest('.faq-item').classList.toggle('active');
+    });
+  });
+
+  // Summary box toggle
+  document.querySelectorAll('.summary-header').forEach(function(h) {
+    h.addEventListener('click', function() {
+      this.parentElement.classList.toggle('open');
     });
   });
 
