@@ -835,11 +835,11 @@ a:hover { color: var(--red-hover); }
   font-weight: 700;
   color: #c62828;
 }
-.btn-cta {
+a.btn-cta, .btn-cta {
   display: inline-block;
   padding: 14px 36px;
   background: linear-gradient(135deg, #4caf50, #388e3c);
-  color: #fff;
+  color: #fff !important;
   font-weight: 800;
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -852,9 +852,9 @@ a:hover { color: var(--red-hover); }
   text-decoration: none;
   box-shadow: 0 4px 15px rgba(76,175,80,0.3);
 }
-.btn-cta:hover {
+a.btn-cta:hover, .btn-cta:hover {
   background: linear-gradient(135deg, #66bb6a, #43a047);
-  color: #fff;
+  color: #fff !important;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(76,175,80,0.4);
 }
@@ -1443,6 +1443,7 @@ a:hover { color: var(--red-hover); }
 .notre-avis-content p { margin-bottom: 14px; }
 .notre-avis-content strong { color: var(--white); }
 .notre-avis-content a { color: var(--red); }
+.notre-avis-content a.btn-cta { color: #fff; }
 .notre-avis-cta {
   text-align: center;
   margin-top: 20px;
