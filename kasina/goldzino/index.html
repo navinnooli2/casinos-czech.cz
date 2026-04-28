@@ -13,7 +13,7 @@
     <link rel="canonical" href="https://casinos-czech.cz/kasina/goldzino/">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/css/style.css?v=16">
+    <link rel="stylesheet" href="/assets/css/style.css?v=17">
 </head>
 <body>
 
@@ -199,9 +199,10 @@
 
         <!-- Bonus details -->
         <section class="review-section">
-            <h2 class="review-section-title"><span class="icon">🎁</span> Detail bonusů Goldzino</h2>
-            <div class="bonus-details">
-                <div class="bonus-detail-row">
+            <div class="bonus-details-wrap">
+                <div class="bonus-details-title">🎁 Detail bonusů Goldzino</div>
+                <div class="bonus-details">
+                    <div class="bonus-detail-row">
             <div class="bonus-detail-label"><span class="bonus-detail-icon">🥇</span>1. vklad</div>
             <div class="bonus-detail-table">
                 <div class="bonus-detail-cell"><span class="bonus-detail-cell-label">Hodnota</span><span class="bonus-detail-cell-value">100%</span></div>
@@ -237,6 +238,10 @@
             </div>
             <a href="https://m-traff.net/HYcs2BV5?sub_id_1=goldzino" class="bonus-detail-cta" target="_blank" rel="nofollow noopener">Získat</a>
         </div>
+                </div>
+                <div class="bonus-details-show-all">
+                    <a href="#bonusy">+ tout afficher</a>
+                </div>
             </div>
         </section>
 
@@ -932,10 +937,41 @@
             </ul>
         </div>
 
-        <!-- Webscore -->
+        <!-- Webscore with gauge -->
         <div class="aside-webscore">
-            <div class="aside-webscore-label">⓵ Webscore</div>
-            <div class="aside-webscore-value">4.5/5</div>
+            <div class="aside-webscore-header">
+                <span class="aside-webscore-label">Webscore</span>
+                <span class="aside-webscore-info" title="Hodnocení založené na nezávislých zdrojích">i</span>
+            </div>
+            <div class="aside-webscore-main">
+                <div class="aside-gauge-wrap">
+                    <svg class="aside-gauge-svg" viewBox="0 0 100 50">
+                        <defs>
+                            <linearGradient id="gauge-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#ef4444"/>
+                                <stop offset="50%" stop-color="#fbbf24"/>
+                                <stop offset="100%" stop-color="#22c55e"/>
+                            </linearGradient>
+                        </defs>
+                        <path class="aside-gauge-bg" d="M 10 45 A 35 35 0 0 1 90 45"/>
+                        <path class="aside-gauge-fill" d="M 10 45 A 35 35 0 0 1 90 45" stroke-dasharray="99.0 110"/>
+                    </svg>
+                </div>
+                <div class="aside-webscore-score">
+                    <div class="aside-webscore-value">4.5<sup>/5</sup></div>
+                    <div class="aside-webscore-base">Založeno na 2 hodnoceních</div>
+                </div>
+            </div>
+            <div class="aside-webscore-partners">
+                <div class="aside-webscore-partner">
+                    <span class="aside-webscore-partner-logo">CZK</span>
+                    <span class="aside-webscore-partner-rating">4.2/5</span>
+                </div>
+                <div class="aside-webscore-partner">
+                    <span class="aside-webscore-partner-logo" style="background:linear-gradient(135deg,#dc2626,#7f1d1d);color:#fff;">PC</span>
+                    <span class="aside-webscore-partner-rating">4.0/5</span>
+                </div>
+            </div>
         </div>
 
         <!-- Games available -->
@@ -960,26 +996,26 @@
         <!-- Game providers -->
         <div class="aside-grid-card">
             <div class="aside-grid-title">🏢 Poskytovatelé</div>
-            <div class="aside-grid"><div class="aside-grid-item"><span class="aside-grid-item-icon">🎮</span>Pragmatic </div>
-<div class="aside-grid-item"><span class="aside-grid-item-icon">🎮</span>NetEnt</div>
-<div class="aside-grid-item"><span class="aside-grid-item-icon">🎮</span>Play'n GO</div>
-<div class="aside-grid-item"><span class="aside-grid-item-icon">🎮</span>Evolution</div>
-<div class="aside-grid-item"><span class="aside-grid-item-icon">🎮</span>Microgamin</div>
-<div class="aside-grid-item"><span class="aside-grid-item-icon">🎮</span>Nolimit Ci</div>
-<div class="aside-grid-item"><span class="aside-grid-item-icon">🎮</span>Hacksaw Ga</div>
-<div class="aside-grid-item"><span class="aside-grid-item-icon">🎮</span>Push Gamin</div></div>
+            <div class="aside-grid"><div class="aside-grid-item"><span class="aside-grid-item-icon" style="font-size:0.78rem;font-weight:800;color:#22c55e;">PP</span>Pragmatic </div>
+<div class="aside-grid-item"><span class="aside-grid-item-icon" style="font-size:0.78rem;font-weight:800;color:#22c55e;">NE</span>NetEnt</div>
+<div class="aside-grid-item"><span class="aside-grid-item-icon" style="font-size:0.78rem;font-weight:800;color:#22c55e;">P'G</span>Play'n GO</div>
+<div class="aside-grid-item"><span class="aside-grid-item-icon" style="font-size:0.78rem;font-weight:800;color:#22c55e;">EV</span>Evolution</div>
+<div class="aside-grid-item"><span class="aside-grid-item-icon" style="font-size:0.78rem;font-weight:800;color:#22c55e;">MG</span>Microgamin</div>
+<div class="aside-grid-item"><span class="aside-grid-item-icon" style="font-size:0.78rem;font-weight:800;color:#22c55e;">NO</span>Nolimit Ci</div>
+<div class="aside-grid-item"><span class="aside-grid-item-icon" style="font-size:0.78rem;font-weight:800;color:#22c55e;">HS</span>Hacksaw Ga</div>
+<div class="aside-grid-item"><span class="aside-grid-item-icon" style="font-size:0.78rem;font-weight:800;color:#22c55e;">PG</span>Push Gamin</div></div>
             <a href="#providers" class="aside-see-all">+ Zobrazit vše</a>
         </div>
 
         <!-- Payment methods -->
         <div class="aside-grid-card">
             <div class="aside-grid-title">💳 Platební metody</div>
-            <div class="aside-grid"><div class="aside-grid-item"><img src="/assets/images/payments/visa.svg" alt="Visa">Visa</div>
-<div class="aside-grid-item"><img src="/assets/images/payments/mastercard.png" alt="Mastercard">Masterca</div>
-<div class="aside-grid-item"><img src="/assets/images/payments/bankovni-prevod.svg" alt="Bankovní převod">Bankovní</div>
-<div class="aside-grid-item"><img src="/assets/images/payments/skrill.svg" alt="Skrill">Skrill</div>
-<div class="aside-grid-item"><img src="/assets/images/payments/neteller.svg" alt="Neteller">Neteller</div>
-<div class="aside-grid-item"><img src="/assets/images/payments/paysafecard.ico" alt="PaySafeCard">PaySafeC</div>
+            <div class="aside-grid"><div class="aside-grid-item"><span class="aside-grid-item-icon payment-icon"><img src="/assets/images/payments/visa.svg" alt="Visa"></span>Visa</div>
+<div class="aside-grid-item"><span class="aside-grid-item-icon payment-icon"><img src="/assets/images/payments/mastercard.png" alt="Mastercard"></span>Masterca</div>
+<div class="aside-grid-item"><span class="aside-grid-item-icon payment-icon"><img src="/assets/images/payments/bankovni-prevod.svg" alt="Bankovní převod"></span>Bankovní</div>
+<div class="aside-grid-item"><span class="aside-grid-item-icon payment-icon"><img src="/assets/images/payments/skrill.svg" alt="Skrill"></span>Skrill</div>
+<div class="aside-grid-item"><span class="aside-grid-item-icon payment-icon"><img src="/assets/images/payments/neteller.svg" alt="Neteller"></span>Neteller</div>
+<div class="aside-grid-item"><span class="aside-grid-item-icon payment-icon"><img src="/assets/images/payments/paysafecard.ico" alt="PaySafeCard"></span>PaySafeC</div>
 <div class="aside-grid-item"><span class="aside-grid-item-icon">₿</span>Bitcoin</div>
 <div class="aside-grid-item"><span class="aside-grid-item-icon">⟠</span>Ethereum</div></div>
             <a href="#payments" class="aside-see-all">+ Zobrazit vše</a>

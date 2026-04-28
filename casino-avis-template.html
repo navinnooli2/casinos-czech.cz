@@ -13,7 +13,7 @@
     <link rel="canonical" href="https://casinos-czech.cz/kasina/{{casino_slug}}/">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/css/style.css?v=16">
+    <link rel="stylesheet" href="/assets/css/style.css?v=17">
 </head>
 <body>
 
@@ -87,9 +87,14 @@
 
         <!-- Bonus details -->
         <section class="review-section">
-            <h2 class="review-section-title"><span class="icon">🎁</span> Detail bonusů {{casino_name}}</h2>
-            <div class="bonus-details">
-                {{bonus_details_html}}
+            <div class="bonus-details-wrap">
+                <div class="bonus-details-title">🎁 Detail bonusů {{casino_name}}</div>
+                <div class="bonus-details">
+                    {{bonus_details_html}}
+                </div>
+                <div class="bonus-details-show-all">
+                    <a href="#bonusy">+ tout afficher</a>
+                </div>
             </div>
         </section>
 
@@ -306,10 +311,41 @@
             </ul>
         </div>
 
-        <!-- Webscore -->
+        <!-- Webscore with gauge -->
         <div class="aside-webscore">
-            <div class="aside-webscore-label">⓵ Webscore</div>
-            <div class="aside-webscore-value">{{rating}}/5</div>
+            <div class="aside-webscore-header">
+                <span class="aside-webscore-label">Webscore</span>
+                <span class="aside-webscore-info" title="Hodnocení založené na nezávislých zdrojích">i</span>
+            </div>
+            <div class="aside-webscore-main">
+                <div class="aside-gauge-wrap">
+                    <svg class="aside-gauge-svg" viewBox="0 0 100 50">
+                        <defs>
+                            <linearGradient id="gauge-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#ef4444"/>
+                                <stop offset="50%" stop-color="#fbbf24"/>
+                                <stop offset="100%" stop-color="#22c55e"/>
+                            </linearGradient>
+                        </defs>
+                        <path class="aside-gauge-bg" d="M 10 45 A 35 35 0 0 1 90 45"/>
+                        <path class="aside-gauge-fill" d="M 10 45 A 35 35 0 0 1 90 45" stroke-dasharray="{{gauge_value}} 110"/>
+                    </svg>
+                </div>
+                <div class="aside-webscore-score">
+                    <div class="aside-webscore-value">{{rating}}<sup>/5</sup></div>
+                    <div class="aside-webscore-base">Založeno na 2 hodnoceních</div>
+                </div>
+            </div>
+            <div class="aside-webscore-partners">
+                <div class="aside-webscore-partner">
+                    <span class="aside-webscore-partner-logo">CZK</span>
+                    <span class="aside-webscore-partner-rating">{{rating_partner_1}}/5</span>
+                </div>
+                <div class="aside-webscore-partner">
+                    <span class="aside-webscore-partner-logo" style="background:linear-gradient(135deg,#dc2626,#7f1d1d);color:#fff;">PC</span>
+                    <span class="aside-webscore-partner-rating">{{rating_partner_2}}/5</span>
+                </div>
+            </div>
         </div>
 
         <!-- Games available -->

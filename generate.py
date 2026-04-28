@@ -885,8 +885,18 @@ def build_bonus_details_html(bonuses, casino_url, wagering, min_deposit):
 def build_aside_providers_html(providers):
     """Provider grid for sidebar (8 items)."""
     items = []
+    initials_map = {
+        'Pragmatic Play': 'PP', 'NetEnt': 'NE', "Play'n GO": "P'G",
+        'Evolution': 'EV', 'Microgaming': 'MG', 'Novomatic': 'NV',
+        'Synot Games': 'SG', 'Yggdrasil': 'YG', 'Red Tiger': 'RT',
+        'Hacksaw Gaming': 'HS', 'Push Gaming': 'PG', 'Big Time Gaming': 'BTG',
+        'Quickspin': 'QS', 'Thunderkick': 'TK', 'ELK Studios': 'ELK',
+        'Spribe': 'SP', 'BGaming': 'BG', 'Wazdan': 'WZ',
+        'Relax Gaming': 'RG', 'Endorphina': 'EP', 'iSoftBet': 'iSB',
+    }
     for p in providers[:8]:
-        items.append(f'<div class="aside-grid-item"><span class="aside-grid-item-icon">🎮</span>{p[:10]}</div>')
+        initials = initials_map.get(p, p[:2].upper())
+        items.append(f'<div class="aside-grid-item"><span class="aside-grid-item-icon" style="font-size:0.78rem;font-weight:800;color:#22c55e;">{initials}</span>{p[:10]}</div>')
     return '\n'.join(items)
 
 
@@ -905,10 +915,12 @@ def build_aside_payments_html(methods):
     items = []
     for m in methods[:8]:
         if m in img_map:
-            icon = f'<img src="/assets/images/payments/{img_map[m]}" alt="{m}">'
+            inner = f'<img src="/assets/images/payments/{img_map[m]}" alt="{m}">'
+            icon_class = 'aside-grid-item-icon payment-icon'
         else:
-            icon = f'<span class="aside-grid-item-icon">{emoji_map.get(m, "💳")}</span>'
-        items.append(f'<div class="aside-grid-item">{icon}{m[:8]}</div>')
+            inner = emoji_map.get(m, "💳")
+            icon_class = 'aside-grid-item-icon'
+        items.append(f'<div class="aside-grid-item"><span class="{icon_class}">{inner}</span>{m[:8]}</div>')
     return '\n'.join(items)
 
 
@@ -988,6 +1000,9 @@ def generate_review_page(casino, template, all_casinos):
         '{{aside_providers_html}}': build_aside_providers_html(r['providers']),
         '{{aside_payments_html}}': build_aside_payments_html(r['paymentMethods']),
         '{{notre_avis_short}}': build_notre_avis_short(casino),
+        '{{gauge_value}}': str(round((casino['rating'] / 5) * 110, 1)),
+        '{{rating_partner_1}}': str(round(casino['rating'] - 0.3, 1)),
+        '{{rating_partner_2}}': str(round(casino['rating'] - 0.5, 1)),
     }
 
     for placeholder, value in replacements.items():
