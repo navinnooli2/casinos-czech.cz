@@ -708,6 +708,19 @@ def build_cons_html(cons):
     return '\n'.join(f'<li>{c}</li>' for c in cons)
 
 
+def build_notre_avis_short(casino):
+    """4-line synthetic intro for the notre-avis box."""
+    r = casino['review']
+    bonus_part = r['bonusAmount']
+    if r['freeSpinsCount'] != '—':
+        bonus_part += f" + {r['freeSpinsCount']}"
+    return (f"<strong>{casino['name']}</strong> je online kasino fungující od roku {r['yearCreated']} "
+            f"s licencí <strong>{r['license']}</strong>. Uvítací bonus <strong>{bonus_part}</strong> "
+            f"při minimálním vkladu {casino['minDeposit']} Kč. Výběry jsou zpracovány "
+            f"<strong>{r['withdrawalSpeedDetail'].lower()}</strong> a podpora je dostupná 24/7 v češtině. "
+            f"Hodnocení <strong>{casino['rating']}/5</strong> na základě testování od {r['reviewCount']} hráčů.")
+
+
 def build_introduction_extra(casino):
     """Generate additional intro paragraph for word count."""
     r = casino['review']
@@ -897,6 +910,7 @@ def generate_review_page(casino, template, all_casinos):
         '{{bonus_details_html}}': build_bonus_details_html(r['bonuses'], casino['bonusUrl'], r.get('wagering', casino.get('wagering', 'x30')), f"{casino['minDeposit']} Kč"),
         '{{aside_providers_html}}': build_aside_providers_html(r['providers']),
         '{{aside_payments_html}}': build_aside_payments_html(r['paymentMethods']),
+        '{{notre_avis_short}}': build_notre_avis_short(casino),
     }
 
     for placeholder, value in replacements.items():

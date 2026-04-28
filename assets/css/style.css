@@ -1306,7 +1306,7 @@ a:hover { color: var(--red-hover); }
    ============================================ */
 .review-layout {
   display: grid;
-  grid-template-columns: 1fr 340px;
+  grid-template-columns: 340px 1fr;
   gap: 30px;
   margin: 30px auto;
   max-width: 1200px;
@@ -1325,6 +1325,7 @@ a:hover { color: var(--red-hover); }
   }
   .review-aside {
     position: static;
+    order: -1; /* show widget first on mobile */
   }
 }
 
