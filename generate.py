@@ -755,12 +755,81 @@ def build_registration_intro(casino):
             f"Nezapomeňte mít připravené doklady totožnosti, které budete potřebovat pro KYC ověření.")
 
 
+def build_pros_list_html(pros):
+    """Pros with green badges."""
+    items = []
+    for p in pros:
+        items.append(f'<li><span class="pros-cons-badge">✓</span><span>{p}</span></li>')
+    return '\n'.join(items)
+
+
+def build_cons_list_html(cons):
+    """Cons with red badges."""
+    items = []
+    for c in cons:
+        items.append(f'<li><span class="pros-cons-badge">✗</span><span>{c}</span></li>')
+    return '\n'.join(items)
+
+
+def build_bonus_details_html(bonuses, casino_url, wagering, min_deposit):
+    """Bonus rows with table + button (1er dépôt, 2ème dépôt, etc.)"""
+    items = []
+    icons = ['🥇', '🥈', '🥉', '🎁']
+    for i, b in enumerate(bonuses[:4]):
+        icon = icons[i] if i < len(icons) else '🎁'
+        title = b.get('title', f'Bonus {i+1}. vklad')
+        value = b.get('value', '')
+        detail = b.get('detail', '')
+        items.append(f'''<div class="bonus-detail-row">
+            <div class="bonus-detail-label"><span class="bonus-detail-icon">{icon}</span>{title}</div>
+            <div class="bonus-detail-table">
+                <div class="bonus-detail-cell"><span class="bonus-detail-cell-label">Hodnota</span><span class="bonus-detail-cell-value">{value}</span></div>
+                <div class="bonus-detail-cell"><span class="bonus-detail-cell-label">Detail</span><span class="bonus-detail-cell-value">{detail[:30]}</span></div>
+                <div class="bonus-detail-cell"><span class="bonus-detail-cell-label">Wager</span><span class="bonus-detail-cell-value">{wagering}</span></div>
+            </div>
+            <a href="{casino_url}" class="bonus-detail-cta" target="_blank" rel="nofollow noopener">Získat</a>
+        </div>''')
+    return '\n'.join(items)
+
+
+def build_aside_providers_html(providers):
+    """Provider grid for sidebar (8 items)."""
+    items = []
+    for p in providers[:8]:
+        items.append(f'<div class="aside-grid-item"><span class="aside-grid-item-icon">🎮</span>{p[:10]}</div>')
+    return '\n'.join(items)
+
+
+def build_aside_payments_html(methods):
+    img_map = {
+        "Visa": "visa.svg", "Mastercard": "mastercard.png",
+        "Bankovní převod": "bankovni-prevod.svg", "Skrill": "skrill.svg",
+        "Neteller": "neteller.svg", "PaySafeCard": "paysafecard.ico",
+        "Apple Pay": "apple-pay.svg", "PayPal": "paypal.png",
+        "MuchBetter": "muchbetter.ico",
+    }
+    emoji_map = {
+        "Google Pay": "📱", "Bitcoin": "₿", "Ethereum": "⟠",
+        "USDT": "💲", "Maestro": "💳", "ecoPayz": "💰",
+    }
+    items = []
+    for m in methods[:8]:
+        if m in img_map:
+            icon = f'<img src="/assets/images/payments/{img_map[m]}" alt="{m}">'
+        else:
+            icon = f'<span class="aside-grid-item-icon">{emoji_map.get(m, "💳")}</span>'
+        items.append(f'<div class="aside-grid-item">{icon}{m[:8]}</div>')
+    return '\n'.join(items)
+
+
 def generate_review_page(casino, template, all_casinos):
     r = casino['review']
 
     bonus_pack_headline = f"{r['bonusAmount']}"
     if r['freeSpinsCount'] != '—':
         bonus_pack_headline += f" + {r['freeSpinsCount']}"
+
+    today = datetime.now().strftime('%d. %m. %Y')
 
     html = template
     replacements = {
@@ -822,6 +891,12 @@ def generate_review_page(casino, template, all_casinos):
         '{{bonus_pack_headline}}': bonus_pack_headline,
         '{{bonus_pack_html}}': build_bonus_pack_html(r['bonuses'], casino['minDeposit'], r.get('wagering', casino.get('wagering', 'x30'))),
         '{{bonus_pack_alt_html}}': build_bonus_pack_alt_html(r['bonuses'], casino['minDeposit'], r.get('wagering', casino.get('wagering', 'x30'))),
+        '{{today_date}}': today,
+        '{{pros_list_html}}': build_pros_list_html(r['pros']),
+        '{{cons_list_html}}': build_cons_list_html(r['cons']),
+        '{{bonus_details_html}}': build_bonus_details_html(r['bonuses'], casino['bonusUrl'], r.get('wagering', casino.get('wagering', 'x30')), f"{casino['minDeposit']} Kč"),
+        '{{aside_providers_html}}': build_aside_providers_html(r['providers']),
+        '{{aside_payments_html}}': build_aside_payments_html(r['paymentMethods']),
     }
 
     for placeholder, value in replacements.items():

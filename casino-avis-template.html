@@ -8,16 +8,15 @@
     <meta property="og:title" content="{{casino_name}} Recenze 2026 – Bonusy, Hry a Hodnocení">
     <meta property="og:description" content="{{meta_description}}">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://casino-czech.cz/kasina/{{casino_slug}}/">
+    <meta property="og:url" content="https://casinos-czech.cz/kasina/{{casino_slug}}/">
     <title>{{casino_name}} Recenze 2026 – Bonusy, Hry a Hodnocení | Casinos Czech .CZ</title>
     <link rel="canonical" href="https://casinos-czech.cz/kasina/{{casino_slug}}/">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/css/style.css?v=8">
+    <link rel="stylesheet" href="/assets/css/style.css?v=9">
 </head>
 <body>
 
-<!-- NAVIGATION -->
 {{nav_html}}
 
 <!-- BREADCRUMB -->
@@ -29,365 +28,328 @@
     </div>
 </div>
 
-<!-- AUTHOR BOX -->
-<div class="container">
-    {{author_box}}
-</div>
+<!-- 2-COLUMN LAYOUT -->
+<div class="review-layout">
 
-<!-- REVIEW HERO -->
-<section class="review-hero">
-    <div class="container">
-        <div class="review-hero-inner">
-            <div class="review-hero-logo">
-                <img src="{{casino_logo_url}}" alt="{{casino_name}} logo" width="130" height="130">
-            </div>
-            <div class="review-hero-info">
-                <h1>{{casino_name}}</h1>
-                <div class="review-hero-rating">
-                    <span class="stars">{{rating_stars}}</span>
-                    <span class="rating-text">{{rating}}/5 – {{review_count}} recenzí</span>
-                </div>
-                <div class="review-stats">
-                    <div class="stat-card">
-                        <div class="stat-card-icon">💰</div>
-                        <div class="stat-card-value">{{bonus_amount}}</div>
-                        <div class="stat-card-label">Bonus</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-card-icon">🎰</div>
-                        <div class="stat-card-value">{{free_spins_count}}</div>
-                        <div class="stat-card-label">Free Spiny</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-card-icon">⚡</div>
-                        <div class="stat-card-value">{{withdrawal_speed}}</div>
-                        <div class="stat-card-label">Výběr</div>
-                    </div>
+    <!-- LEFT MAIN CONTENT -->
+    <main class="review-main">
+        <h1 class="review-h1">{{casino_name}}: test a kompletní recenze v 2026</h1>
+
+        <!-- Author block (publié par + édité par + fact-checké par) -->
+        <div class="author-block">
+            <div class="author-block-left">
+                <div class="author-block-avatar">MN</div>
+                <div class="author-block-info">
+                    <span class="author-block-label">Publikováno:</span>
+                    <span class="author-block-name"><a href="#">MARTIN NOVÁK</a></span>
+                    <span class="author-block-meta">Aktualizováno {{today_date}}</span>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- QUICK FACTS -->
-<div class="container">
-    <div class="quick-facts">
-        <div class="quick-facts-title">📋 Základní informace</div>
-        <div class="quick-facts-grid">
-            <div class="quick-fact">
-                <span class="quick-fact-label">Provozovatel</span>
-                <span class="quick-fact-value">{{owner}}</span>
-            </div>
-            <div class="quick-fact">
-                <span class="quick-fact-label">Rok založení</span>
-                <span class="quick-fact-value">{{year_created}}</span>
-            </div>
-            <div class="quick-fact">
-                <span class="quick-fact-label">Licence</span>
-                <span class="quick-fact-value">{{license}}</span>
-            </div>
-            <div class="quick-fact">
-                <span class="quick-fact-label">Min. vklad</span>
-                <span class="quick-fact-value">{{min_deposit}}</span>
-            </div>
-            <div class="quick-fact">
-                <span class="quick-fact-label">Výběr</span>
-                <span class="quick-fact-value">{{withdrawal_range}}</span>
-            </div>
-            <div class="quick-fact">
-                <span class="quick-fact-label">Rychlost výběru</span>
-                <span class="quick-fact-value">{{withdrawal_speed_detail}}</span>
-            </div>
-            <div class="quick-fact">
-                <span class="quick-fact-label">Česky?</span>
-                <span class="quick-fact-value">{{czech_language}}</span>
-            </div>
-            <div class="quick-fact">
-                <span class="quick-fact-label">Mobilní verze</span>
-                <span class="quick-fact-value">{{mobile}}</span>
+            <div class="author-block-right">
+                <span><span class="check">✓</span> Editor: <a href="#">Petr Svoboda</a></span>
+                <span><span class="check">✓</span> Fact-check: <a href="#">Jana Dvořáková</a></span>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- TOP PREVIEW: GAME CATEGORIES + PAYMENTS + PROVIDERS -->
-<div class="container">
-    <div class="preview-section">
-        <div class="preview-section-header">
-            <div>
-                <h3 class="preview-section-title">Hry nabízené v {{casino_name}}</h3>
-                <div class="preview-section-subtitle">Kategorie dostupných her</div>
+        <p class="disclaimer-text">Hodnotíme produkty a služby nezávisle. Můžeme být odměněni partnerskými programy, když kliknete na naše odkazy – tato partnerství neovlivňují hodnocení udělená naším týmem. Více o našem <a href="#">hodnotícím procesu</a>.</p>
+
+        <!-- Notre avis intro box -->
+        <div class="notre-avis">
+            <div class="notre-avis-header">
+                <div class="notre-avis-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L9.19 8.63 2 9.27l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7 5.46-4.73-7.19-.64L12 2z"/></svg>
+                </div>
+                <div class="notre-avis-title">Naše hodnocení {{casino_name}}</div>
             </div>
-            <div class="preview-arrows">
-                <button class="preview-arrow" onclick="this.closest('.preview-section').querySelector('.preview-carousel').scrollBy({left:-300,behavior:'smooth'})">‹</button>
-                <button class="preview-arrow" onclick="this.closest('.preview-section').querySelector('.preview-carousel').scrollBy({left:300,behavior:'smooth'})">›</button>
-            </div>
-        </div>
-        <div class="preview-carousel">{{preview_games_html}}</div>
-    </div>
-
-    <div class="preview-divider"></div>
-
-    <div class="preview-section">
-        <div class="preview-section-header">
-            <h3 class="preview-section-title">Platební metody</h3>
-            <div class="preview-arrows">
-                <button class="preview-arrow" onclick="this.closest('.preview-section').querySelector('.preview-carousel').scrollBy({left:-300,behavior:'smooth'})">‹</button>
-                <button class="preview-arrow" onclick="this.closest('.preview-section').querySelector('.preview-carousel').scrollBy({left:300,behavior:'smooth'})">›</button>
+            <div class="notre-avis-content">
+                <p>{{introduction}}</p>
+                <p>{{introduction_extra}}</p>
+                <p>Kasino přijímá <strong>{{payment_count}} platebních metod</strong>: bankovní karty, e-peněženky, prepaid karty, bankovní převody a kryptoměny. Výběry probíhají v rozmezí <strong>{{withdrawal_speed_detail}}</strong>. Zákaznický servis je <strong>dostupný 24/7</strong> v češtině.</p>
+                <p>V souhrnu: {{casino_name}} nabízí <strong>vynikající herní zážitek</strong> díky výhodným podmínkám a rozsáhlé herní knihovně. Hráči, kteří hledají kvalitní platformu, najdou v {{casino_name}} solidního partnera v žebříčku <a href="/nejlepsi-kasina-cz/">nejlepších kasin v ČR</a>.</p>
+                <div class="notre-avis-cta">
+                    <a href="{{bonus_url}}" class="btn-cta" target="_blank" rel="nofollow noopener">Hrát na {{casino_name}}</a>
+                </div>
             </div>
         </div>
-        <div class="preview-carousel">{{preview_payments_html}}</div>
-        <div class="preview-see-all"><a href="#payments">Zobrazit všech {{payment_count}} platebních metod</a></div>
-    </div>
 
-    <div class="preview-divider"></div>
-
-    <div class="preview-section">
-        <div class="preview-section-header">
-            <h3 class="preview-section-title">Poskytovatelé her</h3>
-            <div class="preview-arrows">
-                <button class="preview-arrow" onclick="this.closest('.preview-section').querySelector('.preview-carousel').scrollBy({left:-300,behavior:'smooth'})">‹</button>
-                <button class="preview-arrow" onclick="this.closest('.preview-section').querySelector('.preview-carousel').scrollBy({left:300,behavior:'smooth'})">›</button>
-            </div>
-        </div>
-        <div class="preview-carousel">{{preview_providers_html}}</div>
-        <div class="preview-see-all"><a href="#providers">Zobrazit všech {{provider_count}} poskytovatelů her</a></div>
-    </div>
-</div>
-
-<!-- INTRODUCTION -->
-<div class="container">
-    <section class="review-section">
-        <h2 class="review-section-title"><span class="icon">📝</span> {{casino_name}}: Kompletní Recenze 2026</h2>
-        <p class="review-text">{{introduction}}</p>
-        <p class="review-text">{{introduction_extra}}</p>
-    </section>
-</div>
-
-<!-- ATMOSPHERE & DESIGN -->
-<div class="container">
-    <section class="review-section">
-        <h2 class="review-section-title"><span class="icon">🎨</span> Atmosféra a Design {{casino_name}}</h2>
-        <p class="review-text">{{atmosphere}}</p>
-    </section>
-</div>
-
-<!-- BONUSES (Pack de bienvenue) -->
-<div class="container">
-    <section class="review-section">
-        <h2 class="review-section-title"><span class="icon">🎁</span> Bonusy {{casino_name}}</h2>
-        <p class="review-text">{{bonus_intro}}</p>
-        <div class="bonus-pack">
-            <div class="bonus-pack-headline">Uvítací balíček: <strong>{{bonus_pack_headline}}</strong></div>
-            <div class="bonus-pack-grid">{{bonus_pack_html}}</div>
-            <div class="bonus-pack-alt-title">Alternativní bonusy</div>
-            <div class="bonus-pack-grid">{{bonus_pack_alt_html}}</div>
-        </div>
-        <h3 class="review-subtitle">Týdenní promo akce</h3>
-        <p class="review-text">{{weekly_promo}}</p>
-        <h3 class="review-subtitle">VIP program a věrnostní odměny</h3>
-        <p class="review-text">{{vip_program}}</p>
-    </section>
-</div>
-
-<!-- GAME CATEGORIES -->
-<div class="container">
-    <section class="review-section">
-        <h2 class="review-section-title"><span class="icon">🎮</span> Kategorie Her</h2>
-        <p class="review-text">{{games_intro}}</p>
-        <div class="game-cats">
-            {{game_cats_html}}
-        </div>
-        <h3 class="review-subtitle">Automaty (Slots)</h3>
-        <p class="review-text">{{games_slots}}</p>
-        <h3 class="review-subtitle">Stolní hry</h3>
-        <p class="review-text">{{games_table}}</p>
-        <h3 class="review-subtitle">Live kasino</h3>
-        <p class="review-text">{{games_live}}</p>
-        <h3 class="review-subtitle">Mini-hry a crash games</h3>
-        <p class="review-text">{{games_mini}}</p>
-    </section>
-</div>
-
-<!-- PAYMENT METHODS -->
-<div class="container" id="payments">
-    <section class="review-section">
-        <h2 class="review-section-title"><span class="icon">💳</span> Platební Metody {{casino_name}}</h2>
-        <p class="review-text">{{payments_intro}}</p>
-        <div class="grid-items">
-            {{payment_methods_html}}
-        </div>
-        <p class="grid-items-count">{{payment_count}} platebních metod</p>
-        <p class="review-text">{{payments_extra}}</p>
-    </section>
-</div>
-
-<!-- GAME PROVIDERS -->
-<div class="container" id="providers">
-    <section class="review-section">
-        <h2 class="review-section-title"><span class="icon">🏢</span> Poskytovatelé Her</h2>
-        <p class="review-text">{{providers_intro}}</p>
-        <div class="grid-items">
-            {{providers_html}}
-        </div>
-        <p class="grid-items-count">{{provider_count}} poskytovatelů</p>
-        <p class="review-text">{{providers_extra}}</p>
-    </section>
-</div>
-
-<!-- ADVANTAGES -->
-<div class="container">
-    <section class="review-section">
-        <h2 class="review-section-title"><span class="icon">⭐</span> Výhody {{casino_name}}</h2>
-        <div class="advantages-list">
-            {{advantages_html}}
-        </div>
-    </section>
-</div>
-
-<!-- CTA BANNER -->
-<div class="container">
-    <div class="cta-banner">
-        <h2>Vyzkoušejte {{casino_name}} ještě dnes</h2>
-        <p>{{bonus_headline}}</p>
-        <a href="{{bonus_url}}" class="btn btn-large" target="_blank" rel="nofollow noopener">Hrát nyní v {{casino_name}} →</a>
-    </div>
-</div>
-
-<!-- PROS & CONS -->
-<div class="container">
-    <section class="review-section">
-        <h2 class="review-section-title"><span class="icon">⚖️</span> Výhody a Nevýhody</h2>
-        <div class="pros-cons">
-            <div class="pros-box">
-                <h3>✓ Výhody</h3>
+        <!-- Pros / Cons -->
+        <div class="pros-cons-grid">
+            <div class="pros-cons-col pros">
+                <h3>Výhody</h3>
                 <ul>
-                    {{pros_html}}
+                    {{pros_list_html}}
                 </ul>
             </div>
-            <div class="cons-box">
-                <h3>✗ Nevýhody</h3>
+            <div class="pros-cons-col cons">
+                <h3>Nevýhody</h3>
                 <ul>
-                    {{cons_html}}
+                    {{cons_list_html}}
                 </ul>
             </div>
         </div>
-    </section>
-</div>
 
-<!-- REGISTRATION GUIDE -->
-<div class="container">
-    <section class="review-section">
-        <h2 class="review-section-title"><span class="icon">📝</span> Jak se zaregistrovat na {{casino_name}}</h2>
-        <p class="review-text">{{registration_intro}}</p>
-        <div class="reg-steps">
-            <div class="reg-step">
-                <div class="reg-step-num">1</div>
-                <div class="reg-step-content">
-                    <div class="reg-step-title">Klikněte na "Registrace"</div>
-                    <div class="reg-step-text">Otevřete oficiální stránky {{casino_name}} a klikněte na zelené tlačítko "Registrace" v pravém horním rohu obrazovky.</div>
-                </div>
+        <!-- Bonus details -->
+        <section class="review-section">
+            <h2 class="review-section-title"><span class="icon">🎁</span> Detail bonusů {{casino_name}}</h2>
+            <div class="bonus-details">
+                {{bonus_details_html}}
             </div>
-            <div class="reg-step">
-                <div class="reg-step-num">2</div>
-                <div class="reg-step-content">
-                    <div class="reg-step-title">Vyplňte registrační formulář</div>
-                    <div class="reg-step-text">Zadejte své základní údaje: email, heslo, jméno, příjmení, datum narození a adresu. Všechny údaje musí být pravdivé pro úspěšné ověření účtu.</div>
-                </div>
+        </section>
+
+        <!-- Sommaire -->
+        <div class="summary-box" id="summaryBox">
+            <div class="summary-header">
+                <span>📑 Obsah článku</span>
+                <span class="toggle-text">Zobrazit ›</span>
             </div>
-            <div class="reg-step">
-                <div class="reg-step-num">3</div>
-                <div class="reg-step-content">
-                    <div class="reg-step-title">Ověřte svou identitu (KYC)</div>
-                    <div class="reg-step-text">Nahrajte fotku občanského průkazu nebo pasu a doklad o adrese (bankovní výpis, faktura). Ověření obvykle proběhne do 24 hodin.</div>
-                </div>
-            </div>
-            <div class="reg-step">
-                <div class="reg-step-num">4</div>
-                <div class="reg-step-content">
-                    <div class="reg-step-title">Proveďte první vklad</div>
-                    <div class="reg-step-text">Vyberte si platební metodu, zadejte částku (min. {{min_deposit}}) a potvrďte transakci. Vklad je obvykle okamžitý.</div>
-                </div>
-            </div>
-            <div class="reg-step">
-                <div class="reg-step-num">5</div>
-                <div class="reg-step-content">
-                    <div class="reg-step-title">Aktivujte uvítací bonus a hrajte</div>
-                    <div class="reg-step-text">Bonus se automaticky připíše po prvním vkladu. Free spiny jsou aktivovány v herním lobby a můžete začít hrát s navýšeným zůstatkem.</div>
-                </div>
+            <div class="summary-content">
+                <ol>
+                    <li><a href="#fiable">Je {{casino_name}} spolehlivé?</a></li>
+                    <li><a href="#bonusy">Bonusy a promo akce</a></li>
+                    <li><a href="#atmosfera">Atmosféra a design</a></li>
+                    <li><a href="#hry">Kategorie her a nabídka</a></li>
+                    <li><a href="#payments">Platební metody</a></li>
+                    <li><a href="#providers">Poskytovatelé her</a></li>
+                    <li><a href="#registrace">Jak se zaregistrovat</a></li>
+                    <li><a href="#podpora">Zákaznická podpora</a></li>
+                    <li><a href="#faq">Časté otázky</a></li>
+                </ol>
             </div>
         </div>
-    </section>
-</div>
 
-<!-- CUSTOMER SUPPORT -->
-<div class="container">
-    <section class="review-section">
-        <h2 class="review-section-title"><span class="icon">💬</span> Zákaznická Podpora {{casino_name}}</h2>
-        <p class="review-text">{{support_text}}</p>
-        <div class="support-channels">
-            <div class="support-channel">
-                <div class="support-channel-icon">💬</div>
-                <div class="support-channel-info">
-                    <div class="support-channel-title">Live Chat</div>
-                    <div class="support-channel-detail">Dostupný <strong>24/7</strong> · Odpověď do 2 minut</div>
+        <!-- Long-form content -->
+        <section class="review-section" id="fiable">
+            <h2 class="review-section-title">Je {{casino_name}} spolehlivé?</h2>
+            <p class="review-text">{{casino_name}} je online kasino provozované společností <strong>{{owner}}</strong> od roku <strong>{{year_created}}</strong>. Platforma má licenci od <strong>{{license}}</strong>, což zaručuje právní rámec a ochranu hráčů. Transakce jsou šifrovány SSL technologií a osobní údaje jsou chráněny v souladu s GDPR.</p>
+            <p class="review-text">{{atmosphere}}</p>
+            <p class="review-text">Všeobecné podmínky a podmínky bonusů jsou plně dostupné v češtině. Pokud máte pochybnosti, kontaktujte zákaznickou podporu, která je dostupná 24/7 přes live chat.</p>
+        </section>
+
+        <section class="review-section" id="bonusy">
+            <h2 class="review-section-title">Bonusy a promo akce na {{casino_name}}</h2>
+            <p class="review-text">{{bonus_intro}}</p>
+            <h3 class="review-subtitle">Týdenní promo akce</h3>
+            <p class="review-text">{{weekly_promo}}</p>
+            <h3 class="review-subtitle">VIP program</h3>
+            <p class="review-text">{{vip_program}}</p>
+        </section>
+
+        <section class="review-section" id="hry">
+            <h2 class="review-section-title">Hry a kategorie {{casino_name}}</h2>
+            <p class="review-text">{{games_intro}}</p>
+            <h3 class="review-subtitle">Automaty (Slots)</h3>
+            <p class="review-text">{{games_slots}}</p>
+            <h3 class="review-subtitle">Stolní hry</h3>
+            <p class="review-text">{{games_table}}</p>
+            <h3 class="review-subtitle">Live kasino</h3>
+            <p class="review-text">{{games_live}}</p>
+            <h3 class="review-subtitle">Mini-hry a crash games</h3>
+            <p class="review-text">{{games_mini}}</p>
+        </section>
+
+        <section class="review-section" id="payments">
+            <h2 class="review-section-title">Platební metody na {{casino_name}}</h2>
+            <p class="review-text">{{payments_intro}}</p>
+            <div class="grid-items">{{payment_methods_html}}</div>
+            <p class="review-text">{{payments_extra}}</p>
+        </section>
+
+        <section class="review-section" id="providers">
+            <h2 class="review-section-title">Poskytovatelé her ({{provider_count}})</h2>
+            <p class="review-text">{{providers_intro}}</p>
+            <div class="grid-items">{{providers_html}}</div>
+            <p class="review-text">{{providers_extra}}</p>
+        </section>
+
+        <section class="review-section" id="registrace">
+            <h2 class="review-section-title">Jak se zaregistrovat na {{casino_name}}</h2>
+            <p class="review-text">{{registration_intro}}</p>
+            <div class="reg-steps">
+                <div class="reg-step">
+                    <div class="reg-step-num">1</div>
+                    <div class="reg-step-content">
+                        <div class="reg-step-title">Klikněte na "Registrace"</div>
+                        <div class="reg-step-text">Otevřete oficiální stránky {{casino_name}} a klikněte na zelené tlačítko "Registrace" v pravém horním rohu.</div>
+                    </div>
+                </div>
+                <div class="reg-step">
+                    <div class="reg-step-num">2</div>
+                    <div class="reg-step-content">
+                        <div class="reg-step-title">Vyplňte registrační formulář</div>
+                        <div class="reg-step-text">Zadejte email, heslo, jméno, datum narození a adresu. Údaje musí být pravdivé pro úspěšné ověření.</div>
+                    </div>
+                </div>
+                <div class="reg-step">
+                    <div class="reg-step-num">3</div>
+                    <div class="reg-step-content">
+                        <div class="reg-step-title">Ověřte svou identitu (KYC)</div>
+                        <div class="reg-step-text">Nahrajte fotku občanského průkazu nebo pasu a doklad o adrese. Ověření do 24 hodin.</div>
+                    </div>
+                </div>
+                <div class="reg-step">
+                    <div class="reg-step-num">4</div>
+                    <div class="reg-step-content">
+                        <div class="reg-step-title">Proveďte první vklad</div>
+                        <div class="reg-step-text">Vyberte si platební metodu a zadejte částku (min. {{min_deposit}}). Vklad je okamžitý.</div>
+                    </div>
+                </div>
+                <div class="reg-step">
+                    <div class="reg-step-num">5</div>
+                    <div class="reg-step-content">
+                        <div class="reg-step-title">Aktivujte bonus a hrajte</div>
+                        <div class="reg-step-text">Bonus se automaticky připíše po prvním vkladu. Free spiny jsou aktivovány v herním lobby.</div>
+                    </div>
                 </div>
             </div>
-            <div class="support-channel">
-                <div class="support-channel-icon">📧</div>
-                <div class="support-channel-info">
-                    <div class="support-channel-title">Email</div>
-                    <div class="support-channel-detail">Odpověď <strong>do 24 hodin</strong></div>
+        </section>
+
+        <section class="review-section" id="podpora">
+            <h2 class="review-section-title">Zákaznická podpora {{casino_name}}</h2>
+            <p class="review-text">{{support_text}}</p>
+            <div class="support-channels">
+                <div class="support-channel">
+                    <div class="support-channel-icon">💬</div>
+                    <div class="support-channel-info">
+                        <div class="support-channel-title">Live Chat</div>
+                        <div class="support-channel-detail">Dostupný <strong>24/7</strong></div>
+                    </div>
+                </div>
+                <div class="support-channel">
+                    <div class="support-channel-icon">📧</div>
+                    <div class="support-channel-info">
+                        <div class="support-channel-title">Email</div>
+                        <div class="support-channel-detail">Odpověď <strong>do 24h</strong></div>
+                    </div>
+                </div>
+                <div class="support-channel">
+                    <div class="support-channel-icon">📞</div>
+                    <div class="support-channel-info">
+                        <div class="support-channel-title">Telefon</div>
+                        <div class="support-channel-detail">Po-Pá <strong>8-22h</strong></div>
+                    </div>
+                </div>
+                <div class="support-channel">
+                    <div class="support-channel-icon">📚</div>
+                    <div class="support-channel-info">
+                        <div class="support-channel-title">Centrum nápovědy</div>
+                        <div class="support-channel-detail"><strong>FAQ</strong> & návody</div>
+                    </div>
                 </div>
             </div>
-            <div class="support-channel">
-                <div class="support-channel-icon">📞</div>
-                <div class="support-channel-info">
-                    <div class="support-channel-title">Telefonická linka</div>
-                    <div class="support-channel-detail">Po-Pá <strong>8-22h</strong></div>
+        </section>
+
+        <section class="review-section" id="faq">
+            <h2 class="review-section-title">Často kladené otázky</h2>
+            <div class="review-faq faq-grid">
+                {{faq_html}}
+            </div>
+        </section>
+
+        <section class="review-section">
+            <h2 class="review-section-title">Podobná kasina</h2>
+            <div class="related-casinos">{{similar_casinos_html}}</div>
+        </section>
+
+        <div class="final-verdict">
+            <h2>Závěrečný verdikt</h2>
+            <p>{{final_verdict}}</p>
+            <a href="{{bonus_url}}" class="btn btn-large" target="_blank" rel="nofollow noopener">Hrát nyní v {{casino_name}} →</a>
+        </div>
+    </main>
+
+    <!-- RIGHT STICKY SIDEBAR -->
+    <aside class="review-aside">
+        <!-- Main casino card -->
+        <div class="aside-card">
+            <div class="aside-image-block">
+                <div class="aside-retraits-badge">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    VÝBĚR<br>{{withdrawal_speed}}
+                </div>
+                <img src="{{casino_logo_url}}" alt="{{casino_name}}" class="aside-casino-img">
+            </div>
+            <div class="aside-rating-row">
+                <div class="aside-rating-block">
+                    <div class="aside-rating-num">{{rating}}/5</div>
+                    <div class="aside-rating-stars">{{rating_stars}}</div>
+                </div>
+                <div class="aside-verdict-block">
+                    <div class="aside-verdict-label">SHRNUTÍ</div>
+                    <div class="aside-verdict-badge">VÝBORNÉ KASINO</div>
                 </div>
             </div>
-            <div class="support-channel">
-                <div class="support-channel-icon">📚</div>
-                <div class="support-channel-info">
-                    <div class="support-channel-title">Centrum nápovědy</div>
-                    <div class="support-channel-detail"><strong>FAQ</strong> a video návody</div>
-                </div>
+            <div class="aside-gauge">
+                <div class="aside-gauge-label">HODNOCENÍ HRÁČŮ</div>
+                <div class="aside-gauge-value">VELMI POZITIVNÍ</div>
+                <div class="aside-gauge-eval">Hodnoceno {{review_count}} uživateli</div>
+            </div>
+            <div class="aside-language">
+                <span>🇨🇿 Dostupné v češtině</span>
+                <span class="check">✓</span>
+            </div>
+            <div class="aside-bonus">
+                <div class="aside-bonus-label">UVÍTACÍ BONUS:</div>
+                <div class="aside-bonus-value">{{bonus_headline}}</div>
+            </div>
+            <a href="{{bonus_url}}" class="aside-cta" target="_blank" rel="nofollow noopener">Hrát na {{casino_name}}</a>
+        </div>
+
+        <!-- Information card -->
+        <div class="aside-info-card">
+            <div class="aside-info-title">📋 Informace {{casino_name}}</div>
+            <ul class="aside-info-list">
+                <li><span class="label">🌐 Jazyk:</span> <span class="value">Čeština</span></li>
+                <li><span class="label">📱 Mobilní verze:</span> <span class="value">{{mobile}}</span></li>
+                <li><span class="label">💰 Min. vklad:</span> <span class="value highlight">{{min_deposit}}</span></li>
+                <li><span class="label">📤 Měsíční max. výběr:</span> <span class="value">{{withdrawal_range}}</span></li>
+                <li><span class="label">⏱️ Doba výplaty:</span> <span class="value">{{withdrawal_speed_detail}}</span></li>
+                <li><span class="label">🎰 Počet her:</span> <span class="value">{{provider_count}}+</span></li>
+                <li><span class="label">📅 Rok založení:</span> <span class="value">{{year_created}}</span></li>
+                <li><span class="label">📜 Licence:</span> <span class="value">{{license}}</span></li>
+            </ul>
+        </div>
+
+        <!-- Webscore -->
+        <div class="aside-webscore">
+            <div class="aside-webscore-label">⓵ Webscore</div>
+            <div class="aside-webscore-value">{{rating}}/5</div>
+        </div>
+
+        <!-- Games available -->
+        <div class="aside-grid-card">
+            <div class="aside-grid-title">🎮 Dostupné hry</div>
+            <div class="aside-grid">
+                <div class="aside-grid-item"><span class="aside-grid-item-icon">🃏</span>Baccarat</div>
+                <div class="aside-grid-item"><span class="aside-grid-item-icon">🎫</span>Bingo</div>
+                <div class="aside-grid-item"><span class="aside-grid-item-icon">🃏</span>Blackjack</div>
+                <div class="aside-grid-item"><span class="aside-grid-item-icon">🎲</span>Craps</div>
+                <div class="aside-grid-item"><span class="aside-grid-item-icon">🎮</span>eSport</div>
+                <div class="aside-grid-item"><span class="aside-grid-item-icon">🎫</span>Stírací</div>
+                <div class="aside-grid-item"><span class="aside-grid-item-icon">🎲</span>Keno</div>
+                <div class="aside-grid-item"><span class="aside-grid-item-icon">🎥</span>Live</div>
+                <div class="aside-grid-item"><span class="aside-grid-item-icon">⚡</span>Mini-hry</div>
+                <div class="aside-grid-item"><span class="aside-grid-item-icon">🎯</span>Ruleta</div>
+                <div class="aside-grid-item"><span class="aside-grid-item-icon">🎰</span>Sloty</div>
+                <div class="aside-grid-item"><span class="aside-grid-item-icon">🃏</span>V. Poker</div>
             </div>
         </div>
-    </section>
-</div>
 
-<!-- FAQ -->
-<div class="container">
-    <section class="review-section">
-        <h2 class="review-section-title"><span class="icon">❓</span> Často Kladené Otázky</h2>
-        <div class="review-faq faq-grid">
-            {{faq_html}}
+        <!-- Game providers -->
+        <div class="aside-grid-card">
+            <div class="aside-grid-title">🏢 Poskytovatelé</div>
+            <div class="aside-grid">{{aside_providers_html}}</div>
+            <a href="#providers" class="aside-see-all">+ Zobrazit vše</a>
         </div>
-    </section>
-</div>
 
-<!-- SIMILAR CASINOS -->
-<div class="container">
-    <section class="review-section">
-        <h2 class="review-section-title"><span class="icon">🎲</span> Podobná Kasina</h2>
-        <div class="related-casinos">
-            {{similar_casinos_html}}
+        <!-- Payment methods -->
+        <div class="aside-grid-card">
+            <div class="aside-grid-title">💳 Platební metody</div>
+            <div class="aside-grid">{{aside_payments_html}}</div>
+            <a href="#payments" class="aside-see-all">+ Zobrazit vše</a>
         </div>
-    </section>
+    </aside>
 </div>
 
-<!-- FINAL VERDICT -->
-<div class="container">
-    <div class="final-verdict">
-        <h2>Závěrečný verdikt</h2>
-        <p>{{final_verdict}}</p>
-        <a href="{{bonus_url}}" class="btn btn-large" target="_blank" rel="nofollow noopener">Hrát nyní v {{casino_name}} →</a>
-    </div>
-</div>
-
-<!-- FOOTER -->
 {{footer_html}}
 
 <script src="/assets/js/app.js"></script>
