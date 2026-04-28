@@ -249,6 +249,13 @@ FOOTER_HTML = '''<footer class="footer">
 # KEYWORD PAGE GENERATION
 # ============================================================
 
+def slugify(s):
+    """Lowercase + remove accents + replace spaces with hyphens."""
+    import unicodedata
+    s = unicodedata.normalize('NFD', s).encode('ascii', 'ignore').decode('ascii')
+    return s.lower().replace(' ', '-').replace("'", '').replace('.', '')
+
+
 def build_top_card(casino, rank):
     fs_feature = ''
     if casino['freeSpins'] > 0:
@@ -270,7 +277,60 @@ def build_top_card(casino, rank):
     if casino['freeSpins'] > 0:
         bonus_sub = f'<div class="top-card-bonus-sub">+ {casino["freeSpins"]} free spinů</div>'
 
-    return f'''<div class="top-card">
+    # Build data-attributes for filtering
+    payments_slug = ','.join(slugify(p) for p in review.get('paymentMethods', []))
+    providers_slug = ','.join(slugify(p) for p in review.get('providers', []))
+    license_slug = slugify(review.get('license', ''))
+    bonus_text = casino.get('bonus', '').lower()
+    no_deposit = 'true' if 'bez vkladu' in bonus_text or 'no deposit' in bonus_text else 'false'
+
+    # Extract numeric bonus amount
+    import re
+    bonus_num_match = re.search(r'(\d+[\s\d]*)', bonus_amount.replace(' ', ''))
+    bonus_num = bonus_num_match.group(1).replace(' ', '') if bonus_num_match else '0'
+
+    # Speed bucket
+    speed_lower = speed.lower()
+    if 'instant' in speed_lower or 'okamžit' in speed_lower:
+        speed_bucket = 'instant'
+    elif '12' in speed_lower:
+        speed_bucket = '12h'
+    elif '24' in speed_lower and '48' not in speed_lower:
+        speed_bucket = '24h'
+    elif '48' in speed_lower or '72' in speed_lower:
+        speed_bucket = '48h'
+    else:
+        speed_bucket = '24h'
+
+    # Features detection
+    features_lower = ' '.join(features_list).lower() + ' ' + bonus_text
+    has_app = 'true' if 'aplikac' in features_lower or 'app' in features_lower or 'mobiln' in features_lower else 'false'
+    has_vip = 'true' if 'vip' in features_lower else 'false'
+    has_sport = 'true' if 'sport' in features_lower or 'sázk' in features_lower else 'false'
+    has_esport = 'true' if 'esport' in features_lower else 'false'
+    has_crypto = 'true' if any(c in payments_slug for c in ['bitcoin', 'ethereum', 'usdt']) else 'false'
+    has_cashback = 'true' if 'cashback' in bonus_text or any('cashback' in str(b).lower() for b in review.get('bonuses', [])) else 'false'
+
+    # Wagering numeric
+    wager_num = re.sub(r'[^0-9]', '', wagering) or '0'
+
+    return f'''<div class="top-card"
+        data-rating="{casino['rating']}"
+        data-min-deposit="{casino['minDeposit']}"
+        data-free-spins="{casino['freeSpins']}"
+        data-bonus-num="{bonus_num}"
+        data-wagering="{wager_num}"
+        data-speed="{speed_bucket}"
+        data-payments="{payments_slug}"
+        data-providers="{providers_slug}"
+        data-license="{license_slug}"
+        data-no-deposit="{no_deposit}"
+        data-app="{has_app}"
+        data-vip="{has_vip}"
+        data-sport="{has_sport}"
+        data-esport="{has_esport}"
+        data-crypto="{has_crypto}"
+        data-cashback="{has_cashback}">
     <div class="top-card-left">
         <span class="top-card-rank">{rank}</span>
         <div class="top-card-logo"><img src="/assets/images/casinos/{casino["slug"]}.{get_logo_ext(casino["slug"])}" alt="{casino["name"]}"></div>
@@ -299,67 +359,84 @@ FILTER_MODAL_HTML = '''<div class="filter-modal-overlay" id="filterOverlay" oncl
     <div class="filter-modal-body">
         <div class="filter-group">
             <div class="filter-group-label">Platba:</div>
-            <select class="filter-select"><option>Platební metoda</option><option>Visa</option><option>Mastercard</option><option>PaySafeCard</option><option>Bitcoin</option><option>Apple Pay</option><option>Skrill</option><option>Neteller</option></select>
-            <select class="filter-select"><option>Rychlost výběru</option><option>Okamžitý</option><option>Do 12 hodin</option><option>Do 24 hodin</option><option>Do 48 hodin</option></select>
-            <select class="filter-select"><option>Minimální vklad</option><option>Od 50 Kč</option><option>Od 100 Kč</option><option>Od 200 Kč</option><option>Od 500 Kč</option></select>
+            <select class="filter-select" data-filter="payment">
+                <option value="">Platební metoda</option>
+                <option value="visa">Visa</option>
+                <option value="mastercard">Mastercard</option>
+                <option value="paysafecard">PaySafeCard</option>
+                <option value="bitcoin">Bitcoin</option>
+                <option value="apple-pay">Apple Pay</option>
+                <option value="skrill">Skrill</option>
+                <option value="neteller">Neteller</option>
+                <option value="paypal">PayPal</option>
+            </select>
+            <select class="filter-select" data-filter="speed">
+                <option value="">Rychlost výběru</option>
+                <option value="instant">Okamžitý</option>
+                <option value="12h">Do 12 hodin</option>
+                <option value="24h">Do 24 hodin</option>
+                <option value="48h">Do 48 hodin</option>
+            </select>
+            <select class="filter-select" data-filter="min-deposit">
+                <option value="">Minimální vklad</option>
+                <option value="50">Od 50 Kč</option>
+                <option value="100">Od 100 Kč</option>
+                <option value="200">Od 200 Kč</option>
+                <option value="500">Od 500 Kč</option>
+            </select>
         </div>
         <div class="filter-group">
             <div class="filter-group-label">Bonusy:</div>
             <div class="filter-checks">
-                <label class="filter-check"><input type="checkbox"> S bonusem</label>
-                <label class="filter-check"><input type="checkbox"> Free Spiny</label>
-                <label class="filter-check"><input type="checkbox"> Bez vkladu</label>
-                <label class="filter-check"><input type="checkbox"> Bez wager</label>
-                <label class="filter-check"><input type="checkbox"> Bonus crab</label>
-                <label class="filter-check"><input type="checkbox"> Sportovní bonus</label>
-                <label class="filter-check"><input type="checkbox"> Cashback</label>
+                <label class="filter-check"><input type="checkbox" data-filter="free-spins"> Free Spiny</label>
+                <label class="filter-check"><input type="checkbox" data-filter="no-deposit"> Bez vkladu</label>
+                <label class="filter-check"><input type="checkbox" data-filter="cashback"> Cashback</label>
             </div>
-            <select class="filter-select"><option>Hodnota bonusu</option><option>Do 1 000 Kč</option><option>1 000 - 5 000 Kč</option><option>5 000 - 10 000 Kč</option><option>10 000+ Kč</option></select>
-            <select class="filter-select"><option>Procento bonusu</option><option>50%</option><option>100%</option><option>150%</option><option>200%+</option></select>
-            <select class="filter-select"><option>Počet free spinů</option><option>Do 50 FS</option><option>50 - 100 FS</option><option>100 - 200 FS</option><option>200+ FS</option></select>
+            <select class="filter-select" data-filter="fs-count">
+                <option value="">Počet free spinů</option>
+                <option value="50">Min. 50 FS</option>
+                <option value="100">Min. 100 FS</option>
+                <option value="200">Min. 200 FS</option>
+            </select>
         </div>
         <div class="filter-group">
             <div class="filter-group-label">Výhody:</div>
             <div class="filter-checks">
-                <label class="filter-check"><input type="checkbox"> Mobilní aplikace 📱</label>
-                <label class="filter-check"><input type="checkbox"> Zdarma</label>
-                <label class="filter-check"><input type="checkbox"> VIP klub</label>
-                <label class="filter-check"><input type="checkbox"> Obchod</label>
-                <label class="filter-check"><input type="checkbox"> Reálné peníze</label>
-                <label class="filter-check"><input type="checkbox"> Sport. sázky</label>
-                <label class="filter-check"><input type="checkbox"> eSport</label>
-                <label class="filter-check"><input type="checkbox"> Koně</label>
+                <label class="filter-check"><input type="checkbox" data-filter="app"> Mobilní aplikace 📱</label>
+                <label class="filter-check"><input type="checkbox" data-filter="vip"> VIP klub</label>
+                <label class="filter-check"><input type="checkbox" data-filter="sport"> Sportovní sázky</label>
+                <label class="filter-check"><input type="checkbox" data-filter="esport"> eSport</label>
+                <label class="filter-check"><input type="checkbox" data-filter="crypto"> Krypto platby</label>
             </div>
         </div>
         <div class="filter-group">
-            <div class="filter-group-label">Hry kasina:</div>
-            <div class="filter-game-grid">
-                <div class="filter-game-item"><span class="icon">🎰</span><span class="name">Automaty</span></div>
-                <div class="filter-game-item"><span class="icon">🃏</span><span class="name">Stolní hry</span></div>
-                <div class="filter-game-item"><span class="icon">🎥</span><span class="name">Live kasino</span></div>
-                <div class="filter-game-item"><span class="icon">🎮</span><span class="name">Mini-hry</span></div>
-                <div class="filter-game-item"><span class="icon">🎲</span><span class="name">Baccarat</span></div>
-                <div class="filter-game-item"><span class="icon">🎫</span><span class="name">Bingo</span></div>
-                <div class="filter-game-item"><span class="icon">🃏</span><span class="name">Blackjack</span></div>
-                <div class="filter-game-item"><span class="icon">🎯</span><span class="name">Craps</span></div>
-                <div class="filter-game-item"><span class="icon">⚡</span><span class="name">Crash game</span></div>
-                <div class="filter-game-item"><span class="icon">🎫</span><span class="name">Stírací losy</span></div>
-                <div class="filter-game-item"><span class="icon">🎲</span><span class="name">Keno</span></div>
-                <div class="filter-game-item"><span class="icon">🎯</span><span class="name">Plinko</span></div>
-                <div class="filter-game-item"><span class="icon">🃏</span><span class="name">Video poker</span></div>
-                <div class="filter-game-item"><span class="icon">🎯</span><span class="name">Ruleta</span></div>
-                <div class="filter-game-item"><span class="icon">🎲</span><span class="name">Dice</span></div>
-                <div class="filter-game-item"><span class="icon">💣</span><span class="name">Mines</span></div>
-            </div>
+            <div class="filter-group-label">Licence:</div>
+            <select class="filter-select" data-filter="license">
+                <option value="">Všechny licence</option>
+                <option value="mf-cr">Česká licence (MF ČR)</option>
+                <option value="mga">MGA (Malta)</option>
+                <option value="ukgc">UKGC (UK)</option>
+                <option value="curacao">Curaçao</option>
+            </select>
         </div>
         <div class="filter-group">
-            <select class="filter-select"><option>Hra (název)</option></select>
-            <select class="filter-select"><option>Poskytovatel her</option><option>Pragmatic Play</option><option>NetEnt</option><option>Play'n GO</option><option>Evolution</option><option>Microgaming</option></select>
+            <div class="filter-group-label">Poskytovatel her:</div>
+            <select class="filter-select" data-filter="provider">
+                <option value="">Všichni poskytovatelé</option>
+                <option value="pragmatic-play">Pragmatic Play</option>
+                <option value="netent">NetEnt</option>
+                <option value="play'n-go">Play'n GO</option>
+                <option value="playngo">Play'n GO</option>
+                <option value="evolution">Evolution</option>
+                <option value="microgaming">Microgaming</option>
+                <option value="novomatic">Novomatic</option>
+                <option value="synot-games">Synot Games</option>
+            </select>
         </div>
     </div>
     <div class="filter-modal-footer">
-        <button class="filter-clear">Vymazat vše</button>
-        <button class="filter-apply" onclick="closeFilterModal()">Použít</button>
+        <button class="filter-clear" onclick="clearFilters()">Vymazat vše</button>
+        <button class="filter-apply" onclick="applyFilters()">Použít</button>
     </div>
 </div>'''
 

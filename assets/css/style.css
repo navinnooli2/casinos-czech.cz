@@ -1354,27 +1354,12 @@ a.btn-cta:hover, .btn-cta:hover {
 }
 .review-aside {
   grid-area: aside;
-  position: sticky;
-  top: 80px;
   align-self: start;
-  max-height: calc(100vh - 100px);
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(148,163,184,0.2) transparent;
-  padding-right: 4px;
 }
-.review-aside::-webkit-scrollbar { width: 6px; }
-.review-aside::-webkit-scrollbar-track { background: transparent; }
-.review-aside::-webkit-scrollbar-thumb { background: rgba(148,163,184,0.2); border-radius: 3px; }
 @media (max-width: 1024px) {
   .review-layout {
     grid-template-columns: 1fr;
     grid-template-areas: "aside" "main";
-  }
-  .review-aside {
-    position: static;
-    max-height: none;
-    overflow: visible;
   }
 }
 
@@ -1657,170 +1642,159 @@ a.btn-cta:hover, .btn-cta:hover {
 .summary-content a:hover { color: var(--red); }
 
 /* ============================================
-   RIGHT SIDEBAR WIDGET (Aside) — DARK COHERENT
+   RIGHT SIDEBAR WIDGET (Aside) — original style
    ============================================ */
 .aside-card {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
+  background: linear-gradient(180deg, #f0f4ff, #e6e9f7);
   border-radius: var(--radius);
   overflow: hidden;
   position: relative;
   margin-bottom: 16px;
-  box-shadow: var(--shadow-md);
+  color: #1a1a2e;
 }
 .aside-image-block {
-  padding: 32px 20px 24px;
+  padding: 30px 20px 20px;
   text-align: center;
   position: relative;
-  background: linear-gradient(135deg, rgba(34,197,94,0.06), rgba(251,191,36,0.04));
-  border-bottom: 1px solid var(--border);
 }
 .aside-retraits-badge {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: linear-gradient(135deg, var(--green), #16a34a);
+  top: 0;
+  right: 0;
+  background: #2563eb;
   color: #fff;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 0.65rem;
+  padding: 10px 16px;
+  border-radius: 0 0 0 var(--radius);
+  font-size: 0.7rem;
   font-weight: 800;
   text-align: center;
-  line-height: 1.1;
+  line-height: 1.2;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
-  box-shadow: 0 2px 8px rgba(34,197,94,0.3);
 }
-.aside-retraits-badge svg { width: 12px; height: 12px; display: block; margin: 0 auto 3px; fill: #fff; }
+.aside-retraits-badge svg { width: 14px; height: 14px; display: block; margin: 0 auto 4px; fill: #fff; }
 .aside-casino-img {
   max-width: 180px;
-  max-height: 90px;
+  max-height: 100px;
   width: auto;
   height: auto;
   object-fit: contain;
   margin: 0 auto;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
 }
 .aside-rating-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background: var(--bg-darker);
+  background: #1a1a2e;
+  color: #fff;
 }
 .aside-rating-block {
   padding: 16px 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-right: 1px solid var(--border);
+  position: relative;
 }
-.aside-rating-block::before { display: none; }
+.aside-rating-block::before {
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #ffd700, #b8860b);
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+.aside-rating-stars { color: var(--gold); font-size: 0.85rem; margin-top: 6px; }
 .aside-rating-num {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   font-weight: 800;
-  color: var(--gold);
-  line-height: 1;
-  margin-bottom: 6px;
+  color: #fff;
 }
-.aside-rating-stars { color: var(--gold); font-size: 0.9rem; }
 .aside-verdict-block {
   padding: 16px 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
 }
 .aside-verdict-label {
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 6px;
 }
 .aside-verdict-badge {
   background: var(--green);
-  color: #0a0a14;
-  padding: 5px 12px;
-  border-radius: 6px;
-  font-size: 0.7rem;
+  color: #0a0a0f;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.72rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
 }
 .aside-gauge {
-  background: rgba(34,197,94,0.05);
-  padding: 14px 16px;
+  background: #0a0a14;
+  padding: 16px;
   text-align: center;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  color: #fff;
 }
 .aside-gauge-label {
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: rgba(255,255,255,0.6);
   letter-spacing: 0.5px;
-  margin-bottom: 4px;
 }
 .aside-gauge-value {
   font-size: 0.95rem;
   font-weight: 800;
   color: var(--green);
-  margin: 2px 0 4px;
+  margin: 4px 0;
 }
 .aside-gauge-eval {
   font-size: 0.72rem;
-  color: var(--text-muted);
+  color: rgba(255,255,255,0.6);
 }
 .aside-language {
+  background: rgba(0,0,0,0.04);
   padding: 12px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.85rem;
-  color: var(--text);
-  border-bottom: 1px solid var(--border);
+  color: #1a1a2e;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
 }
-.aside-language .check {
-  color: var(--green);
-  font-weight: 800;
-  font-size: 1rem;
-}
+.aside-language .check { color: #16a34a; font-weight: 800; }
 .aside-bonus {
   padding: 14px 16px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(251,191,36,0.04);
+  background: rgba(0,0,0,0.04);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 .aside-bonus-label {
   font-size: 0.65rem;
-  color: var(--text-muted);
+  color: #6b7280;
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   letter-spacing: 0.5px;
 }
 .aside-bonus-value {
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  color: var(--gold);
-  line-height: 1.4;
+  color: #1a1a2e;
 }
 .aside-cta {
   display: block;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
+  background: linear-gradient(135deg, #4caf50, #388e3c);
   color: #fff !important;
-  padding: 16px;
+  padding: 14px;
   text-align: center;
   font-weight: 800;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.5px;
   text-decoration: none;
   transition: all 0.2s;
 }
-.aside-cta:hover {
-  background: linear-gradient(135deg, #4ade80, #22c55e);
-  color: #fff !important;
-  box-shadow: inset 0 0 20px rgba(255,255,255,0.1);
-}
+.aside-cta:hover { background: linear-gradient(135deg, #66bb6a, #43a047); color: #fff !important; }
 
 /* Info card (Informations) */
 .aside-info-card {
