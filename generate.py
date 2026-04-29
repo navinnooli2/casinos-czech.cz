@@ -1024,6 +1024,118 @@ def generate_review_page(casino, template, all_casinos):
 
 
 # ============================================================
+# MINI-GAME PAGE GENERATION
+# ============================================================
+
+CATEGORY_LABELS = {
+    'crash': 'Crash hra',
+    'instant': 'Instant',
+    'slot': 'Automat',
+    'live': 'Live',
+}
+
+
+def generate_minigame_page(game, template, casino_lookup):
+    """Generate single mini-game page."""
+    rtp_num = float(game['rtp'].replace('%', '').replace(',', '.'))
+    rtp_comparison = 'výborné (nad 97 %)' if rtp_num >= 97 else 'dobré' if rtp_num >= 96 else 'standardní'
+
+    how_to_play_html = '\n'.join(f'<li><strong>Krok {i+1}:</strong> {step}</li>' for i, step in enumerate(game['how_to_play']))
+    features_html = '\n'.join(f'<div class="minigame-feature">{f}</div>' for f in game['features'])
+    tips_html = '\n'.join(f'<li>{tip}</li>' for tip in game['tips'])
+
+    # Available casinos cards (full)
+    available_html = '<div class="minigames-hub" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">'
+    for slug in game.get('available_at', []):
+        if slug in casino_lookup:
+            c = casino_lookup[slug]
+            ext = get_logo_ext(slug)
+            available_html += f'''<a href="{c['bonusUrl']}" target="_blank" rel="nofollow noopener" class="minigame-card">
+                <div class="minigame-card-thumb" style="--card-color:#1e293b;background:rgba(255,255,255,0.95);">
+                    <img src="/assets/images/casinos/{slug}.{ext}" alt="{c['name']}" style="max-width:140px;max-height:80px;object-fit:contain;">
+                </div>
+                <div class="minigame-card-body">
+                    <div class="minigame-card-name">{c['name']}</div>
+                    <div class="minigame-card-provider">{c['bonus']}</div>
+                    <div style="margin-top:10px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:8px;border-radius:6px;text-align:center;font-weight:800;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.3px;">Hrát {game['name']}</div>
+                </div>
+            </a>'''
+    available_html += '</div>'
+
+    # Sidebar CTA list
+    cta_html = ''
+    for slug in game.get('available_at', [])[:4]:
+        if slug in casino_lookup:
+            c = casino_lookup[slug]
+            ext = get_logo_ext(slug)
+            cta_html += f'''<a href="{c['bonusUrl']}" target="_blank" rel="nofollow noopener" class="minigame-cta-casino">
+                <img src="/assets/images/casinos/{slug}.{ext}" alt="{c['name']}">
+                <span class="minigame-cta-casino-name">{c['name']}</span>
+                <span class="minigame-cta-casino-go">Hrát</span>
+            </a>'''
+
+    replacements = {
+        '{{game_name}}': game['name'],
+        '{{game_slug}}': game['slug'],
+        '{{game_icon}}': game['icon'],
+        '{{game_iframe}}': game['iframe'],
+        '{{game_description}}': game['description'],
+        '{{provider}}': game['provider'],
+        '{{rtp}}': game['rtp'],
+        '{{rtp_comparison}}': rtp_comparison,
+        '{{volatility}}': game['volatility'],
+        '{{min_bet}}': game['min_bet'],
+        '{{max_bet}}': game['max_bet'],
+        '{{max_win}}': game['max_win'],
+        '{{release}}': game['release'],
+        '{{category_label}}': CATEGORY_LABELS.get(game['category'], game['category']),
+        '{{how_to_play_html}}': how_to_play_html,
+        '{{features_html}}': features_html,
+        '{{tips_html}}': tips_html,
+        '{{available_casinos_html}}': available_html,
+        '{{available_casinos_cta_html}}': cta_html,
+        '{{nav_html}}': NAV_HTML,
+        '{{footer_html}}': FOOTER_HTML,
+    }
+    html = template
+    for k, v in replacements.items():
+        html = html.replace(k, v)
+    return html
+
+
+def generate_minigames_hub(minigames, template):
+    """Generate the mini-games hub page."""
+    cards_html = ''
+    for game in minigames:
+        cards_html += f'''<a href="/hry/{game['slug']}/" class="minigame-card" data-category="{game['category']}">
+            <div class="minigame-card-thumb" style="--card-color:{game['color']};background:linear-gradient(135deg,{game['color']},rgba(0,0,0,0.5));">
+                <span class="minigame-card-rtp">RTP {game['rtp']}</span>
+                <span class="minigame-card-category">{CATEGORY_LABELS.get(game['category'], game['category'])}</span>
+                <span class="minigame-card-icon">{game['icon']}</span>
+            </div>
+            <div class="minigame-card-body">
+                <div class="minigame-card-name">{game['name']}</div>
+                <div class="minigame-card-provider">{game['provider']}</div>
+                <div class="minigame-card-stats">
+                    <span>Min. <strong>{game['min_bet']}</strong></span>
+                    <span>Max. výhra <strong>{game['max_win']}</strong></span>
+                </div>
+            </div>
+        </a>'''
+
+    replacements = {
+        '{{minigame_cards}}': cards_html,
+        '{{nav_html}}': NAV_HTML,
+        '{{footer_html}}': FOOTER_HTML,
+        '{{author_box}}': build_author_box(8),
+    }
+    html = template
+    for k, v in replacements.items():
+        html = html.replace(k, v)
+    return html
+
+
+# ============================================================
 # MAIN
 # ============================================================
 
@@ -1077,6 +1189,40 @@ def main():
 
         review_count += 1
         print(f'  ★ /kasina/{slug}/index.html')
+
+    # Generate mini-game pages
+    try:
+        minigames_data = load_json('mini_games.json')
+        minigames = minigames_data['minigames']
+        minigame_template = load_file('minigame-template.html')
+        hub_template = load_file('minigames-hub-template.html')
+
+        # Slug-to-casino lookup for affiliate links
+        casino_lookup = {c['slug']: c for c in casinos}
+
+        hry_dir = os.path.join(BASE_DIR, 'hry', 'mini-hry')
+        os.makedirs(hry_dir, exist_ok=True)
+
+        # Generate hub page
+        hub_html = generate_minigames_hub(minigames, hub_template)
+        with open(os.path.join(hry_dir, 'index.html'), 'w', encoding='utf-8') as f:
+            f.write(hub_html)
+        print(f'  🎮 /hry/mini-hry/index.html')
+
+        mg_count = 0
+        for game in minigames:
+            slug = game['slug']
+            game_dir = os.path.join(BASE_DIR, 'hry', slug)
+            os.makedirs(game_dir, exist_ok=True)
+            html = generate_minigame_page(game, minigame_template, casino_lookup)
+            with open(os.path.join(game_dir, 'index.html'), 'w', encoding='utf-8') as f:
+                f.write(html)
+            mg_count += 1
+            print(f'  🎮 /hry/{slug}/index.html')
+
+        print(f'🎮 Generated {mg_count} mini-game pages + 1 hub')
+    except FileNotFoundError as e:
+        print(f'  ⏭  Mini-games skipped: {e}')
 
     print(f'\n✅ Generated {kw_count} keyword pages in pages/')
     print(f'★ Generated {review_count} casino review pages in kasina/')

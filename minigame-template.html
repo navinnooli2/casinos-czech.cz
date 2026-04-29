@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{game_name}} – kompletní recenze, demo zdarma, RTP, strategie. Hrajte {{game_name}} ({{provider}}) v nejlepších českých kasinech.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="{{game_name}} – Demo zdarma + Strategie | Casinos Czech">
+    <meta property="og:description" content="Hrajte {{game_name}} ({{provider}}) zdarma + recenze, RTP, tipy a strategie.">
+    <meta property="og:type" content="article">
+    <title>{{game_name}} – Demo, Recenze a Strategie 2026 | Casinos Czech</title>
+    <link rel="canonical" href="https://casinos-czech.cz/hry/{{game_slug}}/">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/css/style.css?v=23">
+</head>
+<body>
+
+{{nav_html}}
+
+<!-- BREADCRUMB -->
+<div class="container">
+    <div class="breadcrumb">
+        <span class="home-icon">🏠</span><a href="/">Domů</a>
+        <span class="sep">›</span><a href="/hry/">Hry</a>
+        <span class="sep">›</span><a href="/hry/mini-hry/">Mini-hry</a>
+        <span class="sep">›</span><span class="current">{{game_name}}</span>
+    </div>
+</div>
+
+<!-- 2-COLUMN LAYOUT -->
+<div class="minigame-layout">
+
+    <!-- MAIN: iframe + description -->
+    <div>
+        <h1 class="review-h1">{{game_name}}: demo zdarma a kompletní průvodce 2026</h1>
+
+        <!-- Iframe with overlay -->
+        <div class="minigame-iframe-wrap" id="iframeWrap">
+            <div class="minigame-iframe-overlay" id="iframeOverlay" onclick="loadGame()">
+                <div class="minigame-iframe-overlay-icon">{{game_icon}}</div>
+                <div class="minigame-iframe-overlay-title">{{game_name}}</div>
+                <div class="minigame-iframe-overlay-text">Klikněte pro spuštění demo verze. Hra se otevře v náhledu – pro reálné hraní si vytvořte účet v jednom z doporučených kasin.</div>
+                <button class="minigame-iframe-overlay-btn">▶ Spustit demo</button>
+            </div>
+            <iframe class="minigame-iframe" id="gameIframe" data-src="{{game_iframe}}" allow="autoplay; fullscreen" loading="lazy"></iframe>
+        </div>
+
+        <!-- Description -->
+        <div class="minigame-description">
+            <h2>Co je {{game_name}}?</h2>
+            {{game_description}}
+
+            <h2>Jak hrát {{game_name}}</h2>
+            <ol>
+                {{how_to_play_html}}
+            </ol>
+
+            <h2>Funkce hry</h2>
+            <div class="minigame-features-grid">
+                {{features_html}}
+            </div>
+
+            <h2>Strategie a tipy pro {{game_name}}</h2>
+            <ul>
+                {{tips_html}}
+            </ul>
+
+            <h2>Kde hrát {{game_name}} v ČR</h2>
+            <p>{{game_name}} najdete v následujících online kasinech, kde si můžete zahrát za reálné peníze s atraktivními uvítacími bonusy. Doporučujeme zejména licencovaná kasina pro maximální bezpečnost vaších výher.</p>
+            {{available_casinos_html}}
+
+            <h2>Časté otázky o {{game_name}}</h2>
+            <div class="review-faq faq-grid">
+                <div class="faq-item">
+                    <div class="faq-q">Jaké je RTP {{game_name}}?</div>
+                    <div class="faq-a">{{game_name}} má RTP {{rtp}}, což je {{rtp_comparison}}. Vyšší RTP znamená nižší výhodu kasina.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Můžu hrát {{game_name}} zdarma?</div>
+                    <div class="faq-a">Ano, výše na této stránce máte demo verzi {{game_name}} zdarma. Hraje se s virtuálními penězi.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Jaká je maximální výhra v {{game_name}}?</div>
+                    <div class="faq-a">Maximální výhra je {{max_win}} z vaší sázky. Při sázce 10 € to znamená teoretickou maximální výhru.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Je {{game_name}} férová hra?</div>
+                    <div class="faq-a">Ano, {{game_name}} od {{provider}} používá certifikovaný RNG (random number generator) a ve verzi Provably Fair lze ověřit každý výsledek.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIDEBAR: Game info + casino CTAs -->
+    <aside>
+        <div class="minigame-info">
+            <div class="minigame-info-header">
+                <div class="minigame-info-icon">{{game_icon}}</div>
+                <div>
+                    <div class="minigame-info-title">{{game_name}}</div>
+                    <div class="minigame-info-provider">{{provider}} · {{release}}</div>
+                </div>
+            </div>
+            <div class="minigame-stats-grid">
+                <div class="minigame-stat">
+                    <div class="minigame-stat-label">RTP</div>
+                    <div class="minigame-stat-value green">{{rtp}}</div>
+                </div>
+                <div class="minigame-stat">
+                    <div class="minigame-stat-label">Volatilita</div>
+                    <div class="minigame-stat-value">{{volatility}}</div>
+                </div>
+                <div class="minigame-stat">
+                    <div class="minigame-stat-label">Min. sázka</div>
+                    <div class="minigame-stat-value">{{min_bet}}</div>
+                </div>
+                <div class="minigame-stat">
+                    <div class="minigame-stat-label">Max. sázka</div>
+                    <div class="minigame-stat-value">{{max_bet}}</div>
+                </div>
+                <div class="minigame-stat">
+                    <div class="minigame-stat-label">Max. výhra</div>
+                    <div class="minigame-stat-value gold">{{max_win}}</div>
+                </div>
+                <div class="minigame-stat">
+                    <div class="minigame-stat-label">Kategorie</div>
+                    <div class="minigame-stat-value">{{category_label}}</div>
+                </div>
+            </div>
+            <div class="minigame-cta-section">
+                <div class="minigame-cta-label">Hrát za reálné peníze:</div>
+                {{available_casinos_cta_html}}
+            </div>
+        </div>
+    </aside>
+</div>
+
+{{footer_html}}
+
+<script src="/assets/js/app.js"></script>
+<script>
+function loadGame() {
+    var iframe = document.getElementById('gameIframe');
+    var overlay = document.getElementById('iframeOverlay');
+    if (iframe && iframe.dataset.src) {
+        iframe.src = iframe.dataset.src;
+        overlay.classList.add('hidden');
+    }
+}
+</script>
+</body>
+</html>

@@ -3027,6 +3027,363 @@ a.btn-cta:hover, .btn-cta:hover {
 }
 
 /* ============================================
+   MINI GAMES HUB & INDIVIDUAL PAGES
+   ============================================ */
+.minigames-hub {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+  margin: 30px 0;
+}
+.minigame-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.25s;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+}
+.minigame-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--green);
+}
+.minigame-card-thumb {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  position: relative;
+  background: linear-gradient(135deg, var(--card-color, #1e293b), rgba(0,0,0,0.4));
+}
+.minigame-card-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.5));
+}
+.minigame-card-icon {
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+}
+.minigame-card-category {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  z-index: 2;
+  backdrop-filter: blur(10px);
+}
+.minigame-card-rtp {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--green);
+  color: #0a0a0f;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  z-index: 2;
+}
+.minigame-card-body {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.minigame-card-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.minigame-card-provider {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.minigame-card-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text);
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+.minigame-card-stats span strong { color: var(--gold); display: block; font-size: 0.85rem; }
+
+/* Mini-games filters */
+.minigames-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.minigame-filter {
+  padding: 8px 16px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.minigame-filter:hover, .minigame-filter.active {
+  background: var(--green);
+  color: #0a0a0f;
+  border-color: var(--green);
+}
+
+/* ============================================
+   INDIVIDUAL MINI-GAME PAGE
+   ============================================ */
+.minigame-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 28px;
+  margin: 30px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+  align-items: start;
+}
+.minigame-iframe-wrap {
+  position: relative;
+  background: #000;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  aspect-ratio: 16 / 10;
+  box-shadow: var(--shadow-md);
+}
+.minigame-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+.minigame-iframe-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.85));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  cursor: pointer;
+  z-index: 2;
+  transition: opacity 0.3s;
+}
+.minigame-iframe-overlay.hidden { display: none; }
+.minigame-iframe-overlay-icon {
+  font-size: 5rem;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6));
+}
+.minigame-iframe-overlay-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+.minigame-iframe-overlay-text {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  text-align: center;
+  max-width: 340px;
+}
+.minigame-iframe-overlay-btn {
+  background: linear-gradient(135deg, var(--green), #16a34a);
+  color: #fff;
+  padding: 14px 36px;
+  border-radius: 30px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(34,197,94,0.3);
+  transition: all 0.2s;
+}
+.minigame-iframe-overlay-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(34,197,94,0.4);
+}
+
+/* Side info panel */
+.minigame-info {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.minigame-info-header {
+  padding: 18px 20px;
+  background: linear-gradient(135deg, rgba(34,197,94,0.06), rgba(251,191,36,0.04));
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.minigame-info-icon {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+}
+.minigame-info-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 2px;
+}
+.minigame-info-provider {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.minigame-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+}
+.minigame-stat {
+  padding: 14px 16px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.minigame-stat:nth-child(2n) { border-right: none; }
+.minigame-stat:nth-last-child(-n+2) { border-bottom: none; }
+.minigame-stat-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.minigame-stat-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--white);
+}
+.minigame-stat-value.green { color: var(--green); }
+.minigame-stat-value.gold { color: var(--gold); }
+
+.minigame-cta-section {
+  padding: 20px;
+  background: rgba(34,197,94,0.04);
+  border-top: 1px solid var(--border);
+}
+.minigame-cta-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+.minigame-cta-casino {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--bg-darker);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.minigame-cta-casino:hover {
+  border-color: var(--green);
+  background: var(--bg-elevated-2);
+}
+.minigame-cta-casino img {
+  width: 50px;
+  height: 36px;
+  object-fit: contain;
+  background: rgba(255,255,255,0.95);
+  border-radius: 4px;
+  padding: 4px;
+  flex-shrink: 0;
+}
+.minigame-cta-casino-name {
+  flex: 1;
+  font-size: 0.88rem;
+  color: var(--white);
+  font-weight: 600;
+}
+.minigame-cta-casino-go {
+  background: var(--green);
+  color: #0a0a0f;
+  padding: 6px 14px;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* Description sections */
+.minigame-description {
+  margin-top: 30px;
+}
+.minigame-description h2 {
+  font-size: 1.4rem;
+  color: var(--white);
+  margin: 36px 0 16px;
+  padding-left: 14px;
+  border-left: 4px solid var(--green);
+  font-weight: 700;
+}
+.minigame-description h2:first-child { margin-top: 0; }
+.minigame-description p {
+  margin-bottom: 14px;
+  color: var(--text);
+  line-height: 1.7;
+}
+.minigame-description strong { color: var(--white); }
+
+.minigame-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+.minigame-feature {
+  padding: 12px 14px;
+  background: rgba(34,197,94,0.05);
+  border: 1px solid rgba(34,197,94,0.15);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--text);
+}
+.minigame-feature::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .minigame-layout { grid-template-columns: 1fr; }
+}
+
+/* ============================================
    ANIMATIONS
    ============================================ */
 @keyframes float {
