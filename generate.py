@@ -1044,6 +1044,22 @@ def generate_minigame_page(game, template, casino_lookup):
     features_html = '\n'.join(f'<div class="minigame-feature">{f}</div>' for f in game['features'])
     tips_html = '\n'.join(f'<li>{tip}</li>' for tip in game['tips'])
 
+    # Pick featured casino — prioritize affiliate casinos (m-traff)
+    available_at = game.get('available_at', [])
+    featured_slug = next((s for s in AFFILIATE_PRIORITY if s in available_at), None)
+    if not featured_slug and available_at:
+        featured_slug = available_at[0]
+
+    if featured_slug and featured_slug in casino_lookup:
+        fc = casino_lookup[featured_slug]
+        featured_casino_url = fc['bonusUrl']
+        featured_casino_name = fc['name']
+        featured_casino_bonus = fc['bonus']
+    else:
+        featured_casino_url = '/kasina/'
+        featured_casino_name = 'Doporučeném kasinu'
+        featured_casino_bonus = 'Štědrý uvítací bonus'
+
     # Available casinos cards (full)
     available_html = '<div class="minigames-hub" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">'
     for slug in game.get('available_at', []):
@@ -1078,8 +1094,12 @@ def generate_minigame_page(game, template, casino_lookup):
         '{{game_name}}': game['name'],
         '{{game_slug}}': game['slug'],
         '{{game_icon}}': game['icon'],
+        '{{game_color}}': game['color'],
         '{{game_iframe}}': game['iframe'],
         '{{game_description}}': game['description'],
+        '{{featured_casino_url}}': featured_casino_url,
+        '{{featured_casino_name}}': featured_casino_name,
+        '{{featured_casino_bonus}}': featured_casino_bonus,
         '{{provider}}': game['provider'],
         '{{rtp}}': game['rtp'],
         '{{rtp_comparison}}': rtp_comparison,

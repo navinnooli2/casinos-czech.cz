@@ -2,63 +2,69 @@
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://casinos-czech.cz/live-kasino/</loc>
+    <loc>https://casinos-czech.cz/hry/mini-hry/</loc>
     <lastmod>2026-04-29T10:13:06+00:00</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://casinos-czech.cz/automaty-zdarma/</loc>
+    <loc>https://casinos-czech.cz/hry/aviator/</loc>
     <lastmod>2026-04-29T10:13:06+00:00</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://casinos-czech.cz/mobilni-kasino/</loc>
+    <loc>https://casinos-czech.cz/hry/chicken-road/</loc>
     <lastmod>2026-04-29T10:13:06+00:00</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://casinos-czech.cz/jackpot-kasino/</loc>
+    <loc>https://casinos-czech.cz/hry/tower-rush/</loc>
     <lastmod>2026-04-29T10:13:06+00:00</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://casinos-czech.cz/casino-vyherni-automaty/</loc>
+    <loc>https://casinos-czech.cz/hry/plinko/</loc>
     <lastmod>2026-04-29T10:13:06+00:00</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://casinos-czech.cz/sazeni-na-sport/</loc>
+    <loc>https://casinos-czech.cz/hry/mines/</loc>
     <lastmod>2026-04-29T10:13:06+00:00</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://casinos-czech.cz/poker-online/</loc>
+    <loc>https://casinos-czech.cz/hry/spaceman/</loc>
     <lastmod>2026-04-29T10:13:06+00:00</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://casinos-czech.cz/loterie-online/</loc>
+    <loc>https://casinos-czech.cz/hry/jetx/</loc>
     <lastmod>2026-04-29T10:13:06+00:00</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://casinos-czech.cz/rtp-automaty/</loc>
+    <loc>https://casinos-czech.cz/hry/dice/</loc>
     <lastmod>2026-04-29T10:13:06+00:00</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://casinos-czech.cz/volatilita-automaty/</loc>
+    <loc>https://casinos-czech.cz/hry/limbo/</loc>
     <lastmod>2026-04-29T10:13:06+00:00</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://casinos-czech.cz/hry/hilo/</loc>
+    <lastmod>2026-04-29T10:13:06+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
 </urlset>

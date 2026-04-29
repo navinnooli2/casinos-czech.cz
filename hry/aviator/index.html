@@ -12,7 +12,7 @@
     <link rel="canonical" href="https://casinos-czech.cz/hry/aviator/">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/css/style.css?v=23">
+    <link rel="stylesheet" href="/assets/css/style.css?v=24">
 </head>
 <body>
 
@@ -140,16 +140,19 @@
     <div>
         <h1 class="review-h1">Aviator: demo zdarma a kompletní průvodce 2026</h1>
 
-        <!-- Iframe with overlay -->
-        <div class="minigame-iframe-wrap" id="iframeWrap">
-            <div class="minigame-iframe-overlay" id="iframeOverlay" onclick="loadGame()">
-                <div class="minigame-iframe-overlay-icon">✈️</div>
-                <div class="minigame-iframe-overlay-title">Aviator</div>
-                <div class="minigame-iframe-overlay-text">Klikněte pro spuštění demo verze. Hra se otevře v náhledu – pro reálné hraní si vytvořte účet v jednom z doporučených kasin.</div>
-                <button class="minigame-iframe-overlay-btn">▶ Spustit demo</button>
+        <!-- Featured CTA banner (replaces demo iframe) -->
+        <a href="https://m-traff.net/HYcs2BV5?sub_id_1=smash" target="_blank" rel="nofollow noopener" class="minigame-banner-cta">
+            <div class="minigame-banner-bg" style="background:linear-gradient(135deg,#dc2626cc,#0f172a);"></div>
+            <div class="minigame-banner-content">
+                <div class="minigame-banner-icon">✈️</div>
+                <div class="minigame-banner-text">
+                    <div class="minigame-banner-title">Hrajte Aviator naživo</div>
+                    <div class="minigame-banner-subtitle">Mega bonus 300% až 15 000 Kč + 250 FS</div>
+                    <div class="minigame-banner-casino">v <strong>Smash Casino</strong></div>
+                </div>
+                <div class="minigame-banner-btn">Hrát nyní →</div>
             </div>
-            <iframe class="minigame-iframe" id="gameIframe" data-src="https://demo.spribegaming.com/launch/aviator?currency=EUR&lang=cs&operator=demo&token=demo" allow="autoplay; fullscreen" loading="lazy"></iframe>
-        </div>
+        </a>
 
         <!-- Description -->
         <div class="minigame-description">
@@ -248,8 +251,8 @@
                     <div class="faq-a">Aviator má RTP 97%, což je výborné (nad 97 %). Vyšší RTP znamená nižší výhodu kasina.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-q">Můžu hrát Aviator zdarma?</div>
-                    <div class="faq-a">Ano, výše na této stránce máte demo verzi Aviator zdarma. Hraje se s virtuálními penězi.</div>
+                    <div class="faq-q">Kde mohu hrát Aviator?</div>
+                    <div class="faq-a">Aviator je dostupné v doporučených kasinech výše. Klikněte na CTA banner nebo na jedno z kasin v seznamu pro registraci a hraní za reálné peníze s uvítacím bonusem.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-q">Jaká je maximální výhra v Aviator?</div>
@@ -408,15 +411,5 @@
 </footer>
 
 <script src="/assets/js/app.js"></script>
-<script>
-function loadGame() {
-    var iframe = document.getElementById('gameIframe');
-    var overlay = document.getElementById('iframeOverlay');
-    if (iframe && iframe.dataset.src) {
-        iframe.src = iframe.dataset.src;
-        overlay.classList.add('hidden');
-    }
-}
-</script>
 </body>
 </html>

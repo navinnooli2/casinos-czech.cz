@@ -3,22 +3,26 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://casinos-czech.cz/page-sitemap.xml</loc>
-    <lastmod>2026-04-28T14:25:51+00:00</lastmod>
+    <lastmod>2026-04-29T10:13:06+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://casinos-czech.cz/casino-sitemap.xml</loc>
-    <lastmod>2026-04-28T14:25:51+00:00</lastmod>
+    <lastmod>2026-04-29T10:13:06+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://casinos-czech.cz/bonus-sitemap.xml</loc>
-    <lastmod>2026-04-28T14:25:51+00:00</lastmod>
+    <lastmod>2026-04-29T10:13:06+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://casinos-czech.cz/game-sitemap.xml</loc>
-    <lastmod>2026-04-28T14:25:51+00:00</lastmod>
+    <lastmod>2026-04-29T10:13:06+00:00</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://casinos-czech.cz/minigame-sitemap.xml</loc>
+    <lastmod>2026-04-29T10:13:06+00:00</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://casinos-czech.cz/license-sitemap.xml</loc>
-    <lastmod>2026-04-28T14:25:51+00:00</lastmod>
+    <lastmod>2026-04-29T10:13:06+00:00</lastmod>
   </sitemap>
 </sitemapindex>

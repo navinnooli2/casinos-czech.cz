@@ -12,7 +12,7 @@
     <link rel="canonical" href="https://casinos-czech.cz/hry/{{game_slug}}/">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/css/style.css?v=23">
+    <link rel="stylesheet" href="/assets/css/style.css?v=24">
 </head>
 <body>
 
@@ -35,16 +35,19 @@
     <div>
         <h1 class="review-h1">{{game_name}}: demo zdarma a kompletní průvodce 2026</h1>
 
-        <!-- Iframe with overlay -->
-        <div class="minigame-iframe-wrap" id="iframeWrap">
-            <div class="minigame-iframe-overlay" id="iframeOverlay" onclick="loadGame()">
-                <div class="minigame-iframe-overlay-icon">{{game_icon}}</div>
-                <div class="minigame-iframe-overlay-title">{{game_name}}</div>
-                <div class="minigame-iframe-overlay-text">Klikněte pro spuštění demo verze. Hra se otevře v náhledu – pro reálné hraní si vytvořte účet v jednom z doporučených kasin.</div>
-                <button class="minigame-iframe-overlay-btn">▶ Spustit demo</button>
+        <!-- Featured CTA banner (replaces demo iframe) -->
+        <a href="{{featured_casino_url}}" target="_blank" rel="nofollow noopener" class="minigame-banner-cta">
+            <div class="minigame-banner-bg" style="background:linear-gradient(135deg,{{game_color}}cc,#0f172a);"></div>
+            <div class="minigame-banner-content">
+                <div class="minigame-banner-icon">{{game_icon}}</div>
+                <div class="minigame-banner-text">
+                    <div class="minigame-banner-title">Hrajte {{game_name}} naživo</div>
+                    <div class="minigame-banner-subtitle">{{featured_casino_bonus}}</div>
+                    <div class="minigame-banner-casino">v <strong>{{featured_casino_name}}</strong></div>
+                </div>
+                <div class="minigame-banner-btn">Hrát nyní →</div>
             </div>
-            <iframe class="minigame-iframe" id="gameIframe" data-src="{{game_iframe}}" allow="autoplay; fullscreen" loading="lazy"></iframe>
-        </div>
+        </a>
 
         <!-- Description -->
         <div class="minigame-description">
@@ -77,8 +80,8 @@
                     <div class="faq-a">{{game_name}} má RTP {{rtp}}, což je {{rtp_comparison}}. Vyšší RTP znamená nižší výhodu kasina.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-q">Můžu hrát {{game_name}} zdarma?</div>
-                    <div class="faq-a">Ano, výše na této stránce máte demo verzi {{game_name}} zdarma. Hraje se s virtuálními penězi.</div>
+                    <div class="faq-q">Kde mohu hrát {{game_name}}?</div>
+                    <div class="faq-a">{{game_name}} je dostupné v doporučených kasinech výše. Klikněte na CTA banner nebo na jedno z kasin v seznamu pro registraci a hraní za reálné peníze s uvítacím bonusem.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-q">Jaká je maximální výhra v {{game_name}}?</div>
@@ -139,15 +142,5 @@
 {{footer_html}}
 
 <script src="/assets/js/app.js"></script>
-<script>
-function loadGame() {
-    var iframe = document.getElementById('gameIframe');
-    var overlay = document.getElementById('iframeOverlay');
-    if (iframe && iframe.dataset.src) {
-        iframe.src = iframe.dataset.src;
-        overlay.classList.add('hidden');
-    }
-}
-</script>
 </body>
 </html>

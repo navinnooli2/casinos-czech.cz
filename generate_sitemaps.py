@@ -121,6 +121,22 @@ def main():
             })
     sitemaps.append(write_sitemap('game-sitemap.xml', game_urls))
 
+    # ★ MINIGAMES SITEMAP (mini-games hub + individual game pages)
+    try:
+        minigames = json.load(open(os.path.join(BASE, 'data', 'mini_games.json'), encoding='utf-8'))['minigames']
+        minigame_urls = [
+            {"loc": f"{DOMAIN}/hry/mini-hry/", "changefreq": "weekly", "priority": "0.9"},
+        ]
+        for game in minigames:
+            minigame_urls.append({
+                "loc": f"{DOMAIN}/hry/{game['slug']}/",
+                "changefreq": "weekly",
+                "priority": "0.85",
+            })
+        sitemaps.append(write_sitemap('minigame-sitemap.xml', minigame_urls))
+    except FileNotFoundError:
+        pass
+
     # 6. LICENSE SITEMAP (legal & regulation pages)
     license_slugs = ['legalni-kasina-cz', 'kasina-ceska-licence', 'online-hazard-cz',
                      'dane-z-vyhry', 'sebeomezeni-hazard', 'kasino-pro-zacatecniky',
