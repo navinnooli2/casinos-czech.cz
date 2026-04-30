@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated": "2026-04-30T12:53:06.760706",
+  "generated": "2026-04-30T12:59:06.771952",
   "totalCasinos": 36,
   "casinos": [
     {
@@ -1719,7 +1719,7 @@
       "slug": "betista",
       "name": "Betista",
       "logo": "/assets/images/casinos/betista",
-      "url": "https://m-traff.net/HYcs2BV5?sub_id_1=betista",
+      "url": "https://www.betista.com",
       "rating": 4.5,
       "reviewUrl": "/kasina/betista/",
       "minDeposit": 10,
@@ -1793,13 +1793,13 @@
       "hasInstantWithdraw": false,
       "hasLowDeposit": true,
       "hasLowWager": false,
-      "isAffiliate": true
+      "isAffiliate": false
     },
     {
       "slug": "needforslots",
       "name": "Needforslots",
       "logo": "/assets/images/casinos/needforslots",
-      "url": "https://m-traff.net/HYcs2BV5?sub_id_1=needforslots",
+      "url": "https://www.needforslots.com",
       "rating": 4.3,
       "reviewUrl": "/kasina/needforslots/",
       "minDeposit": 20,
@@ -1872,13 +1872,13 @@
       "hasInstantWithdraw": false,
       "hasLowDeposit": true,
       "hasLowWager": false,
-      "isAffiliate": true
+      "isAffiliate": false
     },
     {
       "slug": "billionairespin",
       "name": "BillionaireSpin",
       "logo": "/assets/images/casinos/billionairespin",
-      "url": "https://m-traff.net/HYcs2BV5?sub_id_1=billionairespin",
+      "url": "https://www.billionairespin.com",
       "rating": 4.4,
       "reviewUrl": "/kasina/billionairespin/",
       "minDeposit": 20,
@@ -1951,13 +1951,13 @@
       "hasInstantWithdraw": true,
       "hasLowDeposit": true,
       "hasLowWager": false,
-      "isAffiliate": true
+      "isAffiliate": false
     },
     {
       "slug": "bdmbet",
       "name": "BDMBet",
       "logo": "/assets/images/casinos/bdmbet",
-      "url": "https://m-traff.net/HYcs2BV5?sub_id_1=bdmbet",
+      "url": "https://www.bdmbet.com",
       "rating": 4.2,
       "reviewUrl": "/kasina/bdmbet/",
       "minDeposit": 20,
@@ -2030,13 +2030,13 @@
       "hasInstantWithdraw": false,
       "hasLowDeposit": true,
       "hasLowWager": false,
-      "isAffiliate": true
+      "isAffiliate": false
     },
     {
       "slug": "mafia-casino",
       "name": "Mafia Casino",
       "logo": "/assets/images/casinos/mafia-casino",
-      "url": "https://m-traff.net/HYcs2BV5?sub_id_1=mafia-casino",
+      "url": "https://www.mafiacasino.com",
       "rating": 4.1,
       "reviewUrl": "/kasina/mafia-casino/",
       "minDeposit": 20,
@@ -2107,13 +2107,13 @@
       "hasInstantWithdraw": false,
       "hasLowDeposit": true,
       "hasLowWager": false,
-      "isAffiliate": true
+      "isAffiliate": false
     },
     {
       "slug": "betify",
       "name": "Betify",
       "logo": "/assets/images/casinos/betify",
-      "url": "https://m-traff.net/HYcs2BV5?sub_id_1=betify",
+      "url": "https://www.betify.com",
       "rating": 4.3,
       "reviewUrl": "/kasina/betify/",
       "minDeposit": 20,
@@ -2182,13 +2182,13 @@
       "hasInstantWithdraw": false,
       "hasLowDeposit": true,
       "hasLowWager": true,
-      "isAffiliate": true
+      "isAffiliate": false
     },
     {
       "slug": "spinsy",
       "name": "Spinsy",
       "logo": "/assets/images/casinos/spinsy",
-      "url": "https://m-traff.net/HYcs2BV5?sub_id_1=spinsy",
+      "url": "https://www.spinsy.com",
       "rating": 4.2,
       "reviewUrl": "/kasina/spinsy/",
       "minDeposit": 20,
@@ -2257,13 +2257,13 @@
       "hasInstantWithdraw": false,
       "hasLowDeposit": true,
       "hasLowWager": false,
-      "isAffiliate": true
+      "isAffiliate": false
     },
     {
       "slug": "cashed",
       "name": "Cashed",
       "logo": "/assets/images/casinos/cashed",
-      "url": "https://m-traff.net/HYcs2BV5?sub_id_1=cashed",
+      "url": "https://www.cashed.com",
       "rating": 4.3,
       "reviewUrl": "/kasina/cashed/",
       "minDeposit": 20,
@@ -2334,13 +2334,13 @@
       "hasInstantWithdraw": false,
       "hasLowDeposit": true,
       "hasLowWager": false,
-      "isAffiliate": true
+      "isAffiliate": false
     },
     {
       "slug": "spinbara",
       "name": "Spinbara",
       "logo": "/assets/images/casinos/spinbara",
-      "url": "https://m-traff.net/HYcs2BV5?sub_id_1=spinbara",
+      "url": "https://www.spinbara.com",
       "rating": 4.1,
       "reviewUrl": "/kasina/spinbara/",
       "minDeposit": 20,
@@ -2410,13 +2410,13 @@
       "hasInstantWithdraw": false,
       "hasLowDeposit": true,
       "hasLowWager": false,
-      "isAffiliate": true
+      "isAffiliate": false
     },
     {
       "slug": "betriot",
       "name": "BetRiot",
       "logo": "/assets/images/casinos/betriot",
-      "url": "https://m-traff.net/HYcs2BV5?sub_id_1=betriot",
+      "url": "https://www.betriot.com",
       "rating": 4.2,
       "reviewUrl": "/kasina/betriot/",
       "minDeposit": 20,
@@ -2487,13 +2487,13 @@
       "hasInstantWithdraw": false,
       "hasLowDeposit": true,
       "hasLowWager": false,
-      "isAffiliate": true
+      "isAffiliate": false
     },
     {
       "slug": "casinozer",
       "name": "Casinozer",
       "logo": "/assets/images/casinos/casinozer",
-      "url": "https://m-traff.net/HYcs2BV5?sub_id_1=casinozer",
+      "url": "https://www.casinozer.com",
       "rating": 4.4,
       "reviewUrl": "/kasina/casinozer/",
       "minDeposit": 20,
@@ -2565,13 +2565,13 @@
       "hasInstantWithdraw": false,
       "hasLowDeposit": true,
       "hasLowWager": false,
-      "isAffiliate": true
+      "isAffiliate": false
     },
     {
       "slug": "rabona-casino",
       "name": "Rabona Casino",
       "logo": "/assets/images/casinos/rabona-casino",
-      "url": "https://m-traff.net/HYcs2BV5?sub_id_1=rabona-casino",
+      "url": "https://www.rabona.com",
       "rating": 4.3,
       "reviewUrl": "/kasina/rabona-casino/",
       "minDeposit": 20,
@@ -2642,7 +2642,7 @@
       "hasInstantWithdraw": false,
       "hasLowDeposit": true,
       "hasLowWager": false,
-      "isAffiliate": true
+      "isAffiliate": false
     }
   ],
   "filterOptions": {

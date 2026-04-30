@@ -543,28 +543,7 @@ FILTER_BAR_HTML = '''<div class="filter-bar">
 </div>'''
 
 
-AFFILIATE_PRIORITY = [
-    # New high-bonus affiliates first
-    'betista',          # +370% — top tier
-    'billionairespin',  # +255% NO wager
-    'needforslots',     # 250 FS slot specialist
-    # Existing affiliates
-    'smash',
-    '29black',
-    'goldzino',
-    'playjonny',
-    'roulettino',
-    # Remaining new affiliates alphabetically
-    'bdmbet',
-    'betify',
-    'betriot',
-    'cashed',
-    'casinozer',
-    'mafia-casino',
-    'rabona-casino',
-    'spinbara',
-    'spinsy',
-]
+AFFILIATE_PRIORITY = ['smash', '29black', 'goldzino', 'playjonny', 'roulettino']
 
 
 def sort_casinos_with_priority(casinos):
