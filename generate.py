@@ -149,10 +149,15 @@ NAV_HTML = f'''<!-- TOP BANNER -->
 
 
 AUTHOR_HTML = '''<div class="author-box">
-    <div class="author-avatar"><img src="/assets/images/author-mn.jpg" alt="Martin Novák"></div>
+    <a href="/autori/martin-novak/" class="author-avatar"><img src="/assets/images/author-mn.jpg" alt="Martin Novák"></a>
     <div class="author-info">
-        <div class="author-name">Martin Novák <span>— Expert iGaming</span></div>
+        <div class="author-name"><a href="/autori/martin-novak/">Martin Novák</a> <span>— Expert iGaming</span></div>
         <div class="author-meta">Aktualizováno {{date}} · {{read_time}} min čtení</div>
+    </div>
+    <div class="author-socials-mini">
+        <a href="/autori/martin-novak/" title="Profil autora"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></a>
+        <a href="/autori/martin-novak/" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="/autori/martin-novak/" title="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644Z"/></svg></a>
     </div>
 </div>'''
 
@@ -538,7 +543,28 @@ FILTER_BAR_HTML = '''<div class="filter-bar">
 </div>'''
 
 
-AFFILIATE_PRIORITY = ['smash', '29black', 'goldzino', 'playjonny', 'roulettino']
+AFFILIATE_PRIORITY = [
+    # New high-bonus affiliates first
+    'betista',          # +370% — top tier
+    'billionairespin',  # +255% NO wager
+    'needforslots',     # 250 FS slot specialist
+    # Existing affiliates
+    'smash',
+    '29black',
+    'goldzino',
+    'playjonny',
+    'roulettino',
+    # Remaining new affiliates alphabetically
+    'bdmbet',
+    'betify',
+    'betriot',
+    'cashed',
+    'casinozer',
+    'mafia-casino',
+    'rabona-casino',
+    'spinbara',
+    'spinsy',
+]
 
 
 def sort_casinos_with_priority(casinos):
@@ -835,27 +861,86 @@ def build_author_box(read_time=8):
     return AUTHOR_HTML.replace('{{date}}', today).replace('{{read_time}}', str(read_time))
 
 
+def shorten_toc_label(heading_text):
+    """Convert a long H2 into a short scannable label with emoji."""
+    h = heading_text.lower()
+    # Strip HTML
+    h_clean = re.sub(r'<[^>]+>', '', h)
+
+    # Match topics → short label + emoji
+    mapping = [
+        ('hodnoceni', '⭐ Hodnocení'), ('hodnotici', '⭐ Hodnocení'),
+        ('nejlepsi', '🏆 Top kasina'), ('top kasin', '🏆 Top kasina'), ('top 5', '🏆 Top 5'), ('top 10', '🏆 Top 10'),
+        ('bonus', '🎁 Bonusy'), ('promo', '🎁 Promo akce'),
+        ('vyber', '⚡ Výběry'), ('rychlost', '⚡ Rychlost'),
+        ('platb', '💳 Platby'),
+        ('hry', '🎰 Hry'), ('automaty', '🎰 Automaty'), ('slot', '🎰 Sloty'),
+        ('live', '🎥 Live kasino'),
+        ('poker', '🃏 Poker'),
+        ('mobiln', '📱 Mobilní'),
+        ('podpor', '💬 Podpora'),
+        ('licence', '📜 Licence'), ('legaln', '⚖️ Legalita'),
+        ('bezpecn', '🛡️ Bezpečnost'),
+        ('zakazn', '👤 Zákaznický servis'),
+        ('regul', '⚖️ Regulace'),
+        ('dane', '💰 Daně'),
+        ('odpoved', '🛡️ Odpovědné hraní'), ('zavislost', '🛡️ Závislost'),
+        ('faq', '❓ FAQ'), ('caste otaz', '❓ FAQ'),
+        ('zaver', '🎯 Závěr'), ('verdict', '🎯 Verdikt'), ('verdikt', '🎯 Verdikt'),
+        ('atmosf', '🎨 Atmosféra'), ('design', '🎨 Design'),
+        ('registr', '📝 Registrace'),
+        ('kryt', '₿ Krypto'), ('crypto', '₿ Krypto'), ('bitcoin', '₿ Bitcoin'),
+        ('vip', '👑 VIP'),
+        ('rtp', '📊 RTP'), ('volatilita', '📊 Volatilita'),
+        ('jackpot', '💎 Jackpot'),
+        ('ovi', '🆕 Novinky'), ('nove', '🆕 Nové'),
+        ('porovn', '📊 Srovnání'), ('srovn', '📊 Srovnání'),
+        ('tipy', '💡 Tipy'), ('strategi', '🎯 Strategie'),
+        ('kriteri', '✅ Kritéria'),
+        ('jak ', '📖 Jak na to'),
+        ('proc', '❓ Proč'),
+        ('co je', '❓ Co je'), ('co jso', '❓ Co jsou'),
+        ('hist', '📚 Historie'),
+        ('typ', '🔖 Typy'),
+        ('rozdíl', '🔄 Rozdíly'),
+        ('mýt', '💭 Mýty'),
+        ('trend', '🚀 Trendy'),
+        ('audit', '✅ Audit'), ('certifik', '✅ Certifikace'),
+        ('mince', '₿ Mince'),
+        ('bankroll', '💵 Bankroll'),
+        ('limit', '🚫 Limity'),
+        ('lotterie', '🎫 Loterie'), ('losy', '🎫 Losy'),
+        ('sport', '⚽ Sport'), ('sazk', '⚽ Sázky'),
+    ]
+    for keyword, label in mapping:
+        if keyword in h_clean:
+            return label
+    # Fallback: first 3 words
+    words = h_clean.strip().split()[:3]
+    return '📌 ' + ' '.join(words).capitalize()
+
+
 def build_toc(seo_content):
-    headings = re.findall(r'<h2>(.*?)</h2>', seo_content)
+    headings = re.findall(r'<h2[^>]*>(.*?)</h2>', seo_content, flags=re.DOTALL)
     if not headings:
         return ''
     items = ''
     for i, h in enumerate(headings):
         anchor = f'sec-{i+1}'
-        items += f'<li><a href="#{anchor}">{h}</a></li>\n'
+        short_label = shorten_toc_label(h)
+        items += f'<li><a href="#{anchor}">{short_label}</a></li>\n'
     toc = f'''<div class="toc" id="toc">
     <div class="toc-header" onclick="this.parentElement.classList.toggle('closed')">
         <span class="toc-title"><span class="icon">📑</span> Obsah článku</span>
         <span class="toc-toggle">▼</span>
     </div>
-    <ol class="toc-list">{items}</ol>
+    <ul class="toc-list">{items}</ul>
 </div>'''
-    # Add IDs to h2 tags in content
     counter = [0]
     def add_id(m):
         counter[0] += 1
         return f'<h2 id="sec-{counter[0]}">{m.group(1)}</h2>'
-    return toc, re.sub(r'<h2>(.*?)</h2>', add_id, seo_content)
+    return toc, re.sub(r'<h2(?!\s+id)>(.*?)</h2>', add_id, seo_content, flags=re.DOTALL)
 
 
 HERO_ICON_SETS = {

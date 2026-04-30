@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" fill="none">
+  <rect width="200" height="80" rx="8" fill="#1a0a0a"/>
+  <rect x="1" y="1" width="198" height="78" rx="7" stroke="#ea580c" stroke-width="2" fill="none"/>
+  <text x="100" y="48" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" font-size="30" fill="#ea580c">BETRIOT</text>
+  <polygon points="20,30 30,50 25,50 30,60 20,40 25,40" fill="#ea580c"/>
+</svg>

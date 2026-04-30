@@ -297,6 +297,38 @@ a:hover { color: var(--green-hover); }
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
 }
+.author-box { position: relative; }
+.author-box .author-info { flex: 1; }
+.author-name a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+.author-name a:hover { color: var(--green); }
+.author-socials-mini {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.author-socials-mini a {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.author-socials-mini a:hover {
+  background: var(--green);
+  color: #0a0a0f;
+}
+.author-socials-mini svg { width: 14px; height: 14px; fill: currentColor; }
+@media (max-width: 600px) {
+  .author-socials-mini { gap: 6px; }
+  .author-socials-mini a { width: 28px; height: 28px; }
+}
+
 .author-avatar {
   width: 44px;
   height: 44px;
@@ -311,7 +343,9 @@ a:hover { color: var(--green-hover); }
   background: rgba(251,191,36,0.1);
   flex-shrink: 0;
   overflow: hidden;
+  text-decoration: none;
 }
+a.author-avatar:hover { transform: scale(1.05); transition: transform 0.2s; }
 .author-avatar img {
   width: 100%;
   height: 100%;
