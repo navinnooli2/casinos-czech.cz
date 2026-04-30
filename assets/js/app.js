@@ -342,6 +342,49 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Pagination on game library
+  var gameLib = document.querySelector('.game-library');
+  if (gameLib) {
+    var gameTotalPages = parseInt(gameLib.getAttribute('data-game-total-pages') || '1');
+    var gameCurrentPage = 1;
+
+    function showGamePage(page) {
+      page = Math.max(1, Math.min(gameTotalPages, parseInt(page)));
+      gameCurrentPage = page;
+      gameLib.querySelectorAll('.game-card').forEach(function(card) {
+        var cp = parseInt(card.getAttribute('data-game-page') || '1');
+        card.style.display = (cp === page) ? '' : 'none';
+      });
+      gameLib.querySelectorAll('.game-page-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+        btn.removeAttribute('aria-disabled');
+        var bp = btn.getAttribute('data-game-page');
+        if (bp === String(page)) btn.classList.add('active');
+        if (bp === 'prev' && page === 1) btn.setAttribute('aria-disabled', 'true');
+        if (bp === 'next' && page === gameTotalPages) btn.setAttribute('aria-disabled', 'true');
+      });
+    }
+
+    if (gameTotalPages > 1) {
+      gameLib.querySelectorAll('.game-page-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var t = this.getAttribute('data-game-page');
+          if (t === 'prev') t = gameCurrentPage - 1;
+          else if (t === 'next') t = gameCurrentPage + 1;
+          else t = parseInt(t);
+          if (t >= 1 && t <= gameTotalPages && t !== gameCurrentPage) {
+            showGamePage(t);
+            // Scroll to top of game library
+            var rect = gameLib.getBoundingClientRect();
+            window.scrollTo({ top: window.pageYOffset + rect.top - 120, behavior: 'smooth' });
+          }
+        });
+      });
+      showGamePage(1);
+    }
+  }
+
   // Pagination on casino tops
   var tops = document.querySelector('.casino-tops');
   if (tops) {

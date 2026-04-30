@@ -575,17 +575,17 @@ def build_pagination(total_pages, current=1):
     return f'<div class="pagination-wrap">{"".join(items)}</div>'
 
 
+GAMES_PER_PAGE = 16
+
+
 def build_game_library(slug, casinos):
-    """For game-related keyword pages, return a game library grid linked to affiliate casinos.
-    Returns empty string if the slug doesn't match a game category."""
+    """For game-related keyword pages, return a paginated game library."""
     s = (slug or '').lower()
-    games_data = None
     try:
         games_data = load_json('games.json')['categories']
     except Exception:
         return ''
 
-    # Map slug → category
     slug_to_cat = {
         'casino-vyherni-automaty': 'slots',
         'automaty-zdarma': 'slots',
@@ -595,8 +595,6 @@ def build_game_library(slug, casinos):
         'jackpot-kasino': 'jackpot',
         'live-kasino': 'live',
         'poker-online': 'poker',
-        'sazeni-na-sport': None,  # not really a game category
-        'loterie-online': None,
     }
 
     cat_key = None
@@ -611,17 +609,18 @@ def build_game_library(slug, casinos):
     cat = games_data[cat_key]
     games = cat['games']
 
-    # Affiliate URL rotation: 5 affiliate casinos
     affiliate_casinos = [c for c in casinos if c['slug'] in AFFILIATE_PRIORITY]
     if not affiliate_casinos:
         affiliate_casinos = casinos[:5]
 
-    # Build cards
+    total_pages = (len(games) + GAMES_PER_PAGE - 1) // GAMES_PER_PAGE
+
+    # Build cards with data-page
     cards_html = ''
     for i, g in enumerate(games):
-        # Rotate affiliate casino for each game
         partner = affiliate_casinos[i % len(affiliate_casinos)]
-        cards_html += f'''<a href="{partner['bonusUrl']}" target="_blank" rel="nofollow noopener" class="game-card" style="--game-color:{g['color']};">
+        page = (i // GAMES_PER_PAGE) + 1
+        cards_html += f'''<a href="{partner['bonusUrl']}" target="_blank" rel="nofollow noopener" class="game-card" data-game-page="{page}" style="--game-color:{g['color']};">
             <div class="game-card-thumb">
                 <span class="game-card-rtp">RTP {g['rtp']}</span>
                 <button class="game-card-fav" type="button" onclick="event.preventDefault();event.stopPropagation();this.classList.toggle('active');">♡</button>
@@ -634,28 +633,38 @@ def build_game_library(slug, casinos):
             </div>
         </a>'''
 
-    # Tabs for category navigation (other game pages)
+    # Pagination
+    pagination_html = ''
+    if total_pages > 1:
+        items = []
+        items.append(f'<button class="pagination-btn game-page-btn" data-game-page="prev" aria-disabled="true">‹</button>')
+        for p in range(1, total_pages + 1):
+            active = ' active' if p == 1 else ''
+            items.append(f'<button class="pagination-btn game-page-btn{active}" data-game-page="{p}">{p}</button>')
+        items.append(f'<button class="pagination-btn game-page-btn" data-game-page="next">›</button>')
+        pagination_html = f'<div class="pagination-wrap" style="margin-top:24px;">{"".join(items)}</div>'
+
+    # Tabs
     tab_links = [
         ('🎰', 'Sloty', '/casino-vyherni-automaty/', cat_key == 'slots'),
-        ('🎯', 'Ruleta', '/live-kasino/', cat_key == 'roulette'),
-        ('🃏', 'Blackjack', '/live-kasino/', cat_key == 'blackjack'),
-        ('♠️', 'Poker', '/poker-online/', cat_key == 'poker'),
-        ('🎥', 'Live', '/live-kasino/', cat_key == 'live'),
         ('💎', 'Jackpoty', '/jackpot-kasino/', cat_key == 'jackpot'),
-        ('⚡', 'Crash', '/hry/mini-hry/', cat_key == 'crash'),
+        ('🎥', 'Live kasino', '/live-kasino/', cat_key == 'live'),
+        ('♠️', 'Poker', '/poker-online/', cat_key == 'poker'),
+        ('⚡', 'Crash hry', '/hry/mini-hry/', False),
     ]
     tabs_html = ''
     for emoji, label, url, active in tab_links:
         cls = 'game-tab active' if active else 'game-tab'
         tabs_html += f'<a href="{url}" class="{cls}"><span>{emoji}</span> {label}</a>'
 
-    return f'''<section class="game-library">
+    return f'''<section class="game-library" data-game-total-pages="{total_pages}">
         <div class="game-library-header">
             <h2 class="game-library-title">{cat['icon']} {cat['title']} – knihovna her</h2>
             <span class="game-library-count">{len(games)} her</span>
         </div>
         <div class="game-tabs">{tabs_html}</div>
-        <div class="game-grid">{cards_html}</div>
+        <div class="game-grid" id="gameGrid">{cards_html}</div>
+        {pagination_html}
     </section>'''
 
 
@@ -1052,7 +1061,12 @@ def build_hero_icons_html(slug):
 
 
 def generate_keyword_page(keyword, casinos, template, all_keywords):
-    casino_table = build_casino_tops(casinos, keyword.get('slug', ''))
+    slug = keyword.get('slug', '')
+    game_lib = build_game_library(slug, casinos)
+    casino_table = build_casino_tops(casinos, slug)
+    # On game pages, prepend the game library before the casino table
+    if game_lib:
+        casino_table = game_lib + casino_table
     faq_html = build_faq_html(keyword.get('faq', []))
     related_html = build_related_html(keyword.get('related', []), all_keywords)
     breadcrumb = build_breadcrumb(keyword['title'], keyword['slug'])
