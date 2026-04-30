@@ -208,10 +208,10 @@ FOOTER_HTML = '''<footer class="footer">
             <div class="footer-col">
                 <h4>O nás</h4>
                 <ul>
-                    <li><a href="/kasino-pro-zacatecniky/">Náš tým</a></li>
+                    <li><a href="/autori/martin-novak/">Náš tým</a></li>
                     <li><a href="/legalni-kasina-cz/">Právní podmínky</a></li>
-                    <li><a href="#">Mapa stránek</a></li>
-                    <li><a href="#">Kontakt</a></li>
+                    <li><a href="/plan-stranek/">Plán stránek</a></li>
+                    <li><a href="mailto:contact@casinos-czech.cz">Kontakt</a></li>
                     <li><a href="/sebeomezeni-hazard/">Odpovědné hraní</a></li>
                 </ul>
             </div>
@@ -296,6 +296,18 @@ def build_top_card(casino, rank):
     bonus_num_match = re.search(r'(\d+[\s\d]*)', bonus_amount.replace(' ', ''))
     bonus_num = bonus_num_match.group(1).replace(' ', '') if bonus_num_match else '0'
 
+    # Build details panel content
+    license_str = review.get('license', 'N/A')
+    year = review.get('yearCreated', 'N/A')
+    provider_count = review.get('providerCount', 0)
+    payment_count = review.get('paymentCount', 0)
+    withdrawal_speed_detail = review.get('withdrawalSpeedDetail', speed)
+    review_count = review.get('reviewCount', 0)
+    intro_short = review.get('introduction', '')[:200] + '...' if review.get('introduction') else ''
+
+    details_features = features_list[:4] if features_list else []
+    details_features_html = ''.join(f'<div class="td-advantage"><span class="td-check">✅</span> {f}</div>' for f in details_features)
+
     return f'''<div class="top-card"
         data-brand="{casino['slug']}"
         data-rating="{casino['rating']}"
@@ -314,22 +326,68 @@ def build_top_card(casino, rank):
         data-esport="{has_esport}"
         data-crypto="{has_crypto}"
         data-cashback="{has_cashback}">
-    <div class="top-card-left">
-        <span class="top-card-rank">{rank}</span>
-        <div class="top-card-logo"><img src="/assets/images/casinos/{casino["slug"]}.{get_logo_ext(casino["slug"])}" alt="{casino["name"]}"></div>
-        <div class="top-card-rating"><span class="stars">{stars_html(casino["rating"])}</span> {casino["rating"]}/5</div>
-        <div class="top-card-payment"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Výběr: {speed}</div>
-    </div>
-    <div class="top-card-center">
-        {features_html}
-    </div>
-    <div class="top-card-right">
-        <div>
-            <div class="top-card-bonus">{casino["bonus"]}</div>
-            {bonus_sub}
+    <div class="top-card-main">
+        <div class="top-card-left">
+            <span class="top-card-rank">{rank}</span>
+            <div class="top-card-logo"><img src="/assets/images/casinos/{casino["slug"]}.{get_logo_ext(casino["slug"])}" alt="{casino["name"]}"></div>
+            <div class="top-card-rating"><span class="stars">{stars_html(casino["rating"])}</span> {casino["rating"]}/5</div>
+            <div class="top-card-payment"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Výběr: {speed}</div>
         </div>
-        <a href="{casino["bonusUrl"]}" class="btn-cta" target="_blank" rel="nofollow noopener">Hrát nyní</a>
+        <div class="top-card-center">
+            {features_html}
+        </div>
+        <div class="top-card-right">
+            <div>
+                <div class="top-card-bonus">{casino["bonus"]}</div>
+                {bonus_sub}
+            </div>
+            <a href="{casino["bonusUrl"]}" class="btn-cta" target="_blank" rel="nofollow noopener">Hrát nyní</a>
+        </div>
     </div>
+    <div class="top-card-details">
+        <div class="td-grid">
+            <div class="td-col-advantages">
+                {details_features_html}
+            </div>
+            <div class="td-stat">
+                <div class="td-stat-label">Hodnocení hráčů <span class="td-info">i</span></div>
+                <div class="td-stat-value">{casino['rating']}/5</div>
+                <div class="td-stat-sub">{review_count} hodnocení</div>
+            </div>
+            <div class="td-stat">
+                <div class="td-stat-label">Měsíční max. výběr <span class="td-info">i</span></div>
+                <div class="td-stat-value">{review.get('withdrawalRange', 'N/A').split('–')[-1].strip()}</div>
+            </div>
+            <div class="td-stat">
+                <div class="td-stat-label">Wagering</div>
+                <div class="td-stat-value">x{wager_num}</div>
+                <div class="td-stat-sub">Min. vklad: {casino['minDeposit']} Kč</div>
+            </div>
+            <div class="td-stat">
+                <div class="td-stat-label">Počet her</div>
+                <div class="td-stat-value">{provider_count * 50}+</div>
+                <div class="td-stat-sub">{provider_count} poskytovatelů</div>
+            </div>
+            <div class="td-stat">
+                <div class="td-stat-label">Rychlost výběru <span class="td-info">i</span></div>
+                <div class="td-stat-value">{withdrawal_speed_detail}</div>
+            </div>
+            <div class="td-stat">
+                <div class="td-stat-label">Licence</div>
+                <div class="td-stat-value">{license_str}</div>
+                <div class="td-stat-sub">Rok založení: {year}</div>
+            </div>
+        </div>
+        <div class="td-description">
+            {intro_short}
+        </div>
+        <a href="/kasina/{casino['slug']}/" class="td-review-link">Recenze {casino['name']} ›</a>
+    </div>
+    <button class="top-card-toggle" onclick="this.closest('.top-card').classList.toggle('open'); this.querySelector('.toggle-text-show').classList.toggle('hidden'); this.querySelector('.toggle-text-hide').classList.toggle('hidden');">
+        <span class="toggle-text-show">Zobrazit detaily</span>
+        <span class="toggle-text-hide hidden">Skrýt detaily</span>
+        <svg viewBox="0 0 24 24" fill="currentColor" class="toggle-arrow"><path d="M7 10l5 5 5-5z"/></svg>
+    </button>
 </div>'''
 
 

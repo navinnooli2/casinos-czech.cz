@@ -190,8 +190,41 @@ document.addEventListener('DOMContentLoaded', function() {
       var target = document.querySelector(this.getAttribute('href'));
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
+        var offset = 130; // topbar + subnav
+        var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
       }
     });
   });
+
+  // Review subnav scroll spy (active state)
+  var subnav = document.getElementById('reviewSubnav');
+  if (subnav) {
+    var subnavLinks = subnav.querySelectorAll('a[data-section]');
+    var sectionIds = Array.from(subnavLinks).map(a => a.dataset.section);
+
+    function updateActiveSubnav() {
+      var scrollY = window.pageYOffset + 200;
+      var current = sectionIds[0];
+      sectionIds.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollY) current = id;
+      });
+      subnavLinks.forEach(function(link) {
+        link.classList.toggle('active', link.dataset.section === current);
+      });
+      // Auto-scroll the active tab into view in horizontal scroll
+      var activeLink = subnav.querySelector('a.active');
+      if (activeLink) {
+        var inner = subnav.querySelector('.review-subnav-inner');
+        var linkRect = activeLink.getBoundingClientRect();
+        var innerRect = inner.getBoundingClientRect();
+        if (linkRect.left < innerRect.left || linkRect.right > innerRect.right) {
+          activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      }
+    }
+    window.addEventListener('scroll', updateActiveSubnav, { passive: true });
+    updateActiveSubnav();
+  }
 });

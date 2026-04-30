@@ -327,6 +327,10 @@ Le projet n'utilise pas de `.env`. Tout est hardcodé dans les scripts (DOMAIN, 
 
 > Format : `YYYY-MM-DD — Type — Description (commit hash si applicable)`
 
+- **2026-04-30** — `feat` — Page bio auteur Martin Novák (`/autori/martin-novak/`) + lien depuis review pages
+- **2026-04-30** — `feat` — Plan du site catégorisé (`/plan-stranek/`) + lien dans footer
+- **2026-04-30** — `feat` — Sticky sub-nav horizontale tabs sur pages avis (Úvod / Spolehlivost / Bonusy / Hry / Platby / Poskytovatelé / Registrace / Podpora / FAQ / Verdikt) avec scroll spy
+- **2026-04-30** — `feat` — Top casino cards expandables : bouton "Zobrazit detaily" qui ouvre panel avec advantages + stats (rating, max výběr, wagering, počet her, rychlost, licence) + description + lien recenze
 - **2026-04-30** — `feat` — Création de `data/casino-filters.json` (database flat dédiée au filtre, 24 casinos, 21 paiements, 67 providers). Nouveau script `generate_filter_db.py`. (commit en cours)
 - **2026-04-30** — `feat` — Création de **CLAUDE.md** comme mémoire persistante du projet
 - **2026-04-30** — `fix` — 19 URLs `?aff=PLACEHOLDER` remplacées par URL directe casino (anti-404). Script `update_filters.py`
