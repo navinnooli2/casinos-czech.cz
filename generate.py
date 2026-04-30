@@ -1125,7 +1125,7 @@ def build_review_faq_html(faq_items):
     items = []
     for item in faq_items:
         items.append(f'''<div class="faq-item">
-            <div class="faq-q">{item["q"]}</div>
+            <h3 class="faq-q">{item["q"]}</h3>
             <div class="faq-a">{item["a"]}</div>
         </div>''')
     return '\n'.join(items)

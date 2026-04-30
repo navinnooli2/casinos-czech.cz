@@ -13,7 +13,7 @@
     <link rel="canonical" href="https://casinos-czech.cz/kasina/{{casino_slug}}/">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/css/style.css?v=28">
+    <link rel="stylesheet" href="/assets/css/style.css?v=29">
 </head>
 <body>
 
@@ -75,7 +75,7 @@
                 <div class="notre-avis-icon">
                     <svg viewBox="0 0 24 24"><path d="M12 2L9.19 8.63 2 9.27l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7 5.46-4.73-7.19-.64L12 2z"/></svg>
                 </div>
-                <div class="notre-avis-title">Naše hodnocení {{casino_name}}</div>
+                <h2 class="notre-avis-title">Naše hodnocení {{casino_name}}</h2>
             </div>
             <div class="notre-avis-content">
                 <p>{{notre_avis_short}}</p>
@@ -86,20 +86,23 @@
         </div>
 
         <!-- Pros / Cons -->
-        <div class="pros-cons-grid">
-            <div class="pros-cons-col pros">
-                <h3>Výhody</h3>
-                <ul>
-                    {{pros_list_html}}
-                </ul>
+        <section class="review-section">
+            <h2 class="review-section-title"><span class="icon">⚖️</span> Výhody a nevýhody {{casino_name}}</h2>
+            <div class="pros-cons-grid">
+                <div class="pros-cons-col pros">
+                    <h3>Výhody</h3>
+                    <ul>
+                        {{pros_list_html}}
+                    </ul>
+                </div>
+                <div class="pros-cons-col cons">
+                    <h3>Nevýhody</h3>
+                    <ul>
+                        {{cons_list_html}}
+                    </ul>
+                </div>
             </div>
-            <div class="pros-cons-col cons">
-                <h3>Nevýhody</h3>
-                <ul>
-                    {{cons_list_html}}
-                </ul>
-            </div>
-        </div>
+        </section>
 
         <!-- Bonus details -->
         <section class="review-section">

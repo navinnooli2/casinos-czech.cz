@@ -2991,9 +2991,12 @@ a.btn-cta:hover, .btn-cta:hover {
   align-items: center;
   font-weight: 600;
   color: var(--white);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   transition: background 0.2s;
+  margin: 0;
+  line-height: 1.4;
 }
+h3.faq-q { font-size: 0.95rem; }
 .review-faq .faq-q:hover { background: rgba(255,0,51,0.08); }
 .review-faq .faq-q::after {
   content: "▼";
