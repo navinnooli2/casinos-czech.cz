@@ -149,7 +149,7 @@ NAV_HTML = f'''<!-- TOP BANNER -->
 
 
 AUTHOR_HTML = '''<div class="author-box">
-    <div class="author-avatar">MN</div>
+    <div class="author-avatar"><img src="/assets/images/author-mn.jpg" alt="Martin Novák"></div>
     <div class="author-info">
         <div class="author-name">Martin Novák <span>— Expert iGaming</span></div>
         <div class="author-meta">Aktualizováno {{date}} · {{read_time}} min čtení</div>
@@ -277,44 +277,27 @@ def build_top_card(casino, rank):
     if casino['freeSpins'] > 0:
         bonus_sub = f'<div class="top-card-bonus-sub">+ {casino["freeSpins"]} free spinů</div>'
 
-    # Build data-attributes for filtering
-    payments_slug = ','.join(slugify(p) for p in review.get('paymentMethods', []))
-    providers_slug = ','.join(slugify(p) for p in review.get('providers', []))
-    license_slug = slugify(review.get('license', ''))
-    bonus_text = casino.get('bonus', '').lower()
-    no_deposit = 'true' if 'bez vkladu' in bonus_text or 'no deposit' in bonus_text else 'false'
+    # Use explicit filters from casinos.json (computed by update_filters.py)
+    f = casino.get('filters', {})
+    payments_slug = ','.join(f.get('payments', []))
+    providers_slug = ','.join(f.get('providers', []))
+    license_slug_val = f.get('license', '')
+    no_deposit = 'true' if f.get('hasNoDeposit') else 'false'
+    has_app = 'true' if f.get('hasApp') else 'false'
+    has_vip = 'true' if f.get('hasVip') else 'false'
+    has_sport = 'true' if f.get('hasSport') else 'false'
+    has_esport = 'true' if f.get('hasEsport') else 'false'
+    has_crypto = 'true' if f.get('hasCrypto') else 'false'
+    has_cashback = 'true' if f.get('hasCashback') else 'false'
+    speed_bucket = f.get('speed', '24h')
+    wager_num = str(f.get('wagering', 0))
 
-    # Extract numeric bonus amount
     import re
     bonus_num_match = re.search(r'(\d+[\s\d]*)', bonus_amount.replace(' ', ''))
     bonus_num = bonus_num_match.group(1).replace(' ', '') if bonus_num_match else '0'
 
-    # Speed bucket
-    speed_lower = speed.lower()
-    if 'instant' in speed_lower or 'okamžit' in speed_lower:
-        speed_bucket = 'instant'
-    elif '12' in speed_lower:
-        speed_bucket = '12h'
-    elif '24' in speed_lower and '48' not in speed_lower:
-        speed_bucket = '24h'
-    elif '48' in speed_lower or '72' in speed_lower:
-        speed_bucket = '48h'
-    else:
-        speed_bucket = '24h'
-
-    # Features detection
-    features_lower = ' '.join(features_list).lower() + ' ' + bonus_text
-    has_app = 'true' if 'aplikac' in features_lower or 'app' in features_lower or 'mobiln' in features_lower else 'false'
-    has_vip = 'true' if 'vip' in features_lower else 'false'
-    has_sport = 'true' if 'sport' in features_lower or 'sázk' in features_lower else 'false'
-    has_esport = 'true' if 'esport' in features_lower else 'false'
-    has_crypto = 'true' if any(c in payments_slug for c in ['bitcoin', 'ethereum', 'usdt']) else 'false'
-    has_cashback = 'true' if 'cashback' in bonus_text or any('cashback' in str(b).lower() for b in review.get('bonuses', [])) else 'false'
-
-    # Wagering numeric
-    wager_num = re.sub(r'[^0-9]', '', wagering) or '0'
-
     return f'''<div class="top-card"
+        data-brand="{casino['slug']}"
         data-rating="{casino['rating']}"
         data-min-deposit="{casino['minDeposit']}"
         data-free-spins="{casino['freeSpins']}"
@@ -323,7 +306,7 @@ def build_top_card(casino, rank):
         data-speed="{speed_bucket}"
         data-payments="{payments_slug}"
         data-providers="{providers_slug}"
-        data-license="{license_slug}"
+        data-license="{license_slug_val}"
         data-no-deposit="{no_deposit}"
         data-app="{has_app}"
         data-vip="{has_vip}"
@@ -425,12 +408,44 @@ FILTER_MODAL_HTML = '''<div class="filter-modal-overlay" id="filterOverlay" oncl
                 <option value="">Všichni poskytovatelé</option>
                 <option value="pragmatic-play">Pragmatic Play</option>
                 <option value="netent">NetEnt</option>
-                <option value="play'n-go">Play'n GO</option>
-                <option value="playngo">Play'n GO</option>
+                <option value="playn-go">Play'n GO</option>
                 <option value="evolution">Evolution</option>
                 <option value="microgaming">Microgaming</option>
                 <option value="novomatic">Novomatic</option>
                 <option value="synot-games">Synot Games</option>
+                <option value="yggdrasil">Yggdrasil</option>
+                <option value="red-tiger">Red Tiger</option>
+                <option value="hacksaw-gaming">Hacksaw Gaming</option>
+                <option value="push-gaming">Push Gaming</option>
+                <option value="big-time-gaming">Big Time Gaming</option>
+                <option value="quickspin">Quickspin</option>
+                <option value="thunderkick">Thunderkick</option>
+                <option value="elk-studios">ELK Studios</option>
+                <option value="spribe">Spribe</option>
+                <option value="bgaming">BGaming</option>
+                <option value="wazdan">Wazdan</option>
+                <option value="relax-gaming">Relax Gaming</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <div class="filter-group-label">Značka kasina:</div>
+            <select class="filter-select" data-filter="brand">
+                <option value="">Všechny značky</option>
+                <option value="smash">Smash Casino</option>
+                <option value="29black">29Black</option>
+                <option value="goldzino">Goldzino</option>
+                <option value="playjonny">PlayJonny</option>
+                <option value="roulettino">Roulettino</option>
+                <option value="synot-tip">Synot Tip</option>
+                <option value="fortuna">Fortuna</option>
+                <option value="tipsport">Tipsport</option>
+                <option value="chance">Chance</option>
+                <option value="sazka">Sazka</option>
+                <option value="bet365">Bet365</option>
+                <option value="888-casino">888 Casino</option>
+                <option value="pinnacle">Pinnacle</option>
+                <option value="betano">Betano</option>
+                <option value="forbes-casino">Forbes Casino</option>
             </select>
         </div>
     </div>

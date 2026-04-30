@@ -50,6 +50,7 @@ function applyFilters() {
     if (filters.crypto && d.crypto !== 'true') show = false;
     if (filters.license && (d.license || '').indexOf(filters.license) === -1) show = false;
     if (filters.provider && (d.providers || '').indexOf(filters.provider) === -1) show = false;
+    if (filters.brand && d.brand !== filters.brand) show = false;
 
     card.style.display = show ? '' : 'none';
     if (show) visibleCount++;
