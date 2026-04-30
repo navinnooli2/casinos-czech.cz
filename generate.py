@@ -557,148 +557,227 @@ def build_pagination(total_pages, current=1):
     return f'<div class="pagination-wrap">{"".join(items)}</div>'
 
 
-INTERNAL_LINKS_HTML = '''<section class="internal-links-section">
-    <h3>🎰 Oblíbené značky kasin u hráčů</h3>
-    <div class="internal-links">
-        <a href="/kasina/synot-tip/">Synot Tip</a>
-        <a href="/kasina/fortuna/">Fortuna</a>
-        <a href="/kasina/tipsport/">Tipsport</a>
-        <a href="/kasina/chance/">Chance</a>
-        <a href="/kasina/sazka/">Sazka</a>
-        <a href="/kasina/forbes-casino/">Forbes Casino</a>
-        <a href="/kasina/betano/">Betano</a>
-        <a href="/kasina/merkurxtip/">MerkurXtip</a>
-        <a href="/kasina/betx/">BetX</a>
-        <a href="/kasina/apollo-games/">Apollo Games</a>
-        <a href="/kasina/luckybet/">LuckyBet</a>
-        <a href="/kasina/kajot-casino/">Kajot Casino</a>
-        <a href="/kasina/doxxbet/">DOXXbet</a>
-        <a href="/kasina/betor/">Betor</a>
-        <a href="/kasina/victoria-tip/">Victoria Tip</a>
-        <a href="/kasina/bet365/">Bet365</a>
-        <a href="/kasina/888-casino/">888 Casino</a>
-        <a href="/kasina/pinnacle/">Pinnacle</a>
-        <a href="/kasina/mostbet/">Mostbet</a>
-        <a href="/kasina/smash/">Smash Casino</a>
-        <a href="/kasina/29black/">29Black</a>
-        <a href="/kasina/goldzino/">Goldzino</a>
-        <a href="/kasina/playjonny/">PlayJonny</a>
-        <a href="/kasina/roulettino/">Roulettino</a>
-    </div>
+def build_thematic_internal_links(slug, casinos):
+    """Build ONE thematic internal-links section based on the page slug."""
+    s = (slug or '').lower()
 
-    <h3>💳 Platební metody</h3>
-    <div class="internal-links">
-        <a href="/online-kasino/">Visa</a>
-        <a href="/online-kasino/">Mastercard</a>
-        <a href="/online-kasino/">PaySafeCard</a>
-        <a href="/online-kasino/">Apple Pay</a>
-        <a href="/online-kasino/">Google Pay</a>
-        <a href="/online-kasino/">Skrill</a>
-        <a href="/online-kasino/">Neteller</a>
-        <a href="/online-kasino/">PayPal</a>
-        <a href="/online-kasino/">MuchBetter</a>
-        <a href="/online-kasino/">Bankovní převod</a>
-        <a href="/online-kasino/">Bitcoin</a>
-        <a href="/online-kasino/">Ethereum</a>
-        <a href="/online-kasino/">USDT</a>
-        <a href="/online-kasino/">Trustly</a>
-        <a href="/online-kasino/">Maestro</a>
-        <a href="/online-kasino/">ecoPayz</a>
-        <a href="/online-kasino/">Sportka Pay</a>
-        <a href="/online-kasino/">Hotovost</a>
-    </div>
+    # Helper to render a list of casino links
+    def cas_links(items):
+        return ''.join(f'<a href="/kasina/{c["slug"]}/">{c["name"]}</a>' for c in items)
 
-    <h3>🎮 Populární hry a kategorie</h3>
-    <div class="internal-links">
-        <a href="/hry/aviator/">Aviator</a>
-        <a href="/hry/plinko/">Plinko</a>
-        <a href="/hry/mines/">Mines</a>
-        <a href="/hry/chicken-road/">Chicken Road</a>
-        <a href="/hry/tower-rush/">Tower Rush</a>
-        <a href="/hry/spaceman/">Spaceman</a>
-        <a href="/hry/jetx/">JetX</a>
-        <a href="/hry/dice/">Dice</a>
-        <a href="/hry/limbo/">Limbo</a>
-        <a href="/hry/hilo/">Hi-Lo</a>
-        <a href="/casino-vyherni-automaty/">Výherní automaty</a>
-        <a href="/automaty-zdarma/">Automaty zdarma</a>
-        <a href="/live-kasino/">Live kasino</a>
-        <a href="/poker-online/">Poker</a>
-        <a href="/jackpot-kasino/">Jackpot</a>
-        <a href="/rtp-automaty/">RTP automaty</a>
-        <a href="/volatilita-automaty/">Volatilita</a>
-        <a href="/sazeni-na-sport/">Sportovní sázky</a>
-        <a href="/loterie-online/">Loterie</a>
-    </div>
+    # Helper for a list of (label, url) tuples
+    def kw_links(items):
+        return ''.join(f'<a href="{u}">{l}</a>' for l, u in items)
 
-    <h3>🏢 Poskytovatelé her</h3>
-    <div class="internal-links">
-        <a href="/kasina/synot-tip/">Pragmatic Play</a>
-        <a href="/kasina/synot-tip/">NetEnt</a>
-        <a href="/kasina/synot-tip/">Play'n GO</a>
-        <a href="/kasina/synot-tip/">Evolution</a>
-        <a href="/kasina/synot-tip/">Microgaming</a>
-        <a href="/kasina/synot-tip/">Novomatic</a>
-        <a href="/kasina/synot-tip/">Synot Games</a>
-        <a href="/kasina/synot-tip/">Yggdrasil</a>
-        <a href="/kasina/synot-tip/">Red Tiger</a>
-        <a href="/kasina/synot-tip/">Hacksaw Gaming</a>
-        <a href="/kasina/synot-tip/">Push Gaming</a>
-        <a href="/kasina/synot-tip/">Big Time Gaming</a>
-        <a href="/kasina/synot-tip/">Quickspin</a>
-        <a href="/kasina/synot-tip/">Thunderkick</a>
-        <a href="/kasina/synot-tip/">ELK Studios</a>
-        <a href="/kasina/synot-tip/">Spribe</a>
-        <a href="/kasina/synot-tip/">BGaming</a>
-        <a href="/kasina/synot-tip/">Wazdan</a>
-        <a href="/kasina/synot-tip/">Relax Gaming</a>
-        <a href="/kasina/synot-tip/">EGT</a>
-        <a href="/kasina/synot-tip/">Endorphina</a>
-        <a href="/kasina/synot-tip/">Amatic</a>
-        <a href="/kasina/synot-tip/">iSoftBet</a>
-        <a href="/kasina/synot-tip/">Inspired Gaming</a>
-    </div>
+    sorted_by_rating = sorted(casinos, key=lambda c: c.get('rating', 0), reverse=True)
+    affiliates = [c for c in casinos if c['slug'] in AFFILIATE_PRIORITY]
+    cz_licensed = [c for c in casinos if c.get('review', {}).get('license', '').lower().startswith('mf')]
+    international = [c for c in casinos if not c.get('review', {}).get('license', '').lower().startswith('mf')]
+    with_fs = [c for c in casinos if c.get('freeSpins', 0) > 0]
+    no_deposit = [c for c in casinos if 'bez vkladu' in c.get('bonus', '').lower()]
+    new_2024_plus = [c for c in casinos if int(c.get('review', {}).get('yearCreated', '2010')) >= 2023]
 
-    <h3>🏆 Top tematické žebříčky</h3>
-    <div class="internal-links">
-        <a href="/nejlepsi-kasina-cz/">Nejlepší kasina ČR</a>
-        <a href="/top-10-kasin/">Top 10 kasin</a>
-        <a href="/online-kasino/">Online kasino</a>
-        <a href="/nove-kasina-2026/">Nová kasina 2026</a>
-        <a href="/bezpecna-kasina/">Bezpečná kasina</a>
-        <a href="/kasino-bez-limitu/">Bez limitu</a>
-        <a href="/kasina-ceska-licence/">Česká licence</a>
-        <a href="/legalni-kasina-cz/">Legální kasina</a>
-        <a href="/mobilni-kasino/">Mobilní kasino</a>
-        <a href="/kasino-pro-zacatecniky/">Pro začátečníky</a>
-        <a href="/vysoke-rtp-kasino/">Vysoké RTP</a>
-        <a href="/kasino-na-penize/">Hraní za peníze</a>
-        <a href="/nejlepsi-kasinovy-bonus/">Nejlepší bonusy</a>
-        <a href="/free-spiny-dnes/">Free spiny dnes</a>
-        <a href="/kasina-bez-vkladu/">Bez vkladu</a>
-        <a href="/casino-bonusy-bez-vkladu/">Bonusy bez vkladu</a>
-        <a href="/kasino-free-spiny/">Free spiny</a>
-        <a href="/kasino-nizka-sazka/">Nízké sázky</a>
-    </div>
-</section>'''
+    # NEJLEPŠÍ / TOP / ONLINE-KASINO
+    if 'nejlepsi-kasina' in s or 'top-10-kasin' in s or 'online-kasino' in s:
+        return f'<section class="internal-links-section"><h3>🏆 Všechna nejlepší online kasina v ČR</h3><div class="internal-links">{cas_links(sorted_by_rating)}</div></section>'
+
+    # NOVÁ KASINA
+    if 'nove-kasina' in s or 'nova-kasina' in s:
+        listing = new_2024_plus + [c for c in sorted_by_rating if c not in new_2024_plus][:8]
+        return f'<section class="internal-links-section"><h3>🆕 Nová kasina 2024-2026</h3><div class="internal-links">{cas_links(listing)}</div></section>'
+
+    # BEZPEČNÁ / LEGÁLNÍ / ČESKÁ LICENCE
+    if 'bezpecn' in s or 'legaln' in s or 'ceska-licence' in s or 'kasina-ceska' in s:
+        return f'<section class="internal-links-section"><h3>🛡️ Kasina s českou licencí MF ČR</h3><div class="internal-links">{cas_links(cz_licensed)}</div></section>'
+
+    # KASINO BEZ LIMITU
+    if 'bez-limitu' in s:
+        listing = [c for c in casinos if c['slug'] in ['pinnacle', '29black', 'smash', 'goldzino', 'bet365', 'mostbet', 'playjonny']]
+        return f'<section class="internal-links-section"><h3>♾️ Kasina bez limitu výher a sázek</h3><div class="internal-links">{cas_links(listing)}</div></section>'
+
+    # FREE SPINY (všechny varianty)
+    if 'free-spiny' in s or 'free-spins' in s or 'freespiny' in s:
+        return f'<section class="internal-links-section"><h3>🎰 Kasina s nejlepšími free spiny</h3><div class="internal-links">{cas_links(with_fs)}</div></section>'
+
+    # BEZ VKLADU
+    if 'bez-vkladu' in s:
+        listing = no_deposit if no_deposit else sorted_by_rating[:12]
+        return f'<section class="internal-links-section"><h3>💰 Kasina nabízející bonus bez vkladu</h3><div class="internal-links">{cas_links(listing)}</div></section>'
+
+    # BONUSY (general)
+    if 'bonus' in s or 'kasinovy-bonus' in s:
+        return f'<section class="internal-links-section"><h3>🎁 Kasina s nejštědřejšími bonusy</h3><div class="internal-links">{cas_links(sorted_by_rating[:18])}</div></section>'
+
+    # NÍZKÁ SÁZKA
+    if 'nizka-sazka' in s or 'nizke' in s:
+        listing = [c for c in casinos if c.get('minDeposit', 999) <= 100]
+        return f'<section class="internal-links-section"><h3>💵 Kasina s nízkými sázkami a vklady</h3><div class="internal-links">{cas_links(listing)}</div></section>'
+
+    # LIVE KASINO
+    if 'live-kasino' in s or 'live-casino' in s:
+        items = [
+            ('Synot Tip Live', '/kasina/synot-tip/'), ('Fortuna Live', '/kasina/fortuna/'),
+            ('Tipsport Live', '/kasina/tipsport/'), ('Bet365 Live', '/kasina/bet365/'),
+            ('888 Live', '/kasina/888-casino/'), ('Smash Live', '/kasina/smash/'),
+            ('29Black Live', '/kasina/29black/'), ('Roulettino', '/kasina/roulettino/'),
+            ('Goldzino Live', '/kasina/goldzino/'), ('PlayJonny Live', '/kasina/playjonny/'),
+            ('Live ruleta', '/kasina/roulettino/'), ('Live blackjack', '/kasina/synot-tip/'),
+            ('Live baccarat', '/kasina/synot-tip/'), ('Live poker', '/poker-online/'),
+            ('Game shows', '/live-kasino/'), ('Crazy Time', '/kasina/synot-tip/'),
+            ('Monopoly Live', '/kasina/synot-tip/'), ('Dream Catcher', '/kasina/synot-tip/'),
+        ]
+        return f'<section class="internal-links-section"><h3>🎥 Kasina s nejlepším live kasinem</h3><div class="internal-links">{kw_links(items)}</div></section>'
+
+    # AUTOMATY / SLOTY
+    if 'automat' in s or 'slot' in s or 'vyherni' in s:
+        items = [
+            ('Aviator', '/hry/aviator/'), ('Plinko', '/hry/plinko/'), ('Mines', '/hry/mines/'),
+            ('Chicken Road', '/hry/chicken-road/'), ('Tower Rush', '/hry/tower-rush/'),
+            ('Spaceman', '/hry/spaceman/'), ('JetX', '/hry/jetx/'), ('Dice', '/hry/dice/'),
+            ('Limbo', '/hry/limbo/'), ('Hi-Lo', '/hry/hilo/'),
+            ('Výherní automaty', '/casino-vyherni-automaty/'), ('Automaty zdarma', '/automaty-zdarma/'),
+            ('Vysoké RTP', '/vysoke-rtp-kasino/'), ('Volatilita', '/volatilita-automaty/'),
+            ('RTP automatů', '/rtp-automaty/'), ('Jackpot', '/jackpot-kasino/'),
+            ('Synot Tip sloty', '/kasina/synot-tip/'), ('Tipsport sloty', '/kasina/tipsport/'),
+        ]
+        return f'<section class="internal-links-section"><h3>🎰 Populární výherní automaty a poskytovatelé</h3><div class="internal-links">{kw_links(items)}</div></section>'
+
+    # JACKPOT
+    if 'jackpot' in s:
+        return f'<section class="internal-links-section"><h3>💎 Kasina s nejvyššími jackpoty</h3><div class="internal-links">{cas_links(sorted_by_rating[:18])}</div></section>'
+
+    # POKER
+    if 'poker' in s:
+        items = [
+            ('Bet365 Poker', '/kasina/bet365/'), ('888 Casino Poker', '/kasina/888-casino/'),
+            ('Synot Tip Poker', '/kasina/synot-tip/'), ('Fortuna Poker', '/kasina/fortuna/'),
+            ('Tipsport Poker', '/kasina/tipsport/'), ('Pinnacle Poker', '/kasina/pinnacle/'),
+            ('Texas Hold\'em', '/poker-online/'), ('Video poker', '/poker-online/'),
+            ('Live poker', '/live-kasino/'), ('Cash games', '/poker-online/'),
+            ('Turnaje poker', '/poker-online/'), ('Sit & Go', '/poker-online/'),
+        ]
+        return f'<section class="internal-links-section"><h3>🃏 Online poker v českých kasinech</h3><div class="internal-links">{kw_links(items)}</div></section>'
+
+    # SPORTOVNÍ SÁZKY
+    if 'sport' in s or 'sazen' in s:
+        items = [
+            ('Tipsport sázky', '/kasina/tipsport/'), ('Fortuna sázky', '/kasina/fortuna/'),
+            ('Synot Tip sázky', '/kasina/synot-tip/'), ('Chance sázky', '/kasina/chance/'),
+            ('Sazka sázky', '/kasina/sazka/'), ('Bet365 sázky', '/kasina/bet365/'),
+            ('Betano sázky', '/kasina/betano/'), ('LuckyBet sázky', '/kasina/luckybet/'),
+            ('DOXXbet sázky', '/kasina/doxxbet/'), ('Pinnacle sázky', '/kasina/pinnacle/'),
+            ('Fotbalové sázky', '/sazeni-na-sport/'), ('Hokejové sázky', '/sazeni-na-sport/'),
+            ('Tenis', '/sazeni-na-sport/'), ('NHL', '/sazeni-na-sport/'),
+            ('NBA', '/sazeni-na-sport/'), ('eSport', '/sazeni-na-sport/'),
+        ]
+        return f'<section class="internal-links-section"><h3>⚽ Sportovní sázky v ČR</h3><div class="internal-links">{kw_links(items)}</div></section>'
+
+    # MOBILNÍ
+    if 'mobiln' in s:
+        listing = [c for c in casinos if 'aplikac' in str(c.get('review', {}).get('mobile', '')).lower() or 'app' in str(c.get('review', {}).get('mobile', '')).lower() or sorted_by_rating.index(c) < 16] if False else sorted_by_rating[:18]
+        return f'<section class="internal-links-section"><h3>📱 Nejlepší mobilní kasina a aplikace</h3><div class="internal-links">{cas_links(listing)}</div></section>'
+
+    # PRO ZAČÁTEČNÍKY
+    if 'zacatecnik' in s or 'pro-zacatecn' in s:
+        items = [
+            ('Synot Tip', '/kasina/synot-tip/'), ('Fortuna', '/kasina/fortuna/'),
+            ('Tipsport', '/kasina/tipsport/'), ('Sazka', '/kasina/sazka/'),
+            ('Pravidla blackjacku', '/casino-vyherni-automaty/'),
+            ('Pravidla rulety', '/live-kasino/'), ('Pravidla pokeru', '/poker-online/'),
+            ('Co je RTP', '/rtp-automaty/'), ('Co je volatilita', '/volatilita-automaty/'),
+            ('Bonus bez vkladu', '/casino-bonusy-bez-vkladu/'),
+            ('Wagering podmínky', '/nejlepsi-kasinovy-bonus/'),
+            ('Free spiny', '/free-spiny-dnes/'), ('Bezpečná kasina', '/bezpecna-kasina/'),
+            ('Odpovědné hraní', '/sebeomezeni-hazard/'),
+        ]
+        return f'<section class="internal-links-section"><h3>📚 Průvodce pro nové hráče</h3><div class="internal-links">{kw_links(items)}</div></section>'
+
+    # KRYPTO / BITCOIN
+    if 'crypto' in s or 'bitcoin' in s:
+        items = [
+            ('Smash Casino', '/kasina/smash/'), ('29Black', '/kasina/29black/'),
+            ('Goldzino', '/kasina/goldzino/'), ('PlayJonny', '/kasina/playjonny/'),
+            ('Pinnacle Crypto', '/kasina/pinnacle/'), ('Mostbet', '/kasina/mostbet/'),
+            ('Bitcoin BTC', '/kasino-bez-limitu/'), ('Ethereum ETH', '/kasino-bez-limitu/'),
+            ('USDT Tether', '/kasino-bez-limitu/'), ('Litecoin LTC', '/kasino-bez-limitu/'),
+            ('Solana SOL', '/kasino-bez-limitu/'), ('Dogecoin DOGE', '/kasino-bez-limitu/'),
+        ]
+        return f'<section class="internal-links-section"><h3>₿ Kasina přijímající kryptoměny</h3><div class="internal-links">{kw_links(items)}</div></section>'
+
+    # VYSOKÉ RTP
+    if 'rtp' in s or 'volatilita' in s:
+        return f'<section class="internal-links-section"><h3>📊 Kasina s nejvyšším RTP</h3><div class="internal-links">{cas_links(sorted_by_rating[:18])}</div></section>'
+
+    # DAŇE / HAZARD CZ
+    if 'hazard' in s or 'dane' in s:
+        items = [
+            ('Daně z výher', '/dane-z-vyhry/'), ('Online hazard ČR', '/online-hazard-cz/'),
+            ('Legální kasina', '/legalni-kasina-cz/'), ('Česká licence', '/kasina-ceska-licence/'),
+            ('Odpovědné hraní', '/sebeomezeni-hazard/'),
+            ('Synot Tip', '/kasina/synot-tip/'), ('Fortuna', '/kasina/fortuna/'),
+            ('Tipsport', '/kasina/tipsport/'), ('Chance', '/kasina/chance/'),
+            ('Sazka', '/kasina/sazka/'), ('Forbes Casino', '/kasina/forbes-casino/'),
+            ('Betano', '/kasina/betano/'), ('MerkurXtip', '/kasina/merkurxtip/'),
+        ]
+        return f'<section class="internal-links-section"><h3>⚖️ Legislativa a regulace hazardu v ČR</h3><div class="internal-links">{kw_links(items)}</div></section>'
+
+    # SEBEOMEZENÍ
+    if 'sebeomezeni' in s:
+        items = [
+            ('CLVH.cz', 'https://www.clvh.cz'), ('Linka pomoci 222 514 040', 'tel:222514040'),
+            ('Bezpečná kasina', '/bezpecna-kasina/'), ('Legální kasina', '/legalni-kasina-cz/'),
+            ('Daně z výher', '/dane-z-vyhry/'), ('Pro začátečníky', '/kasino-pro-zacatecniky/'),
+        ]
+        return f'<section class="internal-links-section"><h3>🛡️ Odpovědné hraní a pomoc</h3><div class="internal-links">{kw_links(items)}</div></section>'
+
+    # KASINO-SPECIFIC PAGES (synot-tip-free-spins, fortuna-kasino, bet365-kasino, tipsport-free-spiny)
+    for cas_slug in ['synot-tip', 'fortuna', 'bet365', 'tipsport']:
+        if cas_slug in s:
+            cas = next((c for c in casinos if c['slug'] == cas_slug), None)
+            if cas:
+                items = [
+                    (f'Recenze {cas["name"]}', f'/kasina/{cas_slug}/'),
+                    (f'{cas["name"]} bonus', '/nejlepsi-kasinovy-bonus/'),
+                    (f'{cas["name"]} free spiny', '/free-spiny-dnes/'),
+                    ('Nejlepší kasina', '/nejlepsi-kasina-cz/'),
+                    ('Bezpečná kasina', '/bezpecna-kasina/'),
+                    ('Live kasino', '/live-kasino/'),
+                    ('Mobilní kasino', '/mobilni-kasino/'),
+                    ('Aviator', '/hry/aviator/'),
+                    ('Plinko', '/hry/plinko/'),
+                ]
+                return f'<section class="internal-links-section"><h3>🎰 Související odkazy {cas["name"]}</h3><div class="internal-links">{kw_links(items)}</div></section>'
+
+    # LOTERIE
+    if 'loterie' in s:
+        items = [
+            ('Sazka', '/kasina/sazka/'), ('Synot Tip Lotto', '/kasina/synot-tip/'),
+            ('Fortuna Lotto', '/kasina/fortuna/'), ('Sportka', '/loterie-online/'),
+            ('Euromiliony', '/loterie-online/'), ('Eurojackpot', '/loterie-online/'),
+            ('Šťastných 10', '/loterie-online/'), ('Stírací losy', '/loterie-online/'),
+            ('Keno', '/loterie-online/'),
+        ]
+        return f'<section class="internal-links-section"><h3>🎫 Online loterie a stírací losy</h3><div class="internal-links">{kw_links(items)}</div></section>'
+
+    # FALLBACK : nejlepší kasina (default)
+    return f'<section class="internal-links-section"><h3>🎰 Související kasina</h3><div class="internal-links">{cas_links(sorted_by_rating[:18])}</div></section>'
 
 
-def build_casino_tops(casinos):
+def build_casino_tops(casinos, slug=''):
     sorted_casinos = sort_casinos_with_priority(casinos)
     total = len(sorted_casinos)
     total_pages = (total + CASINOS_PER_PAGE - 1) // CASINOS_PER_PAGE
 
-    # Each card gets a data-page attribute. Pages 2+ are hidden by default via JS
     cards = []
     for idx, c in enumerate(sorted_casinos, 1):
         page = ((idx - 1) // CASINOS_PER_PAGE) + 1
         card_html = build_top_card(c, idx)
-        # Inject data-page attribute on the top-card div
         card_html = card_html.replace('<div class="top-card"', f'<div class="top-card" data-page="{page}"', 1)
         cards.append(card_html)
 
     cards_html = '\n'.join(cards)
     pagination_html = build_pagination(total_pages, 1)
+    internal_links_html = build_thematic_internal_links(slug, casinos)
 
     return f'''{FILTER_BAR_HTML}
 {pagination_html}
@@ -706,7 +785,7 @@ def build_casino_tops(casinos):
 {cards_html}
 </div>
 {pagination_html}
-{INTERNAL_LINKS_HTML}
+{internal_links_html}
 {FILTER_MODAL_HTML}'''
 
 
@@ -768,8 +847,51 @@ def build_toc(seo_content):
     return toc, re.sub(r'<h2>(.*?)</h2>', add_id, seo_content)
 
 
+HERO_ICON_SETS = {
+    'crypto': ['₿', 'Ξ', '₮', '◎', 'Ł'],
+    'bonus': ['🎁', '💰', '🎰', '⭐', '💎'],
+    'free-spiny': ['🎰', '🎲', '⭐', '💫', '🎯'],
+    'live': ['🎥', '🃏', '🎲', '🎯', '🎮'],
+    'mobile': ['📱', '📲', '⚡', '✅', '🎮'],
+    'new': ['🆕', '⭐', '🎰', '🚀', '✨'],
+    'safe': ['🔒', '🛡️', '✅', '⚖️', '🎯'],
+    'top': ['🏆', '🥇', '🥈', '🥉', '⭐'],
+    'license': ['📜', '⚖️', '🇨🇿', '✅', '🛡️'],
+    'sport': ['⚽', '🏀', '🎾', '🏈', '🥊'],
+    'poker': ['🃏', '♠️', '♥️', '♦️', '♣️'],
+    'jackpot': ['💰', '💎', '🏆', '🎰', '⭐'],
+    'rtp': ['📊', '💹', '🎯', '⭐', '🎰'],
+    'slots': ['🎰', '🍒', '🔔', '7️⃣', '⭐'],
+    'default': ['🎰', '🎲', '🎯', '⭐', '🃏'],
+}
+
+
+def get_hero_icons(slug):
+    """Pick icon set based on keyword slug."""
+    s = slug.lower()
+    if 'free-spiny' in s or 'free-spins' in s: return HERO_ICON_SETS['free-spiny']
+    if 'bonus' in s: return HERO_ICON_SETS['bonus']
+    if 'live' in s: return HERO_ICON_SETS['live']
+    if 'mobiln' in s: return HERO_ICON_SETS['mobile']
+    if 'nove' in s or 'nova' in s: return HERO_ICON_SETS['new']
+    if 'bezpecn' in s or 'legaln' in s: return HERO_ICON_SETS['safe']
+    if 'top' in s or 'nejlepsi' in s: return HERO_ICON_SETS['top']
+    if 'licence' in s or 'ceska-licence' in s: return HERO_ICON_SETS['license']
+    if 'sport' in s or 'sazen' in s: return HERO_ICON_SETS['sport']
+    if 'poker' in s: return HERO_ICON_SETS['poker']
+    if 'jackpot' in s: return HERO_ICON_SETS['jackpot']
+    if 'rtp' in s or 'volatilita' in s: return HERO_ICON_SETS['rtp']
+    if 'automat' in s or 'sloty' in s: return HERO_ICON_SETS['slots']
+    return HERO_ICON_SETS['default']
+
+
+def build_hero_icons_html(slug):
+    icons = get_hero_icons(slug)
+    return ''.join(f'<div class="hero-card-icon">{ic}</div>' for ic in icons)
+
+
 def generate_keyword_page(keyword, casinos, template, all_keywords):
-    casino_table = build_casino_tops(casinos)
+    casino_table = build_casino_tops(casinos, keyword.get('slug', ''))
     faq_html = build_faq_html(keyword.get('faq', []))
     related_html = build_related_html(keyword.get('related', []), all_keywords)
     breadcrumb = build_breadcrumb(keyword['title'], keyword['slug'])
@@ -788,6 +910,8 @@ def generate_keyword_page(keyword, casinos, template, all_keywords):
     html = html.replace('{{h1}}', keyword['h1'])
     html = html.replace('{{description}}', keyword['description'])
     html = html.replace('{{intro}}', keyword['intro'])
+    html = html.replace('{{casino_count}}', str(len(casinos)))
+    html = html.replace('{{hero_icons}}', build_hero_icons_html(keyword['slug']))
     html = html.replace('{{casino_cards}}', casino_table)
     html = html.replace('{{seo_content}}', seo_content)
     html = html.replace('{{faq_html}}', faq_html)

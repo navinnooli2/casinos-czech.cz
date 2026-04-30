@@ -244,41 +244,57 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Pagination on casino tops
-  document.querySelectorAll('.casino-tops').forEach(function(tops) {
-    var totalPages = parseInt(tops.dataset.totalPages || '1');
-    if (totalPages <= 1) return;
+  var tops = document.querySelector('.casino-tops');
+  if (tops) {
+    var totalPages = parseInt(tops.getAttribute('data-total-pages') || '1');
+    var currentPage = 1;
 
     function showPage(page) {
-      tops.dataset.currentPage = page;
-      tops.querySelectorAll('.top-card').forEach(function(card) {
-        card.style.display = (parseInt(card.dataset.page) === page) ? '' : 'none';
+      page = Math.max(1, Math.min(totalPages, parseInt(page)));
+      currentPage = page;
+      tops.setAttribute('data-current-page', page);
+
+      // Show/hide cards
+      var cards = tops.querySelectorAll('.top-card');
+      cards.forEach(function(card) {
+        var cardPage = parseInt(card.getAttribute('data-page') || '1');
+        card.style.display = (cardPage === page) ? '' : 'none';
       });
-      // Update both pagination groups
-      document.querySelectorAll('.pagination-wrap').forEach(function(wrap) {
-        wrap.querySelectorAll('.pagination-btn').forEach(function(btn) {
-          btn.classList.remove('active');
-          btn.removeAttribute('aria-disabled');
-          if (btn.dataset.page == page) btn.classList.add('active');
-          if (btn.dataset.page === 'prev' && page === 1) btn.setAttribute('aria-disabled', 'true');
-          if (btn.dataset.page === 'next' && page === totalPages) btn.setAttribute('aria-disabled', 'true');
-        });
+
+      // Update pagination buttons (top + bottom)
+      document.querySelectorAll('.pagination-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+        btn.removeAttribute('aria-disabled');
+        var btnPage = btn.getAttribute('data-page');
+        if (btnPage === String(page)) btn.classList.add('active');
+        if (btnPage === 'prev' && page === 1) btn.setAttribute('aria-disabled', 'true');
+        if (btnPage === 'next' && page === totalPages) btn.setAttribute('aria-disabled', 'true');
       });
-      // Scroll to top of casino list
-      tops.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    document.querySelectorAll('.pagination-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var current = parseInt(tops.dataset.currentPage || '1');
-        var target = this.dataset.page;
-        if (target === 'prev') target = Math.max(1, current - 1);
-        else if (target === 'next') target = Math.min(totalPages, current + 1);
-        else target = parseInt(target);
-        if (target !== current) showPage(target);
+    if (totalPages > 1) {
+      // Attach click handlers to ALL pagination buttons globally
+      document.querySelectorAll('.pagination-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var target = this.getAttribute('data-page');
+          if (target === 'prev') target = currentPage - 1;
+          else if (target === 'next') target = currentPage + 1;
+          else target = parseInt(target);
+          if (target >= 1 && target <= totalPages && target !== currentPage) {
+            showPage(target);
+            // Smooth scroll to top of casino list
+            var topPagination = document.querySelector('.pagination-wrap');
+            if (topPagination) {
+              var rect = topPagination.getBoundingClientRect();
+              var y = window.pageYOffset + rect.top - 120;
+              window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+          }
+        });
       });
-    });
-
-    // Initialize: show only page 1
-    showPage(1);
-  });
+      // Init: show page 1
+      showPage(1);
+    }
+  }
 });

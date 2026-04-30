@@ -14,7 +14,7 @@
     <link rel="canonical" href="https://casinos-czech.cz/{{slug}}/">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/css/style.css?v=27">
+    <link rel="stylesheet" href="/assets/css/style.css?v=28">
 </head>
 <body>
 
@@ -24,12 +24,16 @@
     {{breadcrumb}}
 </div>
 
-<section class="hero" style="padding:50px 20px;">
-    <div class="container">
-        <h1>{{h1}}</h1>
-        <p>{{intro}}</p>
+<div class="container">
+    <div class="hero-card">
+        <div class="hero-card-content">
+            <h1>{{h1}}</h1>
+            <p class="hero-card-intro">{{intro}}</p>
+            <div class="hero-card-count">Více než <strong>{{casino_count}} kasin nalezeno.</strong></div>
+        </div>
+        <div class="hero-card-icons">{{hero_icons}}</div>
     </div>
-</section>
+</div>
 
 <div class="container">
     {{author_box}}
@@ -37,7 +41,7 @@
 
 <section class="section">
     <div class="container">
-        <h2 class="section-title">Top Kasina – {{title}}</h2>
+        <h2 class="section-title-with-count">Top kasin – {{title}} v ČR 2026</h2>
         {{casino_cards}}
     </div>
 </section>
