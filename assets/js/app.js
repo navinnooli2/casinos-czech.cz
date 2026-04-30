@@ -115,6 +115,47 @@ window.closeFilterModal = closeFilterModal;
 window.applyFilters = applyFilters;
 window.clearFilters = clearFilters;
 
+// Sort dropdown
+function toggleSort(e) {
+  if (e) e.stopPropagation();
+  var dropdown = document.querySelector('.sort-dropdown');
+  if (dropdown) dropdown.classList.toggle('open');
+}
+window.toggleSort = toggleSort;
+
+// Speed bucket → numeric weight (lower = faster)
+var SPEED_WEIGHTS = { 'instant': 0, '12h': 1, '24h': 2, '48h': 3, '72h': 4 };
+
+function sortCasinos(sortKey) {
+  var tops = document.querySelector('.casino-tops');
+  if (!tops) return;
+  var cards = Array.from(tops.querySelectorAll('.top-card'));
+
+  var sorted = cards.slice().sort(function(a, b) {
+    var d1 = a.dataset, d2 = b.dataset;
+    if (sortKey === 'rating') return parseFloat(d2.rating) - parseFloat(d1.rating);
+    if (sortKey === 'bonus') return parseInt(d2.bonusNum || 0) - parseInt(d1.bonusNum || 0);
+    if (sortKey === 'fs') return parseInt(d2.freeSpins || 0) - parseInt(d1.freeSpins || 0);
+    if (sortKey === 'deposit') return parseInt(d1.minDeposit || 999) - parseInt(d2.minDeposit || 999);
+    if (sortKey === 'speed') return (SPEED_WEIGHTS[d1.speed] || 99) - (SPEED_WEIGHTS[d2.speed] || 99);
+    if (sortKey === 'wagering') return parseInt(d1.wagering || 99) - parseInt(d2.wagering || 99);
+    return 0; // relevance: keep original order
+  });
+
+  // Reassign data-page based on new order (8 per page)
+  var perPage = 8;
+  sorted.forEach(function(card, i) {
+    card.setAttribute('data-page', Math.floor(i / perPage) + 1);
+    tops.appendChild(card); // reorder in DOM
+  });
+
+  // Reset to page 1
+  tops.setAttribute('data-current-page', '1');
+  // Re-trigger pagination display
+  if (window._showPage) window._showPage(1);
+}
+window.sortCasinos = sortCasinos;
+
 document.addEventListener('DOMContentLoaded', function() {
   // Filter game items toggle
   document.querySelectorAll('.filter-game-item').forEach(function(item) {
@@ -243,6 +284,29 @@ document.addEventListener('DOMContentLoaded', function() {
     updateActiveSubnav();
   }
 
+  // Sort options click handlers
+  document.querySelectorAll('.sort-option').forEach(function(opt) {
+    opt.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var key = this.dataset.sort;
+      var label = this.textContent.replace(/^\W+/, '').trim();
+      document.querySelectorAll('.sort-option').forEach(function(o) { o.classList.remove('active'); });
+      this.classList.add('active');
+      var labelEl = document.getElementById('sortLabel');
+      if (labelEl) labelEl.textContent = label;
+      var dropdown = document.querySelector('.sort-dropdown');
+      if (dropdown) dropdown.classList.remove('open');
+      sortCasinos(key);
+    });
+  });
+  // Click outside to close dropdown
+  document.addEventListener('click', function(e) {
+    var dropdown = document.querySelector('.sort-dropdown');
+    if (dropdown && dropdown.classList.contains('open') && !dropdown.contains(e.target)) {
+      dropdown.classList.remove('open');
+    }
+  });
+
   // Pagination on casino tops
   var tops = document.querySelector('.casino-tops');
   if (tops) {
@@ -271,6 +335,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (btnPage === 'next' && page === totalPages) btn.setAttribute('aria-disabled', 'true');
       });
     }
+
+    // Expose showPage globally so sort can re-trigger it
+    window._showPage = showPage;
 
     if (totalPages > 1) {
       // Attach click handlers to ALL pagination buttons globally

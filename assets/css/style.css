@@ -513,6 +513,7 @@ a:hover { color: var(--green-hover); }
   flex-wrap: wrap;
   gap: 10px;
 }
+.sort-dropdown { position: relative; }
 .filter-sort {
   display: flex;
   align-items: center;
@@ -526,9 +527,49 @@ a:hover { color: var(--green-hover); }
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  min-width: 200px;
+  justify-content: flex-start;
 }
 .filter-sort:hover { border-color: var(--green); }
-.filter-sort svg { width: 14px; height: 14px; fill: currentColor; }
+.filter-sort svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+.filter-sort svg:last-child { margin-left: auto; transition: transform 0.2s; }
+.sort-dropdown.open .filter-sort svg:last-child { transform: rotate(180deg); }
+.filter-sort span { flex: 1; text-align: left; }
+
+.sort-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 6px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-width: 240px;
+  box-shadow: var(--shadow-lg);
+  z-index: 100;
+  padding: 6px;
+}
+.sort-dropdown.open .sort-menu { display: flex; flex-direction: column; }
+.sort-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 10px 14px;
+  color: var(--text);
+  font-size: 0.88rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.15s;
+}
+.sort-option:hover { background: rgba(255,255,255,0.05); color: var(--white); }
+.sort-option.active {
+  background: rgba(34,197,94,0.1);
+  color: var(--green);
+  font-weight: 700;
+}
 .filter-btn {
   display: flex;
   align-items: center;

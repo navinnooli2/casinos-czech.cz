@@ -515,11 +515,22 @@ FILTER_MODAL_HTML = '''<div class="filter-modal-overlay" id="filterOverlay" oncl
 
 
 FILTER_BAR_HTML = '''<div class="filter-bar">
-    <button class="filter-sort">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/></svg>
-        Relevance
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
-    </button>
+    <div class="sort-dropdown">
+        <button class="filter-sort" id="sortToggle" onclick="toggleSort(event)">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/></svg>
+            <span id="sortLabel">Relevance</span>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="sort-menu" id="sortMenu">
+            <button class="sort-option active" data-sort="relevance">⭐ Relevance</button>
+            <button class="sort-option" data-sort="rating">🏆 Nejlepší hodnocení</button>
+            <button class="sort-option" data-sort="bonus">💰 Nejvyšší bonus</button>
+            <button class="sort-option" data-sort="fs">🎰 Nejvíce free spinů</button>
+            <button class="sort-option" data-sort="deposit">💵 Nejnižší vklad</button>
+            <button class="sort-option" data-sort="speed">⚡ Nejrychlejší výběr</button>
+            <button class="sort-option" data-sort="wagering">📊 Nejnižší wagering</button>
+        </div>
+    </div>
     <button class="filter-btn" onclick="openFilterModal()">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/></svg>
         Filtry
