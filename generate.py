@@ -1177,6 +1177,14 @@ def generate_minigames_hub(minigames, template):
 def main():
     print('🎰 Casino Arena — Generating pages...\n')
 
+    # Auto-regenerate filter DB before page generation
+    try:
+        import subprocess
+        subprocess.run(['python', os.path.join(BASE_DIR, 'generate_filter_db.py')], check=False, capture_output=True)
+        print('  🗄️  Refreshed casino-filters.json\n')
+    except Exception:
+        pass
+
     casinos_data = load_json('casinos.json')
     keywords_data = load_json('keywords.json')
     template = load_file('template.html')
