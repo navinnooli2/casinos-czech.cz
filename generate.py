@@ -42,7 +42,7 @@ CHEVRON_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=
 
 NAV_HTML = f'''<!-- TOP BANNER -->
 <div class="top-banner">
-    🎰 Bonus 10 000 Kč + 200 FS — <a href="/nejlepsi-kasinovy-bonus/">Získat →</a>
+    🎰 Smash Casino: 300% bonus 15 000 Kč + 250 FS — <a href="https://m-traff.net/HYcs2BV5?sub_id_1=smash" target="_blank" rel="nofollow noopener">Získat →</a>
 </div>
 <!-- TOPBAR -->
 <div class="topbar">
