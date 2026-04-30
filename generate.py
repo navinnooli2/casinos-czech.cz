@@ -573,6 +573,90 @@ def build_pagination(total_pages, current=1):
     return f'<div class="pagination-wrap">{"".join(items)}</div>'
 
 
+def build_game_library(slug, casinos):
+    """For game-related keyword pages, return a game library grid linked to affiliate casinos.
+    Returns empty string if the slug doesn't match a game category."""
+    s = (slug or '').lower()
+    games_data = None
+    try:
+        games_data = load_json('games.json')['categories']
+    except Exception:
+        return ''
+
+    # Map slug → category
+    slug_to_cat = {
+        'casino-vyherni-automaty': 'slots',
+        'automaty-zdarma': 'slots',
+        'rtp-automaty': 'slots',
+        'volatilita-automaty': 'slots',
+        'vysoke-rtp-kasino': 'slots',
+        'jackpot-kasino': 'jackpot',
+        'live-kasino': 'live',
+        'poker-online': 'poker',
+        'sazeni-na-sport': None,  # not really a game category
+        'loterie-online': None,
+    }
+
+    cat_key = None
+    for k, v in slug_to_cat.items():
+        if k in s:
+            cat_key = v
+            break
+
+    if not cat_key or cat_key not in games_data:
+        return ''
+
+    cat = games_data[cat_key]
+    games = cat['games']
+
+    # Affiliate URL rotation: 5 affiliate casinos
+    affiliate_casinos = [c for c in casinos if c['slug'] in AFFILIATE_PRIORITY]
+    if not affiliate_casinos:
+        affiliate_casinos = casinos[:5]
+
+    # Build cards
+    cards_html = ''
+    for i, g in enumerate(games):
+        # Rotate affiliate casino for each game
+        partner = affiliate_casinos[i % len(affiliate_casinos)]
+        cards_html += f'''<a href="{partner['bonusUrl']}" target="_blank" rel="nofollow noopener" class="game-card" style="--game-color:{g['color']};">
+            <div class="game-card-thumb">
+                <span class="game-card-rtp">RTP {g['rtp']}</span>
+                <button class="game-card-fav" type="button" onclick="event.preventDefault();event.stopPropagation();this.classList.toggle('active');">♡</button>
+                <span class="game-card-emoji">{cat['icon']}</span>
+                <div class="game-card-name-overlay">{g['name']}</div>
+            </div>
+            <div class="game-card-info">
+                <div class="game-card-provider">{g['provider']}</div>
+                <div class="game-card-play">Hrát na {partner['name']}</div>
+            </div>
+        </a>'''
+
+    # Tabs for category navigation (other game pages)
+    tab_links = [
+        ('🎰', 'Sloty', '/casino-vyherni-automaty/', cat_key == 'slots'),
+        ('🎯', 'Ruleta', '/live-kasino/', cat_key == 'roulette'),
+        ('🃏', 'Blackjack', '/live-kasino/', cat_key == 'blackjack'),
+        ('♠️', 'Poker', '/poker-online/', cat_key == 'poker'),
+        ('🎥', 'Live', '/live-kasino/', cat_key == 'live'),
+        ('💎', 'Jackpoty', '/jackpot-kasino/', cat_key == 'jackpot'),
+        ('⚡', 'Crash', '/hry/mini-hry/', cat_key == 'crash'),
+    ]
+    tabs_html = ''
+    for emoji, label, url, active in tab_links:
+        cls = 'game-tab active' if active else 'game-tab'
+        tabs_html += f'<a href="{url}" class="{cls}"><span>{emoji}</span> {label}</a>'
+
+    return f'''<section class="game-library">
+        <div class="game-library-header">
+            <h2 class="game-library-title">{cat['icon']} {cat['title']} – knihovna her</h2>
+            <span class="game-library-count">{len(games)} her</span>
+        </div>
+        <div class="game-tabs">{tabs_html}</div>
+        <div class="game-grid">{cards_html}</div>
+    </section>'''
+
+
 def build_thematic_internal_links(slug, casinos):
     """Build ONE thematic internal-links section based on the page slug."""
     s = (slug or '').lower()

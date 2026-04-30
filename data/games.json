@@ -1,0 +1,190 @@
+{
+  "categories": {
+    "slots": {
+      "title": "Výherní automaty",
+      "icon": "🎰",
+      "color": "#dc2626",
+      "games": [
+        {"name": "Sweet Bonanza", "provider": "Pragmatic Play", "rtp": "96.5%", "color": "#ec4899"},
+        {"name": "Gates of Olympus", "provider": "Pragmatic Play", "rtp": "96.5%", "color": "#3b82f6"},
+        {"name": "Book of Dead", "provider": "Play'n GO", "rtp": "96.2%", "color": "#f59e0b"},
+        {"name": "Starburst", "provider": "NetEnt", "rtp": "96.1%", "color": "#06b6d4"},
+        {"name": "Gonzo's Quest", "provider": "NetEnt", "rtp": "96.0%", "color": "#16a34a"},
+        {"name": "Mega Moolah", "provider": "Microgaming", "rtp": "88.1%", "color": "#84cc16"},
+        {"name": "Big Bass Bonanza", "provider": "Pragmatic Play", "rtp": "96.7%", "color": "#0891b2"},
+        {"name": "The Dog House", "provider": "Pragmatic Play", "rtp": "96.5%", "color": "#a855f7"},
+        {"name": "Wolf Gold", "provider": "Pragmatic Play", "rtp": "96.0%", "color": "#facc15"},
+        {"name": "Reactoonz", "provider": "Play'n GO", "rtp": "96.5%", "color": "#10b981"},
+        {"name": "Razor Shark", "provider": "Push Gaming", "rtp": "96.7%", "color": "#0ea5e9"},
+        {"name": "Sugar Rush", "provider": "Pragmatic Play", "rtp": "96.5%", "color": "#f43f5e"},
+        {"name": "Money Train 2", "provider": "Relax Gaming", "rtp": "96.4%", "color": "#dc2626"},
+        {"name": "Dead or Alive 2", "provider": "NetEnt", "rtp": "96.8%", "color": "#78350f"},
+        {"name": "Bonanza Megaways", "provider": "Big Time Gaming", "rtp": "96.0%", "color": "#9333ea"},
+        {"name": "Fire in the Hole", "provider": "Nolimit City", "rtp": "96.1%", "color": "#ea580c"},
+        {"name": "San Quentin", "provider": "Nolimit City", "rtp": "96.0%", "color": "#374151"},
+        {"name": "Tombstone RIP", "provider": "Nolimit City", "rtp": "96.1%", "color": "#7c3aed"},
+        {"name": "Joker Stoker", "provider": "Endorphina", "rtp": "96.0%", "color": "#be185d"},
+        {"name": "Hell's Kitchen", "provider": "NetEnt", "rtp": "96.0%", "color": "#991b1b"},
+        {"name": "Vikings Go Berzerk", "provider": "Yggdrasil", "rtp": "96.1%", "color": "#1e40af"},
+        {"name": "Wheel of Wishes", "provider": "Microgaming", "rtp": "93.3%", "color": "#7e22ce"},
+        {"name": "Immortal Romance", "provider": "Microgaming", "rtp": "96.9%", "color": "#581c87"},
+        {"name": "Thunderstruck II", "provider": "Microgaming", "rtp": "96.7%", "color": "#fbbf24"},
+        {"name": "Bigger Bass Bonanza", "provider": "Pragmatic Play", "rtp": "96.7%", "color": "#22c55e"},
+        {"name": "Wild West Gold", "provider": "Pragmatic Play", "rtp": "96.5%", "color": "#b45309"},
+        {"name": "Wanted Dead or Wild", "provider": "Hacksaw Gaming", "rtp": "96.4%", "color": "#92400e"},
+        {"name": "Le Bandit", "provider": "Hacksaw Gaming", "rtp": "96.3%", "color": "#0e7490"},
+        {"name": "Hand of Anubis", "provider": "Hacksaw Gaming", "rtp": "96.3%", "color": "#ca8a04"},
+        {"name": "Coin Volcano", "provider": "Push Gaming", "rtp": "96.0%", "color": "#dc2626"}
+      ]
+    },
+    "roulette": {
+      "title": "Online ruleta",
+      "icon": "🎯",
+      "color": "#16a34a",
+      "games": [
+        {"name": "European Roulette", "provider": "NetEnt", "rtp": "97.3%", "color": "#15803d"},
+        {"name": "American Roulette", "provider": "NetEnt", "rtp": "94.7%", "color": "#991b1b"},
+        {"name": "French Roulette", "provider": "Microgaming", "rtp": "98.7%", "color": "#1e40af"},
+        {"name": "Premium Roulette", "provider": "Playtech", "rtp": "97.3%", "color": "#7c3aed"},
+        {"name": "Lightning Roulette", "provider": "Evolution", "rtp": "97.1%", "color": "#facc15"},
+        {"name": "Immersive Roulette", "provider": "Evolution", "rtp": "97.3%", "color": "#831843"},
+        {"name": "Speed Roulette", "provider": "Evolution", "rtp": "97.3%", "color": "#0c4a6e"},
+        {"name": "Auto Roulette", "provider": "Evolution", "rtp": "97.3%", "color": "#0891b2"},
+        {"name": "VIP Roulette", "provider": "Evolution", "rtp": "97.3%", "color": "#581c87"},
+        {"name": "Mini Roulette", "provider": "Playtech", "rtp": "96.2%", "color": "#0e7490"},
+        {"name": "Multi-Wheel Roulette", "provider": "Microgaming", "rtp": "97.3%", "color": "#16a34a"},
+        {"name": "Zoom Roulette", "provider": "Betsoft", "rtp": "97.3%", "color": "#3f6212"},
+        {"name": "Classic Roulette", "provider": "Pragmatic Play", "rtp": "97.3%", "color": "#dc2626"},
+        {"name": "Roulette Gold Series", "provider": "Microgaming", "rtp": "97.3%", "color": "#ca8a04"},
+        {"name": "Big 500x Roulette", "provider": "Pragmatic Play", "rtp": "94.5%", "color": "#0284c7"},
+        {"name": "Lightning European Roulette", "provider": "Evolution", "rtp": "97.1%", "color": "#fbbf24"},
+        {"name": "XXXtreme Lightning Roulette", "provider": "Evolution", "rtp": "97.0%", "color": "#a855f7"},
+        {"name": "Roulette Pro", "provider": "Playtech", "rtp": "97.3%", "color": "#1e293b"},
+        {"name": "Russian Roulette", "provider": "Pragmatic Play", "rtp": "97.3%", "color": "#7f1d1d"},
+        {"name": "Roulette Royale", "provider": "Microgaming", "rtp": "97.3%", "color": "#9333ea"}
+      ]
+    },
+    "blackjack": {
+      "title": "Online blackjack",
+      "icon": "🃏",
+      "color": "#1e40af",
+      "games": [
+        {"name": "Classic Blackjack", "provider": "NetEnt", "rtp": "99.6%", "color": "#1e293b"},
+        {"name": "European Blackjack", "provider": "NetEnt", "rtp": "99.6%", "color": "#1e3a8a"},
+        {"name": "Atlantic City Blackjack", "provider": "Microgaming", "rtp": "99.6%", "color": "#1e40af"},
+        {"name": "Vegas Strip Blackjack", "provider": "Microgaming", "rtp": "99.6%", "color": "#7c2d12"},
+        {"name": "Pontoon", "provider": "Microgaming", "rtp": "99.6%", "color": "#831843"},
+        {"name": "Live Blackjack", "provider": "Evolution", "rtp": "99.3%", "color": "#15803d"},
+        {"name": "Speed Blackjack", "provider": "Evolution", "rtp": "99.3%", "color": "#7c3aed"},
+        {"name": "VIP Blackjack", "provider": "Evolution", "rtp": "99.3%", "color": "#facc15"},
+        {"name": "Salon Privé Blackjack", "provider": "Evolution", "rtp": "99.4%", "color": "#581c87"},
+        {"name": "Infinite Blackjack", "provider": "Evolution", "rtp": "99.5%", "color": "#16a34a"},
+        {"name": "Free Bet Blackjack", "provider": "Evolution", "rtp": "98.9%", "color": "#0891b2"},
+        {"name": "Power Blackjack", "provider": "Evolution", "rtp": "99.0%", "color": "#dc2626"},
+        {"name": "Blackjack Surrender", "provider": "Microgaming", "rtp": "99.6%", "color": "#9333ea"},
+        {"name": "Double Exposure Blackjack", "provider": "NetEnt", "rtp": "99.3%", "color": "#854d0e"}
+      ]
+    },
+    "poker": {
+      "title": "Online poker",
+      "icon": "♠️",
+      "color": "#7c3aed",
+      "games": [
+        {"name": "Texas Hold'em", "provider": "Evolution", "rtp": "98.0%", "color": "#1e3a8a"},
+        {"name": "Caribbean Stud Poker", "provider": "Evolution", "rtp": "94.8%", "color": "#0c4a6e"},
+        {"name": "Three Card Poker", "provider": "Evolution", "rtp": "96.6%", "color": "#831843"},
+        {"name": "Casino Hold'em", "provider": "Evolution", "rtp": "97.8%", "color": "#581c87"},
+        {"name": "Ultimate Texas Hold'em", "provider": "Evolution", "rtp": "97.8%", "color": "#16a34a"},
+        {"name": "Caribbean Poker", "provider": "Microgaming", "rtp": "94.8%", "color": "#dc2626"},
+        {"name": "Pai Gow Poker", "provider": "Microgaming", "rtp": "97.0%", "color": "#854d0e"},
+        {"name": "Joker Wild Poker", "provider": "NetEnt", "rtp": "98.6%", "color": "#9333ea"},
+        {"name": "Jacks or Better", "provider": "NetEnt", "rtp": "99.5%", "color": "#0891b2"},
+        {"name": "Deuces Wild", "provider": "NetEnt", "rtp": "98.9%", "color": "#7c3aed"},
+        {"name": "All American Poker", "provider": "NetEnt", "rtp": "99.4%", "color": "#a855f7"},
+        {"name": "Tens or Better", "provider": "Microgaming", "rtp": "99.1%", "color": "#15803d"},
+        {"name": "Bonus Poker", "provider": "Playtech", "rtp": "99.2%", "color": "#facc15"},
+        {"name": "Double Bonus Poker", "provider": "NetEnt", "rtp": "99.1%", "color": "#22c55e"}
+      ]
+    },
+    "live": {
+      "title": "Live kasino",
+      "icon": "🎥",
+      "color": "#dc2626",
+      "games": [
+        {"name": "Crazy Time", "provider": "Evolution", "rtp": "96.1%", "color": "#a855f7"},
+        {"name": "Monopoly Live", "provider": "Evolution", "rtp": "96.2%", "color": "#dc2626"},
+        {"name": "Dream Catcher", "provider": "Evolution", "rtp": "96.6%", "color": "#fbbf24"},
+        {"name": "Mega Ball", "provider": "Evolution", "rtp": "95.4%", "color": "#16a34a"},
+        {"name": "Lightning Roulette", "provider": "Evolution", "rtp": "97.1%", "color": "#facc15"},
+        {"name": "Live Blackjack", "provider": "Evolution", "rtp": "99.3%", "color": "#1e293b"},
+        {"name": "Live Baccarat", "provider": "Evolution", "rtp": "98.9%", "color": "#831843"},
+        {"name": "Live Roulette", "provider": "Evolution", "rtp": "97.3%", "color": "#15803d"},
+        {"name": "Crazy Coin Flip", "provider": "Evolution", "rtp": "96.1%", "color": "#0891b2"},
+        {"name": "Cash or Crash", "provider": "Evolution", "rtp": "96.9%", "color": "#7c3aed"},
+        {"name": "Funky Time", "provider": "Evolution", "rtp": "95.6%", "color": "#ec4899"},
+        {"name": "Red Door Roulette", "provider": "Evolution", "rtp": "96.2%", "color": "#991b1b"},
+        {"name": "Speed Baccarat", "provider": "Evolution", "rtp": "98.9%", "color": "#1e40af"},
+        {"name": "Side Bet City", "provider": "Evolution", "rtp": "95.2%", "color": "#854d0e"},
+        {"name": "Football Studio", "provider": "Evolution", "rtp": "96.3%", "color": "#3f6212"},
+        {"name": "Boom City", "provider": "Pragmatic Play Live", "rtp": "97.8%", "color": "#dc2626"},
+        {"name": "Mega Wheel", "provider": "Pragmatic Play Live", "rtp": "96.5%", "color": "#9333ea"},
+        {"name": "Sweet Bonanza CandyLand", "provider": "Pragmatic Play Live", "rtp": "96.7%", "color": "#f43f5e"},
+        {"name": "Lightning Storm", "provider": "Evolution", "rtp": "96.6%", "color": "#fbbf24"},
+        {"name": "Treasure Island", "provider": "Pragmatic Play Live", "rtp": "97.3%", "color": "#0e7490"}
+      ]
+    },
+    "baccarat": {
+      "title": "Online baccarat",
+      "icon": "🎴",
+      "color": "#831843",
+      "games": [
+        {"name": "Live Baccarat", "provider": "Evolution", "rtp": "98.9%", "color": "#831843"},
+        {"name": "Speed Baccarat", "provider": "Evolution", "rtp": "98.9%", "color": "#1e40af"},
+        {"name": "No Commission Baccarat", "provider": "Evolution", "rtp": "98.6%", "color": "#15803d"},
+        {"name": "Lightning Baccarat", "provider": "Evolution", "rtp": "98.7%", "color": "#facc15"},
+        {"name": "Dragon Tiger", "provider": "Evolution", "rtp": "96.3%", "color": "#dc2626"},
+        {"name": "Punto Banco", "provider": "Microgaming", "rtp": "98.9%", "color": "#7c3aed"},
+        {"name": "Mini Baccarat", "provider": "Playtech", "rtp": "98.8%", "color": "#0891b2"}
+      ]
+    },
+    "crash": {
+      "title": "Crash hry",
+      "icon": "⚡",
+      "color": "#f59e0b",
+      "games": [
+        {"name": "Aviator", "provider": "Spribe", "rtp": "97%", "color": "#dc2626"},
+        {"name": "Plinko", "provider": "Spribe", "rtp": "97%", "color": "#3b82f6"},
+        {"name": "Mines", "provider": "Spribe", "rtp": "97%", "color": "#ef4444"},
+        {"name": "Spaceman", "provider": "Pragmatic Play", "rtp": "96.5%", "color": "#06b6d4"},
+        {"name": "JetX", "provider": "SmartSoft", "rtp": "97%", "color": "#10b981"},
+        {"name": "Chicken Road", "provider": "InOut Games", "rtp": "98%", "color": "#f59e0b"},
+        {"name": "Tower Rush", "provider": "BGaming", "rtp": "96.5%", "color": "#8b5cf6"},
+        {"name": "Dice", "provider": "BGaming", "rtp": "99%", "color": "#a855f7"},
+        {"name": "Limbo", "provider": "Stake", "rtp": "99%", "color": "#ec4899"},
+        {"name": "Hi-Lo", "provider": "Spribe", "rtp": "97%", "color": "#f97316"},
+        {"name": "Hot Air Balloon", "provider": "Spribe", "rtp": "97%", "color": "#fbbf24"},
+        {"name": "Goal", "provider": "Spribe", "rtp": "97%", "color": "#16a34a"},
+        {"name": "Mini Roulette", "provider": "Spribe", "rtp": "97%", "color": "#15803d"}
+      ]
+    },
+    "jackpot": {
+      "title": "Jackpotové automaty",
+      "icon": "💎",
+      "color": "#fbbf24",
+      "games": [
+        {"name": "Mega Moolah", "provider": "Microgaming", "rtp": "88.1%", "color": "#84cc16"},
+        {"name": "Mega Fortune", "provider": "NetEnt", "rtp": "96.6%", "color": "#fbbf24"},
+        {"name": "Hall of Gods", "provider": "NetEnt", "rtp": "95.7%", "color": "#dc2626"},
+        {"name": "Divine Fortune", "provider": "NetEnt", "rtp": "96.6%", "color": "#facc15"},
+        {"name": "Major Millions", "provider": "Microgaming", "rtp": "89.4%", "color": "#9333ea"},
+        {"name": "King Cashalot", "provider": "Microgaming", "rtp": "90.4%", "color": "#15803d"},
+        {"name": "Wheel of Wishes", "provider": "Microgaming", "rtp": "93.3%", "color": "#7e22ce"},
+        {"name": "WowPot Mega Moolah", "provider": "Microgaming", "rtp": "93.4%", "color": "#854d0e"},
+        {"name": "Age of the Gods", "provider": "Playtech", "rtp": "95.0%", "color": "#1e40af"},
+        {"name": "Jackpot Giant", "provider": "Playtech", "rtp": "94.2%", "color": "#16a34a"},
+        {"name": "Beach Life", "provider": "Playtech", "rtp": "93.0%", "color": "#06b6d4"},
+        {"name": "Mr Vegas Jackpot", "provider": "Betsoft", "rtp": "95.4%", "color": "#dc2626"}
+      ]
+    }
+  }
+}
