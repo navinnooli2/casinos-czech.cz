@@ -40,7 +40,9 @@ def get_logo_ext(slug):
 # ============================================================
 CHEVRON_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd"/></svg>'
 
-NAV_HTML = f'''<!-- TOP BANNER -->
+NAV_HTML = f'''<!-- LOADING BAR -->
+<div class="page-loader" id="pageLoader"></div>
+<!-- TOP BANNER -->
 <div class="top-banner">
     🎰 Smash Casino: 300% bonus 15 000 Kč + 250 FS — <a href="https://m-traff.net/HYcs2BV5?sub_id_1=smash" target="_blank" rel="nofollow noopener">Získat →</a>
 </div>

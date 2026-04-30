@@ -156,6 +156,41 @@ function sortCasinos(sortKey) {
 }
 window.sortCasinos = sortCasinos;
 
+// Page loading bar
+(function() {
+  function finishLoader() {
+    var loader = document.getElementById('pageLoader');
+    if (loader) {
+      loader.classList.add('done');
+      setTimeout(function() {
+        if (loader.parentNode) loader.parentNode.removeChild(loader);
+      }, 700);
+    }
+  }
+  if (document.readyState === 'complete') {
+    finishLoader();
+  } else {
+    window.addEventListener('load', finishLoader);
+  }
+  // Restart loader on internal link click (so user sees feedback)
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+    if (a.target === '_blank') return;
+    if (a.hostname && a.hostname !== window.location.hostname) return;
+    // Re-show loader
+    var existing = document.getElementById('pageLoader');
+    if (!existing) {
+      var div = document.createElement('div');
+      div.className = 'page-loader';
+      div.id = 'pageLoader';
+      document.body.insertBefore(div, document.body.firstChild);
+    }
+  });
+})();
+
 document.addEventListener('DOMContentLoaded', function() {
   // Filter game items toggle
   document.querySelectorAll('.filter-game-item').forEach(function(item) {
