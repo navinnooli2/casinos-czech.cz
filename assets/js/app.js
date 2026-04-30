@@ -197,23 +197,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Review subnav scroll spy (active state)
+  // Review subnav: click + scroll spy (active state)
   var subnav = document.getElementById('reviewSubnav');
   if (subnav) {
     var subnavLinks = subnav.querySelectorAll('a[data-section]');
     var sectionIds = Array.from(subnavLinks).map(a => a.dataset.section);
+    var lockSpy = false;
+
+    function setActive(sectionId) {
+      subnavLinks.forEach(function(link) {
+        link.classList.toggle('active', link.dataset.section === sectionId);
+      });
+    }
+
+    // Click → immediate active state (and lock scroll spy briefly so it doesn't override)
+    subnavLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        setActive(this.dataset.section);
+        lockSpy = true;
+        clearTimeout(window._subnavLockTimer);
+        window._subnavLockTimer = setTimeout(function() { lockSpy = false; }, 800);
+      });
+    });
 
     function updateActiveSubnav() {
+      if (lockSpy) return;
       var scrollY = window.pageYOffset + 200;
       var current = sectionIds[0];
       sectionIds.forEach(function(id) {
         var el = document.getElementById(id);
         if (el && el.offsetTop <= scrollY) current = id;
       });
-      subnavLinks.forEach(function(link) {
-        link.classList.toggle('active', link.dataset.section === current);
-      });
-      // Auto-scroll the active tab into view in horizontal scroll
+      setActive(current);
       var activeLink = subnav.querySelector('a.active');
       if (activeLink) {
         var inner = subnav.querySelector('.review-subnav-inner');
@@ -227,4 +242,43 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', updateActiveSubnav, { passive: true });
     updateActiveSubnav();
   }
+
+  // Pagination on casino tops
+  document.querySelectorAll('.casino-tops').forEach(function(tops) {
+    var totalPages = parseInt(tops.dataset.totalPages || '1');
+    if (totalPages <= 1) return;
+
+    function showPage(page) {
+      tops.dataset.currentPage = page;
+      tops.querySelectorAll('.top-card').forEach(function(card) {
+        card.style.display = (parseInt(card.dataset.page) === page) ? '' : 'none';
+      });
+      // Update both pagination groups
+      document.querySelectorAll('.pagination-wrap').forEach(function(wrap) {
+        wrap.querySelectorAll('.pagination-btn').forEach(function(btn) {
+          btn.classList.remove('active');
+          btn.removeAttribute('aria-disabled');
+          if (btn.dataset.page == page) btn.classList.add('active');
+          if (btn.dataset.page === 'prev' && page === 1) btn.setAttribute('aria-disabled', 'true');
+          if (btn.dataset.page === 'next' && page === totalPages) btn.setAttribute('aria-disabled', 'true');
+        });
+      });
+      // Scroll to top of casino list
+      tops.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    document.querySelectorAll('.pagination-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var current = parseInt(tops.dataset.currentPage || '1');
+        var target = this.dataset.page;
+        if (target === 'prev') target = Math.max(1, current - 1);
+        else if (target === 'next') target = Math.min(totalPages, current + 1);
+        else target = parseInt(target);
+        if (target !== current) showPage(target);
+      });
+    });
+
+    // Initialize: show only page 1
+    showPage(1);
+  });
 });

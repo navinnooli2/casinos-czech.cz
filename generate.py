@@ -538,10 +538,176 @@ def sort_casinos_with_priority(casinos):
     return priority + others
 
 
+CASINOS_PER_PAGE = 8
+
+
+def build_pagination(total_pages, current=1):
+    """Build pagination buttons."""
+    if total_pages <= 1:
+        return ''
+    items = []
+    # Prev arrow
+    items.append(f'<button class="pagination-btn" data-page="prev" {"aria-disabled=true" if current==1 else ""} title="Předchozí"><svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg></button>')
+    # Page numbers (max 6 visible at a time)
+    for i in range(1, total_pages + 1):
+        active = ' active' if i == current else ''
+        items.append(f'<button class="pagination-btn{active}" data-page="{i}">{i}</button>')
+    # Next arrow
+    items.append(f'<button class="pagination-btn" data-page="next" {"aria-disabled=true" if current==total_pages else ""} title="Další"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></button>')
+    return f'<div class="pagination-wrap">{"".join(items)}</div>'
+
+
+INTERNAL_LINKS_HTML = '''<section class="internal-links-section">
+    <h3>🎰 Oblíbené značky kasin u hráčů</h3>
+    <div class="internal-links">
+        <a href="/kasina/synot-tip/">Synot Tip</a>
+        <a href="/kasina/fortuna/">Fortuna</a>
+        <a href="/kasina/tipsport/">Tipsport</a>
+        <a href="/kasina/chance/">Chance</a>
+        <a href="/kasina/sazka/">Sazka</a>
+        <a href="/kasina/forbes-casino/">Forbes Casino</a>
+        <a href="/kasina/betano/">Betano</a>
+        <a href="/kasina/merkurxtip/">MerkurXtip</a>
+        <a href="/kasina/betx/">BetX</a>
+        <a href="/kasina/apollo-games/">Apollo Games</a>
+        <a href="/kasina/luckybet/">LuckyBet</a>
+        <a href="/kasina/kajot-casino/">Kajot Casino</a>
+        <a href="/kasina/doxxbet/">DOXXbet</a>
+        <a href="/kasina/betor/">Betor</a>
+        <a href="/kasina/victoria-tip/">Victoria Tip</a>
+        <a href="/kasina/bet365/">Bet365</a>
+        <a href="/kasina/888-casino/">888 Casino</a>
+        <a href="/kasina/pinnacle/">Pinnacle</a>
+        <a href="/kasina/mostbet/">Mostbet</a>
+        <a href="/kasina/smash/">Smash Casino</a>
+        <a href="/kasina/29black/">29Black</a>
+        <a href="/kasina/goldzino/">Goldzino</a>
+        <a href="/kasina/playjonny/">PlayJonny</a>
+        <a href="/kasina/roulettino/">Roulettino</a>
+    </div>
+
+    <h3>💳 Platební metody</h3>
+    <div class="internal-links">
+        <a href="/online-kasino/">Visa</a>
+        <a href="/online-kasino/">Mastercard</a>
+        <a href="/online-kasino/">PaySafeCard</a>
+        <a href="/online-kasino/">Apple Pay</a>
+        <a href="/online-kasino/">Google Pay</a>
+        <a href="/online-kasino/">Skrill</a>
+        <a href="/online-kasino/">Neteller</a>
+        <a href="/online-kasino/">PayPal</a>
+        <a href="/online-kasino/">MuchBetter</a>
+        <a href="/online-kasino/">Bankovní převod</a>
+        <a href="/online-kasino/">Bitcoin</a>
+        <a href="/online-kasino/">Ethereum</a>
+        <a href="/online-kasino/">USDT</a>
+        <a href="/online-kasino/">Trustly</a>
+        <a href="/online-kasino/">Maestro</a>
+        <a href="/online-kasino/">ecoPayz</a>
+        <a href="/online-kasino/">Sportka Pay</a>
+        <a href="/online-kasino/">Hotovost</a>
+    </div>
+
+    <h3>🎮 Populární hry a kategorie</h3>
+    <div class="internal-links">
+        <a href="/hry/aviator/">Aviator</a>
+        <a href="/hry/plinko/">Plinko</a>
+        <a href="/hry/mines/">Mines</a>
+        <a href="/hry/chicken-road/">Chicken Road</a>
+        <a href="/hry/tower-rush/">Tower Rush</a>
+        <a href="/hry/spaceman/">Spaceman</a>
+        <a href="/hry/jetx/">JetX</a>
+        <a href="/hry/dice/">Dice</a>
+        <a href="/hry/limbo/">Limbo</a>
+        <a href="/hry/hilo/">Hi-Lo</a>
+        <a href="/casino-vyherni-automaty/">Výherní automaty</a>
+        <a href="/automaty-zdarma/">Automaty zdarma</a>
+        <a href="/live-kasino/">Live kasino</a>
+        <a href="/poker-online/">Poker</a>
+        <a href="/jackpot-kasino/">Jackpot</a>
+        <a href="/rtp-automaty/">RTP automaty</a>
+        <a href="/volatilita-automaty/">Volatilita</a>
+        <a href="/sazeni-na-sport/">Sportovní sázky</a>
+        <a href="/loterie-online/">Loterie</a>
+    </div>
+
+    <h3>🏢 Poskytovatelé her</h3>
+    <div class="internal-links">
+        <a href="/kasina/synot-tip/">Pragmatic Play</a>
+        <a href="/kasina/synot-tip/">NetEnt</a>
+        <a href="/kasina/synot-tip/">Play'n GO</a>
+        <a href="/kasina/synot-tip/">Evolution</a>
+        <a href="/kasina/synot-tip/">Microgaming</a>
+        <a href="/kasina/synot-tip/">Novomatic</a>
+        <a href="/kasina/synot-tip/">Synot Games</a>
+        <a href="/kasina/synot-tip/">Yggdrasil</a>
+        <a href="/kasina/synot-tip/">Red Tiger</a>
+        <a href="/kasina/synot-tip/">Hacksaw Gaming</a>
+        <a href="/kasina/synot-tip/">Push Gaming</a>
+        <a href="/kasina/synot-tip/">Big Time Gaming</a>
+        <a href="/kasina/synot-tip/">Quickspin</a>
+        <a href="/kasina/synot-tip/">Thunderkick</a>
+        <a href="/kasina/synot-tip/">ELK Studios</a>
+        <a href="/kasina/synot-tip/">Spribe</a>
+        <a href="/kasina/synot-tip/">BGaming</a>
+        <a href="/kasina/synot-tip/">Wazdan</a>
+        <a href="/kasina/synot-tip/">Relax Gaming</a>
+        <a href="/kasina/synot-tip/">EGT</a>
+        <a href="/kasina/synot-tip/">Endorphina</a>
+        <a href="/kasina/synot-tip/">Amatic</a>
+        <a href="/kasina/synot-tip/">iSoftBet</a>
+        <a href="/kasina/synot-tip/">Inspired Gaming</a>
+    </div>
+
+    <h3>🏆 Top tematické žebříčky</h3>
+    <div class="internal-links">
+        <a href="/nejlepsi-kasina-cz/">Nejlepší kasina ČR</a>
+        <a href="/top-10-kasin/">Top 10 kasin</a>
+        <a href="/online-kasino/">Online kasino</a>
+        <a href="/nove-kasina-2026/">Nová kasina 2026</a>
+        <a href="/bezpecna-kasina/">Bezpečná kasina</a>
+        <a href="/kasino-bez-limitu/">Bez limitu</a>
+        <a href="/kasina-ceska-licence/">Česká licence</a>
+        <a href="/legalni-kasina-cz/">Legální kasina</a>
+        <a href="/mobilni-kasino/">Mobilní kasino</a>
+        <a href="/kasino-pro-zacatecniky/">Pro začátečníky</a>
+        <a href="/vysoke-rtp-kasino/">Vysoké RTP</a>
+        <a href="/kasino-na-penize/">Hraní za peníze</a>
+        <a href="/nejlepsi-kasinovy-bonus/">Nejlepší bonusy</a>
+        <a href="/free-spiny-dnes/">Free spiny dnes</a>
+        <a href="/kasina-bez-vkladu/">Bez vkladu</a>
+        <a href="/casino-bonusy-bez-vkladu/">Bonusy bez vkladu</a>
+        <a href="/kasino-free-spiny/">Free spiny</a>
+        <a href="/kasino-nizka-sazka/">Nízké sázky</a>
+    </div>
+</section>'''
+
+
 def build_casino_tops(casinos):
     sorted_casinos = sort_casinos_with_priority(casinos)
-    cards = '\n'.join(build_top_card(c, i) for i, c in enumerate(sorted_casinos, 1))
-    return f'{FILTER_BAR_HTML}\n<div class="casino-tops">\n{cards}\n</div>\n{FILTER_MODAL_HTML}'
+    total = len(sorted_casinos)
+    total_pages = (total + CASINOS_PER_PAGE - 1) // CASINOS_PER_PAGE
+
+    # Each card gets a data-page attribute. Pages 2+ are hidden by default via JS
+    cards = []
+    for idx, c in enumerate(sorted_casinos, 1):
+        page = ((idx - 1) // CASINOS_PER_PAGE) + 1
+        card_html = build_top_card(c, idx)
+        # Inject data-page attribute on the top-card div
+        card_html = card_html.replace('<div class="top-card"', f'<div class="top-card" data-page="{page}"', 1)
+        cards.append(card_html)
+
+    cards_html = '\n'.join(cards)
+    pagination_html = build_pagination(total_pages, 1)
+
+    return f'''{FILTER_BAR_HTML}
+{pagination_html}
+<div class="casino-tops" data-current-page="1" data-total-pages="{total_pages}">
+{cards_html}
+</div>
+{pagination_html}
+{INTERNAL_LINKS_HTML}
+{FILTER_MODAL_HTML}'''
 
 
 def build_faq_html(faq_items):
