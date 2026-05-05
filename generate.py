@@ -553,7 +553,7 @@ FILTER_BAR_HTML = '''<div class="filter-bar">
 </div>'''
 
 
-AFFILIATE_PRIORITY = ['smash', '29black', 'goldzino', 'playjonny', 'roulettino']
+AFFILIATE_PRIORITY = ['smash', '29black', 'goldzino', 'playjonny', 'roulettino', 'wyns', 'spinania', 'mafia-casino']
 
 
 def sort_casinos_with_priority(casinos):
