@@ -29,7 +29,7 @@ with open(index_path, 'r', encoding='utf-8') as f:
 # We'll match from <h2>Top Kasina v ČR</h2> to the closing </div></section> right before the seo-content section.
 
 # Simpler approach: find the start and end markers
-start_marker = '<h2 class="section-title">Top Kasina v ČR</h2>'
+start_marker = '<h2 class="section-title">Top kasin v ČR – Nejlepší online kasina 2026</h2>'
 # The end is the </div> that closes "section-content" / </section> just before the seo-content
 # Let's find where the next <section class="seo-content"> or <section class="section"> begins
 
